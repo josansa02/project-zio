@@ -4,13 +4,12 @@ namespace Database\Factories;
 
 use App\Models\Image;
 use App\Models\User;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Message>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Report>
  */
-class MessageFactory extends Factory
+class ReportFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -25,11 +24,11 @@ class MessageFactory extends Factory
         }
         $users = User::pluck('id')->toArray();
         unset($users[0]);
-
+        
         return [
-            'message' => $this->faker->sentence(),
+            'reason' => $this->faker->randomElement(["Es spam", "Desnudos o actividad sexual", "Lenguajes o simbolos que inciten al odio", "Violencia", "Bullying o acoso"]),
             'owner_id' => 1,
-            'writer_id' => $this->faker->randomElement($users),
+            'reporter_id' => $this->faker->randomElement($users),
             'img_id' => $this->faker->randomElement($imgs),
         ];
     }
