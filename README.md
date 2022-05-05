@@ -12,7 +12,7 @@ Mira **Despliegue** para conocer como desplegar el proyecto.
 
 ### Pre-requisitos 📋
 
-_Contar con lo siguiente instalado en tu sistema:_
+_Contar con lo siguiente instalado en tu sistema_
 
 * NPM
 * Composer
@@ -20,7 +20,7 @@ _Contar con lo siguiente instalado en tu sistema:_
 
 ### Instalación 🔧
 
-_Una vez se tenga clonado el proyecto deberá realizar los siguientes comandos sobre su directorio para instalar las dependencias:_
+_Una vez se tenga clonado el proyecto deberá realizar los siguientes comandos sobre su directorio para instalar las dependencias_
 
 ```
 composer install
@@ -30,13 +30,37 @@ composer install
 npm install
 ```
 
-_Hecho esto deberá usar el archivo que se encuentra en la raíz del documento **env.example** _
+_Hecho esto deberá duplicar el archivo **.env.example**, renombrarlo como **.env** e incluir los datos de conexión de la base de datos_
 
+-EJ-
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=proyecto_ziobd
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+_Generamos una clave para el archivo .env_
+
+```
+php artisan key:generate
+```
+
+_Y por último ejecutamos las migraciones para que se generen las tablas_
+
+```
+php artisan migrate
+```
 
 ## Ejecutando las pruebas ⚙️
 
-_Como ejecutar pruebas_
+_Para ejecutar el seeder y poblar las tablas para pruebas escribimos lo siguiente_
 
+```
+php artisan migrate:fresh --seed
+```
 
 ## Despliegue 📦
 
