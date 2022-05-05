@@ -29,7 +29,7 @@ class ReportFactory extends Factory
             'reason' => $this->faker->randomElement(["Es spam", "Desnudos o actividad sexual", "Lenguajes o simbolos que inciten al odio", "Violencia", "Bullying o acoso"]),
             'owner_id' => 1,
             'reporter_id' => $this->faker->randomElement($users),
-            'img_id' => $this->faker->randomElement($imgs),
+            'img_id' => $this->faker->randomElement($imgs)
         ];
     }
 }

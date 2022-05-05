@@ -4,6 +4,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Message;
+use App\Models\Petitions;
 use App\Models\Report;
 use App\Models\Vote;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -23,5 +24,6 @@ class DatabaseSeeder extends Seeder
         Message::factory(5)->create();
         Vote::factory(5)->create();
         Report::factory(5)->create();
+        Petitions::factory(5)->create();
     }
 }

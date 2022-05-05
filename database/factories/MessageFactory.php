@@ -30,7 +30,7 @@ class MessageFactory extends Factory
             'message' => $this->faker->sentence(),
             'owner_id' => 1,
             'writer_id' => $this->faker->randomElement($users),
-            'img_id' => $this->faker->randomElement($imgs),
+            'img_id' => $this->faker->randomElement($imgs)
         ];
     }
 }
