@@ -20,7 +20,7 @@ _Contar con lo siguiente instalado en tu sistema:_
 
 ### Instalación 🔧
 
-_Una vez se tenga clonado el proyecto solo deberá realizar los siguientes comandos sobre su directorio para instalar las dependencias:_
+_Una vez se tenga clonado el proyecto deberá realizar los siguientes comandos sobre su directorio para instalar las dependencias:_
 
 ```
 composer install
@@ -29,6 +29,8 @@ composer install
 ```
 npm install
 ```
+
+_Hecho esto deberá usar el archivo que se encuentra en la raíz del documento **env.example** _
 
 
 ## Ejecutando las pruebas ⚙️
