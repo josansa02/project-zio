@@ -12,7 +12,7 @@ Mira **Despliegue** para conocer como desplegar el proyecto.
 
 ### Pre-requisitos 📋
 
-_Contar con lo siguiente instalado en tu sistema:_
+_Contar con lo siguiente instalado en tu sistema_
 
 * NPM
 * Composer
@@ -56,8 +56,11 @@ php artisan migrate
 
 ## Ejecutando las pruebas ⚙️
 
-_Como ejecutar pruebas_
+_Para ejecutar el seeder y poblar las tablas para pruebas escribimos lo siguiente_
 
+```
+php artisan migrate:fresh --seed
+```
 
 ## Despliegue 📦
 
