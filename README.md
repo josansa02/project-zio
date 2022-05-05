@@ -30,8 +30,17 @@ composer install
 npm install
 ```
 
-_Hecho esto deberá usar el archivo que se encuentra en la raíz del documento **env.example** _
+_Hecho esto deberá duplicar el archivo **.env.example**, renombrarlo como **.env** e incluir los datos de conexión de la base de datos_
 
+-EJ-
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=proyecto_ziobd
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
 ## Ejecutando las pruebas ⚙️
 
