@@ -20,7 +20,7 @@ _Contar con lo siguiente instalado en tu sistema:_
 
 ### Instalación 🔧
 
-_Una vez se tenga clonado el proyecto deberá realizar los siguientes comandos sobre su directorio para instalar las dependencias:_
+_Una vez se tenga clonado el proyecto deberá realizar los siguientes comandos sobre su directorio para instalar las dependencias_
 
 ```
 composer install
@@ -40,6 +40,18 @@ DB_PORT=3306
 DB_DATABASE=proyecto_ziobd
 DB_USERNAME=root
 DB_PASSWORD=
+```
+
+_Generamos una clave para el archivo .env_
+
+```
+php artisan key:generate
+```
+
+_Y por último ejecutamos las migraciones para que se generen las tablas_
+
+```
+php artisan migrate
 ```
 
 ## Ejecutando las pruebas ⚙️
