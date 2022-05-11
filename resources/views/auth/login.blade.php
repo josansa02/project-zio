@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container mt-5">
     <div class="row portada">
         <div class="col-12 col-md-8 text-center d-flex align-items-center justify-content-center">
@@ -15,7 +16,7 @@
                 @csrf
 
                 <label for="email">Email: </label>
-                <input id="email" type="email" @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                 @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -23,18 +24,18 @@
                 @enderror
 
                 <label for="password">Contraseña: </label>
-                <input id="password" type="password" @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                 @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
 
-                @if (Route::has('password.request'))
+                {{-- @if (Route::has('password.request'))
                     <a class="mt-1 d-block btn-link" href="{{ route('password.request') }}">
                         {{ __('Forgot Your Password?') }}
                     </a>
-                @endif
+                @endif --}}
 
                 <div class="d-flex justify-content-center">
                     <input type="submit" class="boton_sesion" value="Iniciar sesión">
