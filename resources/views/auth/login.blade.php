@@ -1,11 +1,15 @@
 @extends('layouts.app')
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+@endsection
+
 @section('content')
 
 <div class="container mt-5">
     <div class="row portada">
         <div class="col-12 col-md-8 text-center d-flex align-items-center justify-content-center">
-            <h2> ZIO, la plataforma más liviana de imagenes </h2>
+            <h2> ZIO, la plataforma más liviana de imágenes </h2>
             <form method="POST" action="{{ route('login') }}">
                 
                 <div class="d-flex justify-content-center align-items-center gap-0">

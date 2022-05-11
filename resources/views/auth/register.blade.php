@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+<link rel="stylesheet" href="{{ asset('css/registro.css') }}">
+@endsection
+
 @section('content')
 <div class="container mt-5">
     <div class="row portada">
