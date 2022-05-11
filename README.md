@@ -1,5 +1,9 @@
 # ZIO
 
+<p align="center">
+  <img src="https://github.com/josansa02/project-zio/blob/main/public/img/logo_ZIO.svg" width="50" title="hover text">
+</p>
+
 _ZIO es una plataforma cuyo objetivo se basa en ceder a los usuarios un entorno al que subir sus fotografías._
 
 
