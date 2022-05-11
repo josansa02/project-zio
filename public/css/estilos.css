@@ -2,8 +2,7 @@
 :root {
   --main-color: #073673;
   --main-bg-color: rgb(235, 235, 235);
-  --icono-tema: url("../img/dark_mode_black_24dp.svg");
-  --fondo-tema: #8882fd;
+  --fondo-tema: #5148ff;
 }
 
 /* Modificaciones generales */
@@ -14,7 +13,6 @@
 }
 
 /* Estilos */
-
 body {
   background-color: var(--main-bg-color);
   color: var(--main-color);
