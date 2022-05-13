@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section("title", "ZIO - Registro")
+
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 <link rel="stylesheet" href="{{ asset('css/registro.css') }}">
