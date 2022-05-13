@@ -14,9 +14,13 @@
                         </div>
                     @endif
                     {{ __('You are logged in!') }}
+
+                    <h2> Prueba de componentes </h2>
+                    <!-- Prueba components -->
+                    <example-component></example-component>
+                    <login-component></login-component>
                 </div>
             </div>
-            <example-component></example-component>
         </div>
     </div>
 </div>
