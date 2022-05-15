@@ -1,21 +1,10 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 
 Auth::routes();
 
@@ -27,3 +16,7 @@ Route::get('usuarios/edit/{id}', [UserController::class, "edit"])->name("usuario
 Route::get('galeria/{name}', [UserController::class, "show"])->name("gallery");
 Route::get('/', [HomeController::class, 'indexLogin'])->name('index.login');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// Prueba
+Route::resource("/imagenes", ImageController::class);
+//Route::resource("/imagenes", [ImageController::class, "store"]);

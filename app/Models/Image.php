@@ -9,4 +9,7 @@ class Image extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+    //Prueba
+    protected $fillable = ['title'];
 }

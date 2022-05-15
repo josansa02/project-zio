@@ -13,12 +13,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    {{ __('You are logged in!') }}
+                    {{ __('Has iniciado sesión correctamente!') }}
 
-                    <h2> Prueba de componentes </h2>
                     <!-- Prueba components -->
-                    <example-component></example-component>
-                    <login-component></login-component>
+                    <imagenform-component></imagenform-component>
                 </div>
             </div>
         </div>
