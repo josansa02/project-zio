@@ -5416,23 +5416,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      titulo: ""
+      titulo: "",
+      pie: ""
     };
   },
   methods: {
     guardarImagen: function guardarImagen() {
       console.log("Titulo de la imagen: " + this.titulo);
-      axios.post("/project-zio/public/imagenes", {
-        title: this.titulo
+      console.log("Titulo de la imagen: " + this.pie);
+      axios.post("/imagenes", {
+        title: this.titulo,
+        footer: this.pie
       }).then(function (response) {
         console.log(response);
+        alert("Ha insertado una imagen correctamente");
       })["catch"](function (error) {
         console.log(error.response);
       });
       this.titulo = "";
+      this.pie = "";
     }
   }
 });
@@ -28173,7 +28181,7 @@ var render = function () {
     _c(
       "form",
       {
-        attrs: { method: "POST" },
+        attrs: { method: "POST", enctype: "multipart/form-data" },
         on: {
           submit: function ($event) {
             $event.preventDefault()
@@ -28201,6 +28209,37 @@ var render = function () {
                   return
                 }
                 _vm.titulo = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.pie,
+                expression: "pie",
+              },
+            ],
+            staticClass: "text-xl p-2 w-full border-b-2 border-green-500",
+            attrs: { type: "text", placeholder: "Pie de página" },
+            domProps: { value: _vm.pie },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.pie = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c("input", {
+            attrs: { type: "file", id: "dmsFile", name: "dmsFile" },
+            on: {
+              change: function ($event) {
+                return _vm.getFile($event)
               },
             },
           }),
