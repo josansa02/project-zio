@@ -12,11 +12,11 @@
     <div class="row portada">
         <div class="col-12 col-md-8 text-center d-flex align-items-center justify-content-center">
             <h2> Editar perfil </h2>
-            <form action="{{route('index')}}/usuarios/edit/{{$user->id}}" method="POST" class="d-flex gap-5">
+            <form action="{{route('usuarios.edit', $user->id)}}/" method="POST" class="d-flex gap-5">
                 @csrf
                 @method('put')
                 <div class="d-flex flex-column justify-content-center align-items-center gap-2">
-                    <img src="{{asset('/img/profileIMG/{{$user->profileimg}}')}}" class="img-fluid mod_profile">
+                    <img src="{{asset('/img/profileIMG')}}/{{$user->profile_img}}" class="img-fluid mod_profile">
                     <div data-bs-toggle="modal" data-bs-target="#exampleModal" class="cambiar_img"> Cambiar imagen de perfil </div>
                 </div>
                 <div>
@@ -65,7 +65,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Actualizar imagen</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{asset('/usuarios/edit/profileimg/{{$user->id}}')}}" enctype="multipart/form-data" method="POST">
+            <form action="{{route('usuarios.edit.profileimg.update', $user->id)}}" enctype="multipart/form-data" method="POST">
                 @csrf
                 @method('put')
                 <div class="modal-body">
