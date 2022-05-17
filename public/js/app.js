@@ -5425,7 +5425,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     guardarImagen: function guardarImagen() {
       console.log("Titulo de la imagen: " + this.titulo);
-      axios.post("/imagenes", {
+      axios.post("/project-zio/public/imagenes", {
         title: this.titulo
       }).then(function (response) {
         console.log(response);

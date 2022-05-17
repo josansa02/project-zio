@@ -21,7 +21,7 @@
         methods: {
             guardarImagen() {
                 console.log("Titulo de la imagen: " + this.titulo);
-                axios.post("/imagenes", {title: this.titulo, })
+                axios.post("/project-zio/public/imagenes", {title: this.titulo, })
                 .then(response => { console.log(response) })
                 .catch(error => { console.log(error.response) });
                 this.titulo = "";
