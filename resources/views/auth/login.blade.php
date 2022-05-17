@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
+@section("title", "Inicio - ZIO")
+
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @endsection
 
 @section('content')
