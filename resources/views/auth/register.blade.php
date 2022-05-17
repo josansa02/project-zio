@@ -1,20 +1,19 @@
 @extends('layouts.app')
 
-@section("title", "ZIO - Registro")
+@section("title", "Registro - ZIO")
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 <link rel="stylesheet" href="{{ asset('css/registro.css') }}">
 @endsection
 
 @section('content')
 <div class="container mt-5">
+    <h2 class="text-center mb-4"> Registrate en ZIO para tener acceso a la galería de imagenes más liviana y rápida. </h2>
     <div class="row portada">
         <div class="col-12 col-md-8 text-center d-flex align-items-center justify-content-center">
-            <h2> Registrate en ZIO para tener acceso a la galería de imagenes más liviana y rápida. </h2>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
-                <label for="name" class="col-md-4 col-form-label text-md-end">Nombre: </label>
+                <label for="name">Nombre: </label>
                 <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                 @error('name')
                     <span class="invalid-feedback" role="alert">
@@ -22,7 +21,7 @@
                     </span>
                 @enderror
                 
-                <label for="email">Email: </label>
+                <label for="email" class="mt-3">Email: </label>
                 <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                 @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -30,7 +29,7 @@
                     </span>
                 @enderror
 
-                <label for="password">Contraseña: </label>
+                <label for="password" class="mt-3">Contraseña: </label>
                 <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                 @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -38,10 +37,10 @@
                     </span>
                 @enderror
 
-                <label for="password-confirm">Confirmar contraseña: </label>
+                <label for="password-confirm" class="mt-3">Confirmar contraseña: </label>
                 <input id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password">
 
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center mt-2">
                     <input type="submit" class="boton_sesion" value="Registrarse">
                 </div>
             </form>

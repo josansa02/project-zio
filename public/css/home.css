@@ -1,16 +1,9 @@
 /* Variables */
 :root {
-    --main-color: #073673;
-    --main-bg-color: white;
-    --icono-tema: url("../img/dark_mode_black_24dp.svg");
-    --fondo-tema: #8882fd;
-}
-  
-[tema="dark"]{
-    --main-color: rgb(235, 235, 235);
-    --main-bg-color: rgb(16, 16, 16);
-    --icono-tema: url("../img/light_mode_white_24dp.svg");
-    --fondo-tema: #5148ff;
+    --main-blue: #073673;
+    --main-purple: #5148ff;
+    --secunday-purple: #8882fd;
+    --main-bg-color: #f8f9fa;
 }
   
 /* Modificaciones generales */
@@ -21,7 +14,6 @@
 }
 
 /* Estilos */
-
 body {
     background-color: var(--main-bg-color);
     transition: 0.6s ease;
@@ -29,7 +21,7 @@ body {
 
 /* Header */
 nav {
-    border-bottom: 3px solid var(--fondo-tema);
+    border-bottom: 3px solid var(--main-purple);
     transition: 0.6s;
 }
 
@@ -69,12 +61,12 @@ nav {
     transition: 0.6s;
 }
 .boton_sesion:hover {
-    box-shadow: inset 150px 0px 0px var(--main-color);
+    box-shadow: inset 150px 0px 0px var(--main-blue);
 }
 
 /* Main */
 main {
-    color: var(--main-color);
+    color: var(--main-blue);
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-auto-rows: 1fr;
@@ -92,7 +84,7 @@ main img:hover {
 .imagen_galeria {
     width: 100%;
     height: 100%;
-    background-color: var(--fondo-tema);
+    background-color: var(--main-purple);
 }
 
 /* Modal */
@@ -124,11 +116,11 @@ main img:hover {
 }
 
 .cerrado {
-    background-color: var(--fondo-tema);
+    background-color: var(--main-purple);
 }
 
 .modal-content {
-    color: var(--main-color);
+    color: var(--main-blue);
     background-color: var(--main-bg-color);
 }
 
@@ -147,13 +139,13 @@ form input{
     background: transparent;
     border: 0;
     border-bottom: 1px solid #bbb;
-    color: var(--main-color);
+    color: var(--main-blue);
     padding-bottom: 0;
     transition: all .5s;
 }
   
 form input:focus{
-    box-shadow: inset 0 -2px 0 var(--main-color);
+    box-shadow: inset 0 -2px 0 var(--main-blue);
     padding-bottom: 0.3em;
     outline: 0;
 }
@@ -171,7 +163,7 @@ form input:focus{
 
 .subir_boton {
     cursor: pointer;
-    border-bottom: 1px solid var(--fondo-tema);
+    border-bottom: 1px solid var(--main-purple);
 }
 #files {
     display: none
@@ -188,34 +180,18 @@ form input:focus{
     cursor: auto;
 }
 
-/* Boton tema claro/oscuro */
-#switch {
-    background-color: var(--fondo-tema);
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-    width: 40px;
-    height: 40px;
-    border-radius: 25px;
-    z-index: 1;
-    transition: 0.4s ease;
-    opacity: 0.4;
+/* Modal */
+.modal_input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal_input label{
     cursor: pointer;
+    border-bottom: 1px solid var(--main-purple);
 }
-#switch:hover {
-    opacity: 0.9;
-}
-#switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.icono_tema {
-    width: 24px;
-    height: 24px;
-    background-image: var(--icono-tema);
-    transition: 0.2s;
+.modal_input input{
+    display: none;
 }
 
 /* Media Queries */
