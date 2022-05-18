@@ -25,7 +25,7 @@
         methods: {
             guardarImagen() {
                 console.log("Titulo de la imagen: " + this.titulo);
-                console.log("Titulo de la imagen: " + this.pie);
+                console.log("Pie de la imagen: " + this.pie);
                 axios.post("'/imagenes'", {title: this.titulo, footer: this.pie})
                 .then(response => { 
                     console.log(response);
