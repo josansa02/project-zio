@@ -5418,23 +5418,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       titulo: "",
-      pie: ""
+      pie: "",
+      nombre: "pepe"
     };
   },
   methods: {
     guardarImagen: function guardarImagen() {
       console.log("Titulo de la imagen: " + this.titulo);
-      console.log("Titulo de la imagen: " + this.pie);
-      axios.post("/imagenes", {
+      console.log("Pie de la imagen: " + this.pie);
+      axios.post("imagenes", {
+        name: this.nombre,
         title: this.titulo,
-        footer: this.pie
+        footer: this.pie,
+        user_id: 1
       }).then(function (response) {
-        console.log(response);
+        console.log(response.data);
         alert("Ha insertado una imagen correctamente");
       })["catch"](function (error) {
         console.log(error.response);
