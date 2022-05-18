@@ -30,6 +30,7 @@ class HomeController extends Controller
 
     public function indexLogin()
     {
-        return view('home');
+        $images = Image::all();
+        return view('home', compact('images'));
     }
 }
