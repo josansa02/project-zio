@@ -29,7 +29,7 @@
     <div id="app">
         <nav class="navbar navbar-expand navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     <!-- {{ config('app.name', 'ZIO') }} -->
                     <img src="{{asset('/img/logo_ZIO.svg')}}" alt="Logo ZIO" width="40" height="40" class="d-inline-block">
                 </a>
