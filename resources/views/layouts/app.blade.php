@@ -21,6 +21,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/search.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
 
@@ -33,9 +34,22 @@
                     <img src="{{asset('/img/logo_ZIO.svg')}}" alt="Logo ZIO" width="40" height="40" class="d-inline-block">
                 </a>
 
-                <div id="navbarSupportedContent">
+                @guest
+                @else
+                    <form method="POST">
+                        <div class="p-1 bg-light rounded rounded-pill shadow-sm">
+                            <div class="input-group">
+                                <input type="text" placeholder="Busca usuarios..." class="form-control border-0 bg-light">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                @endguest
 
-                    <!-- Right Side Of Navbar -->
+                <div class="main-search-input-wrap">
+
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
@@ -51,7 +65,7 @@
                                 </li>
                             @endif
                         @else
-                            <!-- Barra de búsqueda de usuarios -->
+                            <!-- Menú desplegable del usuario -->
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <img style="width: 50px" src="{{asset('img/profileIMG')}}/{{auth()->user()->profile_img}}" alt="ProfileImg">
