@@ -1,0 +1,29 @@
+/* Variables */
+:root {
+    --main-blue: #073673;
+    --main-purple: #5148ff;
+    --secunday-purple: #8882fd;
+    --main-bg-color: #f8f9fa;
+}
+
+.barra_busqueda-input {
+    background: white;
+    border: 2px solid var(--main-purple);
+    border-radius: 5px;
+    box-shadow: 0px 0px 0px 6px rgba(255,255,255,0.3);
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+  
+.form-control-underlined {
+    border-width: 0;
+    border-bottom-width: 1px;
+    border-radius: 0;
+    padding-left: 0;
+}
+
+.text-dark-purple {
+    color: var(--main-purple);
+}
