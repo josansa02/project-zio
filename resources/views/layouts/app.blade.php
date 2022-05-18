@@ -37,10 +37,10 @@
                 @guest
                 @else
                     <form method="POST">
-                        <div class="p-1 bg-light rounded rounded-pill shadow-sm">
+                        <div class="p-1 bg-main rounded rounded-pill shadow-sm">
                             <div class="input-group">
-                                <input type="text" placeholder="Busca usuarios..." class="form-control border-0 bg-light">
-                                <div class="input-group-append">
+                                <input type="text" placeholder="Busca usuarios..." class="form-control border-0 bg-main">
+                                <div>
                                     <button type="submit" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
                                 </div>
                             </div>
@@ -67,13 +67,16 @@
                         @else
                             <!-- Menú desplegable del usuario -->
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link d-flex" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <img style="width: 50px" src="{{asset('img/profileIMG')}}/{{auth()->user()->profile_img}}" alt="ProfileImg">
+                                    <div class="d-flex align-items-end">
+                                        <span class="material-symbols-outlined">expand_more</span>
+                                    </div>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item d-flex justify-content-between align-items-center gap-3" href="{{route('gallery', auth()->user()->name)}}">Ver galería personal <span class="material-symbols-outlined"> home </span></a>
-                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="">Ver comentarios <span class="material-symbols-outlined"> chat </span></a>
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center gap-3" href="{{route('gallery', auth()->user()->name)}}">Galería personal <span class="material-symbols-outlined"> home </span></a>
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="">Comentarios <span class="material-symbols-outlined"> chat </span></a>
                                     <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{route('usuarios.edit', auth()->user()->id)}}">Editar perfil <span class="material-symbols-outlined"> settings </span></a>
                                     <a class="dropdown-item d-flex justify-content-between align-items-center" href="">Ayuda <span class="material-symbols-outlined"> help </span></a>
                                     <a class="dropdown-item border-top d-flex justify-content-between align-items-center" href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

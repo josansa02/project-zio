@@ -6,6 +6,31 @@
     --main-bg-color: #f8f9fa;
 }
 
+/* Estilos generales */
+.bg-main {
+    background-color: var(--main-bg-color);
+}
+.bg-blue {
+    background-color: var(--main-blue);
+}
+.bg-dark-purple {
+    background-color: var(--main-purple);
+}
+.bg-purple {
+    background-color: var(--secunday-purple);
+}
+
+.text-blue {
+    color: var(--main-blue);
+}
+
+.text-dark-purple {
+    color: var(--main-purple);
+}
+.text-purple {
+    color: var(--secunday-purple);
+}
+
 .barra_busqueda-input {
     background: white;
     border: 2px solid var(--main-purple);
@@ -22,8 +47,4 @@
     border-bottom-width: 1px;
     border-radius: 0;
     padding-left: 0;
-}
-
-.text-dark-purple {
-    color: var(--main-purple);
 }
