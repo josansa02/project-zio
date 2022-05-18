@@ -15,7 +15,6 @@ Route::get('usuarios/edit/{id}', [UserController::class, "edit"])->name("usuario
 //Route::delete('image/remove/{id}', [ImageController::class, "destroy"])->name("image.remove.delete");
 Route::get('galeria/{name}', [UserController::class, "show"])->name("gallery");
 Route::get('/', [HomeController::class, 'indexLogin'])->name('index.login');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Prueba
 Route::resource("/imagenes", ImageController::class);
