@@ -28,14 +28,13 @@
         </div>
     </div>
     @if (Auth::user()->name == $user->name)
-    <div class="d-flex mt-2 gap-1">
+    <div style="gap: 1.8px" class="d-flex mt-2 btn-group">
         <button type="button" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <span class="material-symbols-outlined">add_circle</span>
         </button>
         <button type="button" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <span class="material-symbols-outlined">chat</span>
         </button>
-        <!-- <a class="btn btn-primary" href="{{route('usuarios.edit', $user->id)}}">Editar perfil</a> -->
     </div>
     @endif
 </div>
