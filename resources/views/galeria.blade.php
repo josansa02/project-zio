@@ -93,33 +93,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Insertar imagen</h5>
                 <button type="button" class="btn-close cerrado" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            {{-- <form action="{{route('image.add')}}" enctype="multipart/form-data" class="formulario_modal" method="post">
-                <div class="modal-body">
-                    @csrf
-                    <div class="modal_input">
-                        <label for="files" class="subir_boton"> Haz clic aquí para seleccionar una imagen </label>
-                        <input type="file" id="files" name="files">
-                    </div>
-
-                    <div class="modal_input mt-3">
-                        <label for="titulo">Titulo: </label>
-                        <input type="text" id="tituloIMG" name="tituloimg" maxlength="30">
-                    </div>
-
-                    <div class="modal_input mt-2">
-                        <label for="pieIMG">Pie: </label>
-                        <input type="text" id="pieIMG" name="pieimg">
-                    </div>
-                    <input type="hidden" name="img" id="img_sub">
-
-                    <div class="imagen_modal mt-3">
-                        <output id="list"></output>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary" value="Añadir">
-                </div>
-            </form> --}}
+            <imagenform-component></imagenform-component>
         </div>
     </div>
 </div>
