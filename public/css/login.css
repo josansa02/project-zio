@@ -94,14 +94,6 @@ form .boton_sesion:hover {
   box-shadow: inset 150px 0px 0px var(--main-blue);
 }
 
-/* Pie de página */
-footer {
-  position: absolute;
-  bottom: 5px;
-  height: 50px;
-  width: 100%;
-}
-
 /* Media Querie md */
 @media all and (min-width: 768px) {
 

@@ -33,4 +33,9 @@ class HomeController extends Controller
         $images = Image::all();
         return view('home', compact('images'));
     }
+
+    public function ayuda()
+    {
+        return view('ayuda');
+    }
 }

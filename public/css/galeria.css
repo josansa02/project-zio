@@ -67,6 +67,10 @@ main img:hover {
     background-color: var(--main-purple);
 }
 
+.user-buttons {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 /* Modal */
 .imagen_modal {
     width: 100%;

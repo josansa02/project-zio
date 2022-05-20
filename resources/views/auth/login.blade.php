@@ -53,7 +53,7 @@
         </div>
     </div>
 </div>
-<footer class="footer">
+<footer class="footer mt-5">
     <div class="container text-center">
         <span class="text-muted">Jesús Sánchez Rodríguez y José Antonio Sánchez Andrades &copy; 2022</span>
     </div>
