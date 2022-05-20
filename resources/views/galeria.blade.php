@@ -28,7 +28,7 @@
         </div>
     </div>
     @if (Auth::user()->name == $user->name)
-    <div style="gap: 1.8px" class="d-flex mt-2 btn-group">
+    <div style="gap: 2px" class="d-flex mt-2 btn-group user-buttons">
         <button type="button" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <span class="material-symbols-outlined">add_circle</span>
         </button>

@@ -31,11 +31,16 @@
     color: var(--secunday-purple);
 }
 
+/* */
 .barra_busqueda-input {
     background: white;
     border: 2px solid var(--main-purple);
     border-radius: 5px;
     box-shadow: 0px 0px 0px 6px rgba(255,255,255,0.3);
+}
+
+.dropdown-item:active {
+    background-color: var(--main-purple) !important;
 }
 
 .form-control:focus {

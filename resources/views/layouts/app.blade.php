@@ -74,11 +74,11 @@
                                     </div>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="navbarDropdown" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px;">
                                     <a class="dropdown-item d-flex justify-content-between align-items-center gap-3" href="{{route('gallery', auth()->user()->name)}}">Galería personal <span class="material-symbols-outlined"> home </span></a>
                                     <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{route('messages', auth()->user()->id)}}">Comentarios <span class="material-symbols-outlined"> chat </span></a>
                                     <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{route('usuarios.edit', auth()->user()->id)}}">Editar perfil <span class="material-symbols-outlined"> settings </span></a>
-                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="">Ayuda <span class="material-symbols-outlined"> help </span></a>
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{route('help')}}">Ayuda <span class="material-symbols-outlined"> help </span></a>
                                     <a class="dropdown-item border-top d-flex justify-content-between align-items-center" href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar sesión') }} <span class="material-symbols-outlined"> logout </span>
                                     </a>

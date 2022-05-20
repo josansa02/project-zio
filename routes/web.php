@@ -18,5 +18,6 @@ Route::get('mensajes/{user}', [MessageController::class, "show"])->name("message
 Route::get('galeria/{name}', [UserController::class, "show"])->name("gallery");
 Route::get('/', [HomeController::class, 'indexLogin'])->name('index.login');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/help', [HomeController::class, 'ayuda'])->name('help');
 
 Route::resource("/imagenes", ImageController::class);
