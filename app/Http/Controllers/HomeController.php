@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,7 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $images = Image::all();
+        $img = Image::all();
+        $images = [];
+        foreach ($img as $image) {
+            $images[] = [$image, User::select("profile_img")->where(['id' => $image->user_id])->first()];
+        }
         return view('home', compact('images'));
     }
 
