@@ -35,6 +35,10 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
+        if($request -> hasFile(key: 'thumbnail')) {
+            $filename = $request->thumbnail-getClientOriginalName();
+            info(message: $filename);
+        }
         Image::create($request->all());
     }
 

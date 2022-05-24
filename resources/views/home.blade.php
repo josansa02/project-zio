@@ -57,7 +57,4 @@
         @endforeach
     @endif
 
-<!-- Prueba components -->
-<imagenform-component></imagenform-component>
-
 @endsection
