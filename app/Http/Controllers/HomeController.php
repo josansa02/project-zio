@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,22 +26,30 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $img = Image::all();
-        $images = [];
-        foreach ($img as $image) {
-            $images[] = [$image, User::select("profile_img")->where(['id' => $image->user_id])->first()];
+        if (Auth::user()->enabled) {
+            $img = Image::all();
+            $images = [];
+            foreach ($img as $image) {
+                $images[] = [$image, User::select("profile_img")->where(['id' => $image->user_id])->first()];
+            }
+            return view('home', compact('images'));
+        } else {
+            return view('peticion');
         }
-        return view('home', compact('images'));
     }
 
     public function indexLogin()
     {
-        $img = Image::all();
-        $images = [];
-        foreach ($img as $image) {
-            $images[] = [$image, User::select("profile_img")->where(['id' => $image->user_id])->first()];
+        if (Auth::user()->enabled) {
+            $img = Image::all();
+            $images = [];
+            foreach ($img as $image) {
+                $images[] = [$image, User::select("profile_img")->where(['id' => $image->user_id])->first()];
+            }
+            return view('home', compact('images'));
+        } else {
+            return view('peticion');
         }
-        return view('home', compact('images'));
     }
 
     public function ayuda()

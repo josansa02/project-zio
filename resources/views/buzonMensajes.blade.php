@@ -22,8 +22,8 @@
             <li class="list-group-item">
                 @foreach ($messages as $message)
                     <div class="d-flex align-items-center justify-content-center gap-3 my-3">
-                        <img src="{{asset('/img/profileIMG')}}/{{$message[1]->profile_img}}" alt="Foto perfil {{$message[1]->name}}">
-                        <img src="{{asset('/img/usersIMG')}}/{{$message[1]->img_name}}" alt="Foto comentada por {{$message[1]->name}}">
+                        <img style="width: 40px" src="{{asset('/img/profileIMG')}}/{{$message[1]->profile_img}}" alt="Foto perfil {{$message[1]->name}}">
+                        <img style="width: 70px; border-radius: 50px" src="{{asset('/img/usersIMG')}}/{{$message[2]->img_name}}" alt="Foto comentada por {{$message[1]->name}}">
                         {{$message[1]->name}}
                         <button class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center gap-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{$i}}">Leer <span class="material-symbols-outlined">local_library </span></button>
                         <button class="btn btn-danger text-white d-flex justify-content-center px-2"><span class="material-symbols-outlined"> delete </span></button>

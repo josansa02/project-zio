@@ -21,6 +21,7 @@ window.Vue = require('vue').default;
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('imagenform-component', require('./components/ImagenFormComponent.vue').default);
+Vue.component('peticionform-component', require('./components/PeticionFormComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
