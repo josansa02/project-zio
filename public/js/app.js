@@ -5418,34 +5418,86 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      titulo: "",
-      pie: "",
-      nombre: "pepe"
+      imagenMiniatura: "",
+      image: {
+        titulo: "",
+        pie: "",
+        nombre: ""
+      }
     };
   },
   methods: {
+    obtenerImagen: function obtenerImagen(e) {
+      var file = e.target.files[0];
+      console.log(file);
+      this.image.nombre = file;
+      this.cargarImagen(file);
+    },
+    cargarImagen: function cargarImagen(file) {
+      var _this = this;
+
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        _this.imagenMiniatura = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    },
     guardarImagen: function guardarImagen() {
-      console.log("Titulo de la imagen: " + this.titulo);
-      console.log("Pie de la imagen: " + this.pie);
-      axios.post("imagenes", {
-        name: this.nombre,
-        title: this.titulo,
-        footer: this.pie,
-        user_id: 1
-      }).then(function (response) {
+      var formData = new FormData();
+      formData.append('title', this.image.titulo);
+      formData.append('footer', this.image.pie);
+      formData.append('name', this.image.nombre);
+      axios.post("imagenes", formData).then(function (response) {
         console.log(response.data);
-        alert("Ha insertado una imagen correctamente");
-      })["catch"](function (error) {
-        console.log(error.response);
-      });
-      this.titulo = "";
-      this.pie = "";
+      }); // console.log("Titulo de la imagen: " + this.titulo);
+      // console.log("Pie de la imagen: " + this.pie);
+      // axios.post("imagenes", {name: this.nombre, title: this.titulo, footer: this.pie, user_id: 1})
+      // .then(response => { 
+      //     console.log(response.data);
+      //     alert("Ha insertado una imagen correctamente");
+      // })
+      // .catch(error => { console.log(error.response) });
+      // this.titulo = "";
+      // this.pie = "";
+    }
+  },
+  computed: {
+    imagen: function imagen() {
+      return this.imagenMiniatura;
     }
   }
-});
+}); // export default {
+//     data() {
+//         return {
+//             titulo: "",
+//             pie: "",
+//             nombre: "pepe"
+//         }
+//     },
+//     methods: {
+//         guardarImagen() {
+//             console.log("Titulo de la imagen: " + this.titulo);
+//             console.log("Pie de la imagen: " + this.pie);
+//             axios.post("imagenes", {name: this.nombre, title: this.titulo, footer: this.pie, user_id: 1})
+//             .then(response => { 
+//                 console.log(response.data);
+//                 alert("Ha insertado una imagen correctamente");
+//             })
+//             .catch(error => { console.log(error.response) });
+//             this.titulo = "";
+//             this.pie = "";
+//         }
+//     }
+// }
 
 /***/ }),
 
@@ -28324,19 +28376,19 @@ var render = function () {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.titulo,
-                expression: "titulo",
+                value: _vm.image.titulo,
+                expression: "image.titulo",
               },
             ],
             staticClass: "text-xl p-2 w-full border-b-2 border-green-500",
             attrs: { type: "text", placeholder: "Titulo" },
-            domProps: { value: _vm.titulo },
+            domProps: { value: _vm.image.titulo },
             on: {
               input: function ($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.titulo = $event.target.value
+                _vm.$set(_vm.image, "titulo", $event.target.value)
               },
             },
           }),
@@ -28346,31 +28398,35 @@ var render = function () {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.pie,
-                expression: "pie",
+                value: _vm.image.pie,
+                expression: "image.pie",
               },
             ],
             staticClass: "text-xl p-2 w-full border-b-2 border-green-500",
             attrs: { type: "text", placeholder: "Pie de página" },
-            domProps: { value: _vm.pie },
+            domProps: { value: _vm.image.pie },
             on: {
               input: function ($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.pie = $event.target.value
+                _vm.$set(_vm.image, "pie", $event.target.value)
               },
             },
           }),
           _vm._v(" "),
           _c("input", {
-            attrs: { type: "file", id: "dmsFile", name: "dmsFile" },
-            on: {
-              change: function ($event) {
-                return _vm.getFile($event)
-              },
-            },
+            attrs: { type: "file" },
+            on: { change: _vm.obtenerImagen },
           }),
+          _vm._v(" "),
+          _vm.imagen != ""
+            ? _c("figure", [
+                _c("img", {
+                  attrs: { height: "200", width: "200", src: _vm.imagen },
+                }),
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _c("input", {
             staticClass: "btn btn-primary",
