@@ -35,7 +35,11 @@ class HomeController extends Controller
 
     public function indexLogin()
     {
-        $images = Image::all();
+        $img = Image::all();
+        $images = [];
+        foreach ($img as $image) {
+            $images[] = [$image, User::select("profile_img")->where(['id' => $image->user_id])->first()];
+        }
         return view('home', compact('images'));
     }
 

@@ -11,7 +11,7 @@
 <main class="container mt-3 mb-3">
         @foreach ($images as $imagen)
             <div class="w-auto">
-                <img src="{{asset('/img/usersIMG/' . $imagen[0]->name)}}" alt="{{$imagen[0]->title}}" class="img-fluid imagen_galeria" data-bs-toggle="modal" data-bs-target="#exampleModal{{$imagen[0]->id}}">
+                <img src="{{asset('/img/usersIMG/')}}/{{$imagen[0]->img_name}}" alt="{{$imagen[0]->title}}" class="img-fluid imagen_galeria" data-bs-toggle="modal" data-bs-target="#exampleModal{{$imagen[0]->id}}">
             </div>
             <div class="modal fade" id="exampleModal{{$imagen[0]->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="imagen_modal mt-3">
-                                <img src="{{asset('/img/usersIMG/' . $imagen[0]->img_name)}}" class="img-fluid">
+                                <img src="{{asset('/img/usersIMG/')}}/{{$imagen[0]->img_name}}" class="img-fluid">
                             </div>
                         </div>
                         <div class="modal-footer justify-content-between">
