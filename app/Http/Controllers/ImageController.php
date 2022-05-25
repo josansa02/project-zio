@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ImageController extends Controller
 {
@@ -35,11 +36,14 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        if($request -> hasFile(key: 'thumbnail')) {
-            $filename = $request->thumbnail-getClientOriginalName();
-            info(message: $filename);
-        }
-        Image::create($request->all());
+        $image = new Image();
+        $image_nombre = time() . "-" . $request->name;
+        $image->title = $request->title;
+        $image->img_name = $image_nombre;
+        $image->footer = $request->footer;
+        $image->user_id = Auth::user()->id;
+        $image->save();
+        $request->file('files')->move("../public/img/usersIMG/", $image_nombre);
     }
 
     /**

@@ -5429,15 +5429,17 @@ __webpack_require__.r(__webpack_exports__);
       image: {
         titulo: "",
         pie: "",
-        nombre: ""
+        nombre: "",
+        imagen: ""
       }
     };
   },
   methods: {
     obtenerImagen: function obtenerImagen(e) {
       var file = e.target.files[0];
+      this.image.imagen = file;
       console.log(file);
-      this.image.nombre = file;
+      this.image.nombre = file.name;
       this.cargarImagen(file);
     },
     cargarImagen: function cargarImagen(file) {
@@ -5456,6 +5458,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('title', this.image.titulo);
       formData.append('footer', this.image.pie);
       formData.append('name', this.image.nombre);
+      formData.append('files', this.image.imagen);
       axios.post("imagenes", formData).then(function (response) {
         console.log(response.data);
       }); // console.log("Titulo de la imagen: " + this.titulo);

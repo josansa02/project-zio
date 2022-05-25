@@ -25,15 +25,17 @@
                 image: {
                     titulo: "",
                     pie: "",
-                    nombre: ""
+                    nombre: "",
+                    imagen: ""
                 }
             }
         },
         methods: {
             obtenerImagen(e) {
                 let file = e.target.files[0];
+                this.image.imagen = file;
                 console.log(file);
-                this.image.nombre = file;
+                this.image.nombre = file.name;
                 this.cargarImagen(file);
             },
             cargarImagen(file) {
@@ -50,6 +52,7 @@
                 formData.append('title', this.image.titulo);
                 formData.append('footer', this.image.pie);
                 formData.append('name', this.image.nombre);
+                formData.append('files', this.image.imagen);
 
                 axios.post("imagenes", formData)
                 .then(response => {
