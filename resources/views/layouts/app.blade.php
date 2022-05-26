@@ -25,7 +25,7 @@
     @yield('styles')
 </head>
 
-<body>
+<body id="bod">
     <div id="app">
         <nav class="navbar navbar-expand navbar-light bg-white shadow-sm">
             <div class="container">
