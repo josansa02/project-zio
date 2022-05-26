@@ -53,22 +53,11 @@
                 formData.append('footer', this.image.pie);
                 formData.append('name', this.image.nombre);
                 formData.append('files', this.image.imagen);
-
-                axios.post("imagenes", formData)
+                axios.post("../imagenes", formData)
                 .then(response => {
                     console.log(response.data);
+                    location.reload();
                 });
-
-                // console.log("Titulo de la imagen: " + this.titulo);
-                // console.log("Pie de la imagen: " + this.pie);
-                // axios.post("imagenes", {name: this.nombre, title: this.titulo, footer: this.pie, user_id: 1})
-                // .then(response => { 
-                //     console.log(response.data);
-                //     alert("Ha insertado una imagen correctamente");
-                // })
-                // .catch(error => { console.log(error.response) });
-                // this.titulo = "";
-                // this.pie = "";
             }
         },
         computed: {
@@ -77,28 +66,4 @@
             }
         }
     }
-
-    // export default {
-    //     data() {
-    //         return {
-    //             titulo: "",
-    //             pie: "",
-    //             nombre: "pepe"
-    //         }
-    //     },
-    //     methods: {
-    //         guardarImagen() {
-    //             console.log("Titulo de la imagen: " + this.titulo);
-    //             console.log("Pie de la imagen: " + this.pie);
-    //             axios.post("imagenes", {name: this.nombre, title: this.titulo, footer: this.pie, user_id: 1})
-    //             .then(response => { 
-    //                 console.log(response.data);
-    //                 alert("Ha insertado una imagen correctamente");
-    //             })
-    //             .catch(error => { console.log(error.response) });
-    //             this.titulo = "";
-    //             this.pie = "";
-    //         }
-    //     }
-    // }
 </script>

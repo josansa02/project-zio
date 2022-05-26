@@ -5459,18 +5459,10 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('footer', this.image.pie);
       formData.append('name', this.image.nombre);
       formData.append('files', this.image.imagen);
-      axios.post("imagenes", formData).then(function (response) {
+      axios.post("../imagenes", formData).then(function (response) {
         console.log(response.data);
-      }); // console.log("Titulo de la imagen: " + this.titulo);
-      // console.log("Pie de la imagen: " + this.pie);
-      // axios.post("imagenes", {name: this.nombre, title: this.titulo, footer: this.pie, user_id: 1})
-      // .then(response => { 
-      //     console.log(response.data);
-      //     alert("Ha insertado una imagen correctamente");
-      // })
-      // .catch(error => { console.log(error.response) });
-      // this.titulo = "";
-      // this.pie = "";
+        location.reload();
+      });
     }
   },
   computed: {
@@ -5478,29 +5470,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.imagenMiniatura;
     }
   }
-}); // export default {
-//     data() {
-//         return {
-//             titulo: "",
-//             pie: "",
-//             nombre: "pepe"
-//         }
-//     },
-//     methods: {
-//         guardarImagen() {
-//             console.log("Titulo de la imagen: " + this.titulo);
-//             console.log("Pie de la imagen: " + this.pie);
-//             axios.post("imagenes", {name: this.nombre, title: this.titulo, footer: this.pie, user_id: 1})
-//             .then(response => { 
-//                 console.log(response.data);
-//                 alert("Ha insertado una imagen correctamente");
-//             })
-//             .catch(error => { console.log(error.response) });
-//             this.titulo = "";
-//             this.pie = "";
-//         }
-//     }
-// }
+});
 
 /***/ }),
 
