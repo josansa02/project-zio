@@ -25,7 +25,7 @@
     @yield('styles')
 </head>
 
-<body>
+<body id="bod">
     <div id="app">
         <nav class="navbar navbar-expand navbar-light bg-white shadow-sm">
             <div class="container">
@@ -99,6 +99,7 @@
         </div>
     </div>
     <script src="{{ asset('/js/app.js') }}"></script>
+    <script src="{{ asset('/js/jquery-3.6.0.min.js') }}"></script>
     
     @yield('js')
     

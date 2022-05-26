@@ -45,8 +45,10 @@
 <main class="container mt-3 mb-3">
     @foreach ($imagenes as $imagen)
         <div class="w-auto">
-            <img src="{{asset('/img/usersIMG/' . $imagen->img_name)}}" alt="{{$imagen->title}}" class="img-fluid imagen_galeria" data-bs-toggle="modal" data-bs-target="#exampleModal{{$imagen->id}}">
+            <img src="{{asset('/img/usersIMG/' . $imagen->img_name)}}" alt="{{$imagen->title}}" class="img-fluid imagen_galeria" data-bs-toggle="modal" data-bs-target="#exampleModal{{$imagen->id}}" onclick="eliminarclass()">
         </div>
+
+        <!-- Modal de cada imagen -->
         <div class="modal fade" id="exampleModal{{$imagen->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -95,4 +97,14 @@
         </div>
     </div>
 </div>
+
+@section('js')
+<script>
+    function eliminarclass() {
+        bod = document.getElementById("bod");
+        bod.setAttribute("style", "");
+    }
+</script>
+@endsection
+
 @endsection
