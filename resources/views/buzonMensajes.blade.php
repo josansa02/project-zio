@@ -26,10 +26,10 @@
                         <img style="width: 70px; border-radius: 50px" src="{{asset('/img/usersIMG')}}/{{$message[2]->img_name}}" alt="Foto comentada por {{$message[1]->name}}">
                         {{$message[1]->name}}
                         <button class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center gap-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{$i}}">Leer <span class="material-symbols-outlined">local_library </span></button>
-                        <form action="" method="POST">
+                        <form action="{{route('messages.delete', $message[0]->id)}}" class="swal-confirmar-borrar" method="POST">
+                            @method('DELETE')
                             @csrf
-                            <input type="hidden" name="idMessage" value="{{$message[0]->id}}">
-                            <button type="submit" class="btn btn-danger text-white d-flex justify-content-center px-2 swal-confirmar-borrar"><span class="material-symbols-outlined"> delete </span></button>
+                            <button type="submit" class="btn btn-danger text-white d-flex justify-content-center px-2"><span class="material-symbols-outlined"> delete </span></button>
                         </form>
                         <div class="modal fade" id="exampleModal{{$i}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
@@ -65,7 +65,27 @@
 <script>
     $('.swal-confirmar-borrar').submit(function(e){
         e.preventDefault();
+        const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger me-2'
+        },
+        buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+        title: '¿Estás seguro?',
+        text: "¿Seguro que quieres eliminar el mensaje?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText: 'No, cancelar',
+        reverseButtons: true
+        }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+        })
     });
-    
 </script>
 @endsection
