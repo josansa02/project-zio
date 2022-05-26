@@ -26,7 +26,11 @@
                         <img style="width: 70px; border-radius: 50px" src="{{asset('/img/usersIMG')}}/{{$message[2]->img_name}}" alt="Foto comentada por {{$message[1]->name}}">
                         {{$message[1]->name}}
                         <button class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center gap-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{$i}}">Leer <span class="material-symbols-outlined">local_library </span></button>
-                        <button class="btn btn-danger text-white d-flex justify-content-center px-2"><span class="material-symbols-outlined swal-confirmar-borrar"> delete </span></button>
+                        <form action="" method="POST">
+                            @csrf
+                            <input type="hidden" name="idMessage" value="{{$message[0]->id}}">
+                            <button type="submit" class="btn btn-danger text-white d-flex justify-content-center px-2 swal-confirmar-borrar"><span class="material-symbols-outlined"> delete </span></button>
+                        </form>
                         <div class="modal fade" id="exampleModal{{$i}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
@@ -59,39 +63,9 @@
 @section('js')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    const swalWithBootstrapButtons = Swal.mixin({
-    customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-    },
-    buttonsStyling: false
-    })
-
-    swalWithBootstrapButtons.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Yes, delete it!',
-    cancelButtonText: 'No, cancel!',
-    reverseButtons: true
-    }).then((result) => {
-    if (result.isConfirmed) {
-        swalWithBootstrapButtons.fire(
-        'Deleted!',
-        'Your file has been deleted.',
-        'success'
-        )
-    } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-    ) {
-        swalWithBootstrapButtons.fire(
-        'Cancelled',
-        'Your imaginary file is safe :)',
-        'error'
-        )
-    }
-    })
+    $('.swal-confirmar-borrar').submit(function(e){
+        e.preventDefault();
+    });
+    
 </script>
 @endsection

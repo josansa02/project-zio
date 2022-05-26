@@ -15,7 +15,7 @@ class MessageController extends Controller
         $messages = [];
         $getMessages = Message::where(['owner_id' => $user->id])->get();
         foreach ($getMessages as $message) {
-            $messages[] = [Message::select("message")->where(['id' => $message->id])->first(), User::select("name", "profile_img")->where(['id' => $message->writer_id])->first(), Image::select("id", "img_name", "title")->where(['id' => $message->img_id])->first()];
+            $messages[] = [Message::select("id", "message")->where(['id' => $message->id])->first(), User::select("name", "profile_img")->where(['id' => $message->writer_id])->first(), Image::select("id", "img_name", "title")->where(['id' => $message->img_id])->first()];
         }
         return view('buzonMensajes', compact('messages', 'i'));
     }
