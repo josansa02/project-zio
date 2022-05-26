@@ -30,9 +30,9 @@
         <button type="button" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <span class="material-symbols-outlined">add_circle</span>
         </button>
-        <button type="button" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <a type="button" href="{{route('messages', $user->id)}}" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center">
             <span class="material-symbols-outlined">chat</span>
-        </button>
+        </a>
     </div>
     @endif
 </div>
