@@ -15,6 +15,7 @@ Route::put('usuarios/edit/profileimg/{id}', [UserController::class, "updateProfi
 Route::get('usuarios/edit/{id}', [UserController::class, "edit"])->name("usuarios.edit");
 //Route::post('image/add', [ImageController::class, "store"])->name("image.add");
 //Route::delete('image/remove/{id}', [ImageController::class, "destroy"])->name("image.remove.delete");
+Route::delete('mensajes/delete/{id}', [MessageController::class, "destroy"])->name("messages.delete");
 Route::post('mensajes/add', [MessageController::class, "create"])->name("messages.add");
 Route::get('mensajes/{user}', [MessageController::class, "show"])->name("messages");
 Route::get('galeria/{name}', [UserController::class, "show"])->name("gallery");
