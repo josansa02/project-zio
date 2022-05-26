@@ -51,10 +51,18 @@ main img:hover {
     opacity: 0.6;
 }
 
+.imagenes-div {
+    width: 100%;
+    height: calc(100% / 2);
+    position: relative;
+}
+
 .imagen_galeria {
     width: 100%;
     height: 100%;
     background-color: var(--main-purple);
+
+    object-fit: cover;
 }
 
 .user-buttons {

@@ -1,11 +1,13 @@
 @extends("layouts.app")
 
-@section("title", "Galería personal - ZIO")
+@section("title", "Galería personal - ZIO") <!-- Título de la página -->
 
+<!-- Sección de estilos de la página -->
 @section("styles")
 <link rel="stylesheet" href="{{ asset('css/galeria.css') }}">
 @endsection
 
+<!-- **Sección de contenido** -->
 @section('content')
 @if (isset($_SESSION["update"]))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -25,9 +27,14 @@
           <p>{{$user->bio}}</p>
         </div>
     </div>
+
+    <!-- 
+        Si el usuario autenticado es el mismo que está en la vista de galería 
+        personal hace lo siguiente:
+    -->
     @if (Auth::user()->name == $user->name)
     <div style="gap: 2px" class="d-flex mt-2 btn-group user-buttons rounded">
-        <button type="button" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="eliminarclass()">
             <span class="material-symbols-outlined">add_circle</span>
         </button>
         <a type="button" href="{{route('messages', $user->id)}}" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center">
@@ -37,14 +44,17 @@
     @endif
 </div>
 
+<!-- Si el usuario NO TIENE imagenes hace lo siguiente: -->
 @if (count($imagenes) == 0)
     <main class="container d-flex justify-content-center align-items-center mt-5">
         <h3 class="text-center">Aún no ha subido ninguna imagen</h3>
     </main>
 @else 
+
+<!-- Si el usuario TIENE imagenes hace lo siguiente: -->
 <main class="container mt-3 mb-3">
     @foreach ($imagenes as $imagen)
-        <div class="w-auto">
+        <div class="imagenes-div">
             <img src="{{asset('/img/usersIMG/' . $imagen->img_name)}}" alt="{{$imagen->title}}" class="img-fluid imagen_galeria" data-bs-toggle="modal" data-bs-target="#exampleModal{{$imagen->id}}" onclick="eliminarclass()">
         </div>
 
@@ -98,6 +108,7 @@
     </div>
 </div>
 
+<!-- Sección de scripts de la página -->
 @section('js')
 <script>
     function eliminarclass() {
