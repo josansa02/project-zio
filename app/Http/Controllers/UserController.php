@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Image;
+use App\Models\Message;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function show($name)
     {
+        session_start();
         $user = User::where(['name' => $name])->get()->first();
         $imagenes = Image::where(['user_id' => $user->id])->get();
-        return view("galeria", compact('imagenes' ,'user'));
+        $nMensajes = Message::where(['owner_id' => Auth::user()->id])->count();
+        return view("galeria", compact('imagenes' ,'user', 'nMensajes'));
     }
 
     public function edit(User $id)
