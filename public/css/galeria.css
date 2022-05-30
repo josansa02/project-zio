@@ -39,7 +39,7 @@ main {
     color: var(--main-blue);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 50%;
+    grid-auto-rows: 300px;
     gap: 3px;
 }
 main img {
@@ -53,7 +53,8 @@ main img:hover {
 
 .imagenes-div {
     width: 100%;
-    height: 100%;
+    height: 300px;
+    max-height: 300px;
     position: relative;
 }
 

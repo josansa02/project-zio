@@ -154,17 +154,17 @@
         })
 
         swalWithBootstrapButtons.fire({
-        title: '¿Estás seguro?',
-        text: "¿Seguro que quieres eliminar esta fotografía?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Si, eliminar',
-        cancelButtonText: 'No, cancelar',
-        reverseButtons: true
+            title: '¿Estás seguro?',
+            text: "¿Seguro que quieres eliminar esta fotografía?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Si, eliminar',
+            cancelButtonText: 'No, cancelar',
+            reverseButtons: true,
         }).then((result) => {
-        if (result.isConfirmed) {
-            this.submit();
-        }
+            if (result.isConfirmed) {
+                this.submit();
+            }
         })
     });
 </script>
