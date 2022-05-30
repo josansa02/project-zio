@@ -37,9 +37,27 @@
         <button type="button" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="eliminarclass()">
             <span class="material-symbols-outlined">add_circle</span>
         </button>
-        <a type="button" href="{{route('messages', $user->id)}}" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center">
-            <span class="material-symbols-outlined">chat</span>
-        </a>
+        @if ($_SESSION["nMensajes"] < $nMensajes)
+            <a type="button" href="{{route('messages', $user->id)}}" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center">
+                <span>
+                    <svg width="26" height="26" viewBox="0 0 55 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_22_8728)">
+                    <path d="M8.58366 14.3334H41.917V39.3334H11.0212L8.58366 41.7709V14.3334ZM8.58366 10.1667C6.29199 10.1667 4.43783 12.0417 4.43783 14.3334L4.41699 51.8334L12.7503 43.5001H41.917C44.2087 43.5001 46.0837 41.6251 46.0837 39.3334V14.3334C46.0837 12.0417 44.2087 10.1667 41.917 10.1667H8.58366ZM12.7503 31.0001H29.417V35.1667H12.7503V31.0001ZM12.7503 24.7501H37.7503V28.9167H12.7503V24.7501ZM12.7503 18.5001H37.7503V22.6667H12.7503V18.5001Z" fill="white"/>
+                    </g>
+                    <circle cx="45.25" cy="9.5" r="9.5" fill="#FF0000"/>
+                    <defs>
+                    <clipPath id="clip0_22_8728">
+                    <rect width="50" height="50" fill="white" transform="translate(0.25 6)"/>
+                    </clipPath>
+                    </defs>
+                    </svg>
+                </span>
+            </a>
+        @else 
+            <a type="button" href="{{route('messages', $user->id)}}" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center">
+                <span class="material-symbols-outlined">chat</span>
+            </a>
+        @endif
     </div>
     @endif
 </div>
@@ -67,7 +85,13 @@
                             <span class="d-flex justify-content-center align-items-center material-symbols-outlined">menu</span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="asd">asdas</a></li>
+                            <li>
+                                <form class="swal-confirmar-borrar" action="{{route('image.delete', $imagen->id)}}" method="post">
+                                    @csrf
+                                    @method("delete")
+                                    <input type="submit" class="dropdown-item" value="Eliminar">
+                                </form>
+                            </li>
                         </ul>
                         <h5 class="modal-title text-center" id="exampleModalLabel">{{$imagen->title}}</h5>
                         <button type="button" class="btn cerrado p-1" data-bs-dismiss="modal" aria-label="Close"> 
@@ -86,13 +110,6 @@
                             </p>
                         </div>
                     </div>
-                    {{-- <div class="modal-footer">
-                        <form action="{{route('index')}}/image/remove/{{$imagen->id}}" method="post">
-                            @csrf
-                            @method("delete")
-                            <input type="submit" class="btn btn-danger m-auto" value="Eliminar">
-                        </form>
-                    </div> --}}
                 </div>
             </div>
         </div>
@@ -113,6 +130,9 @@
     </div>
 </div>
 
+{{$_SESSION["nMensajes"]}}
+{{$nMensajes}}
+
 <!-- Sección de scripts de la página -->
 @section('js')
 <script>
@@ -120,6 +140,33 @@
         bod = document.getElementById("bod");
         bod.setAttribute("style", "");
     }
+</script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $('.swal-confirmar-borrar').submit(function(e){
+        e.preventDefault();
+        const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger me-2'
+        },
+        buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+        title: '¿Estás seguro?',
+        text: "¿Seguro que quieres eliminar esta fotografía?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText: 'No, cancelar',
+        reverseButtons: true
+        }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+        })
+    });
 </script>
 @endsection
 

@@ -17,7 +17,11 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item align-items-center d-flex justify-content-center gap-3">
                 Mensajes en la bandeja de entrada: {{count($messages)}}
-                <button class="btn btn-danger gap-2 text-white d-flex justify-content-center">Borrar mensajes <span class="material-symbols-outlined">delete</span></button>
+                <form action="{{route('messages.delete.all')}}" class="swal-confirmar-borrar-todos" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-danger gap-2 text-white d-flex justify-content-center">Borrar mensajes <span class="material-symbols-outlined">delete</span></button>
+                </form>
             </li>
             <li class="list-group-item">
                 @foreach ($messages as $message)
@@ -76,6 +80,32 @@
         swalWithBootstrapButtons.fire({
         title: '¿Estás seguro?',
         text: "¿Seguro que quieres eliminar el mensaje?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText: 'No, cancelar',
+        reverseButtons: true
+        }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+        })
+    });
+</script>
+<script>
+    $('.swal-confirmar-borrar-todos').submit(function(e){
+        e.preventDefault();
+        const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger me-2'
+        },
+        buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+        title: '¿Estás seguro?',
+        text: "¿Seguro que quieres eliminar todos los mensajes?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Si, eliminar',

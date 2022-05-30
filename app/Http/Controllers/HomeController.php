@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
+use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,12 +27,18 @@ class HomeController extends Controller
      */
     public function index()
     {
+        session_start();
         if (Auth::user()->enabled) {
             $img = Image::all();
             $images = [];
             foreach ($img as $image) {
                 $images[] = [$image, User::select("profile_img")->where(['id' => $image->user_id])->first()];
             }
+
+            if (!isset($_SESSION["nMensajes"])) {
+                $_SESSION["nMensajes"] = Message::where(['owner_id' => Auth::user()->id])->count();
+            }
+            
             return view('home', compact('images'));
         } else {
             return view('peticion');
@@ -40,12 +47,18 @@ class HomeController extends Controller
 
     public function indexLogin()
     {
+        session_start();
         if (Auth::user()->enabled) {
             $img = Image::all();
             $images = [];
             foreach ($img as $image) {
                 $images[] = [$image, User::select("profile_img")->where(['id' => $image->user_id])->first()];
             }
+
+            if (!isset($_SESSION["nMensajes"])) {
+                $_SESSION["nMensajes"] = Message::where(['owner_id' => Auth::user()->id])->count();
+            }
+            
             return view('home', compact('images'));
         } else {
             return view('peticion');

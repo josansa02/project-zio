@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -86,8 +87,12 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Image $image)
     {
-        //
+        //Este método es de PHP pero es la única forma de poder borrar el archivo estando en la carpeta assets
+        if (unlink("../public/img/usersIMG/" . $image->img_name)) {
+            $image->delete();
+            return redirect()->route("gallery", Auth::user()->name);    
+        }
     }
 }

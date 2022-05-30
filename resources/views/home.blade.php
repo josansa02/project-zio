@@ -56,7 +56,5 @@
             </div>
         @endforeach
     @endif
-
     <imagenform-component></imagenform-component>
-
 @endsection
