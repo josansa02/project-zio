@@ -63,22 +63,27 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header gap-3">
-                        <button type="button" class="btn" style="width: 30.4px" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="img-fluid" src="{{asset('/img/menu.svg')}}">
+                        <button type="button" class="btn dropdown-button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="d-flex justify-content-center align-items-center material-symbols-outlined">menu</span>
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="asd">asdas</a></li>
                         </ul>
                         <h5 class="modal-title text-center" id="exampleModalLabel">{{$imagen->title}}</h5>
-                        <button type="button" class="btn-close m-0 cerrado" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn cerrado p-1" data-bs-dismiss="modal" aria-label="Close"> 
+                            <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
+                        </button>
                     </div>
                     <div class="modal-body">
-                        <div class="imagen_modal mt-3">
+                        <div class="imagen_modal">
                             <img src="{{asset('/img/usersIMG/' . $imagen->img_name)}}" class="img-fluid">
                         </div>
-                        <div>
-                            <p class="mt-3"> <strong> <img src="{{asset('/img/profileIMG/' . $user->profile_img)}}" class="img-fluid imagen_modal_usu"> {{$user->name}} </strong> </p>
-                            <p> {{$imagen->footer}} </p>
+                        <div class="mt-3 px-3">
+                            <p class="d-flex align-items-center gap-1"> 
+                                <img src="{{asset('/img/profileIMG/' . $user->profile_img)}}" class="img-fluid imagen_modal_usu"> 
+                                <strong> {{$user->name}}: </strong> 
+                                <span> {{$imagen->footer}} </span>
+                            </p>
                         </div>
                     </div>
                     {{-- <div class="modal-footer">
