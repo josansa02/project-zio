@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Models\Message;
 use App\Models\User;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,7 +33,7 @@ class HomeController extends Controller
             $img = Image::all();
             $images = [];
             foreach ($img as $image) {
-                $images[] = [$image, User::select("name", "profile_img")->where(['id' => $image->user_id])->first()];
+                $images[] = [$image, User::select("name", "profile_img")->where(['id' => $image->user_id])->first(), Vote::select()->where(['img_id' => $image->id])->count()];
             }
 
             if (!isset($_SESSION["nMensajes"])) {

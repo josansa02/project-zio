@@ -23,10 +23,10 @@
             </div>
             <div class="px-3 imagen-pie d-flex justify-content-between align-items-center"> 
                 <div class="d-flex justify-content-center align-items-center gap-1"> 
-                    <a href=""> <img src="{{asset('/img/usersIMG/')}}/{{$imagen[0]->img_name}}" class="img-fluid imagen_usu"> </a>
-                    <strong> {{$imagen[1]}} </strong>  
+                    <a href="{{route('gallery', $imagen[1]->name)}}"> <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid imagen_usu"> </a>
+                    <strong> {{$imagen[1]->name}} </strong>  
                 </div>
-                <span>Like</span> 
+                <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple"> recommend </span>
             </div>
         </div>
 
@@ -34,12 +34,9 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header gap-3">
-                        <button type="button" class="btn dropdown-button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="d-flex justify-content-center align-items-center material-symbols-outlined">menu</span>
+                        <button type="button" data-bs-target="#modalReportar{{$imagen[0]->id}}" data-bs-toggle="modal">
+                            <span class="material-symbols-outlined">report</span>
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="asd">asdas</a></li>
-                        </ul>
                         <h5 class="modal-title text-center" id="exampleModalLabel">{{$imagen[0]->title}}</h5>
                         <button type="button" class="btn cerrado p-1" data-bs-dismiss="modal" aria-label="Close"> 
                             <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
@@ -51,15 +48,16 @@
                         </div>
                         <div class="mt-3 px-3">
                             <div class="d-flex align-items-center gap-1"> 
-                                <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid imagen_modal_usu"> 
-                                <p class="m-0"> {{$imagen[0]->footer}} </p>
+                                <div class="d-flex align-items-center">
+                                    <p class="mt-3"> <strong> <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid imagen_modal_usu"> {{$imagen[1]->name}} </strong> </p>
+                                    <p> {{$imagen[0]->footer}} </p>
+                                    <p class="row align-items-center justify-content-center"> 
+                                        <span class="material-symbols-outlined d-flex justify-content-center"> recommend </span> {{$imagen[2]}}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer justify-content-between">
-                            <div class="d-flex align-items-center">
-                                <p class="mt-3"> <strong> <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid imagen_modal_usu"> {{$imagen[1]->name}} </strong> </p>
-                                <p> {{$imagen[0]->footer}} </p>
-                            </div>
                             <div class="d-flex align-items-center">
                                 <img style="width: 30px" src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg">
                                 <form action="{{ route('messages.add') }}" method="post">
@@ -79,6 +77,23 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="modalReportar{{$imagen[0]->id}}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalToggleLabel2">Reportar esta imagen</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Hide this modal and show the first with the button below.
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-primary" data-bs-target="#exampleModal{{$imagen[0]->id}}" data-bs-toggle="modal">Back to first</button>
+                </div>
+              </div>
+            </div>
+          </div>
     @endforeach
 </main>
 @endif
