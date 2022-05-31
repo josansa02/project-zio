@@ -33,7 +33,7 @@
                         </div>
                         <div class="modal-footer justify-content-between">
                             <div class="d-flex align-items-center">
-                                <p class="mt-3"> <strong> <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid imagen_modal_usu"> </strong> </p>
+                                <p class="mt-3"> <strong> <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid imagen_modal_usu"> {{$imagen[1]->name}} </strong> </p>
                                 <p> {{$imagen[0]->footer}} </p>
                             </div>
                             <div class="d-flex align-items-center">

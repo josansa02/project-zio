@@ -32,7 +32,7 @@ class HomeController extends Controller
             $img = Image::all();
             $images = [];
             foreach ($img as $image) {
-                $images[] = [$image, User::select("profile_img")->where(['id' => $image->user_id])->first()];
+                $images[] = [$image, User::select("name", "profile_img")->where(['id' => $image->user_id])->first()];
             }
 
             if (!isset($_SESSION["nMensajes"])) {
@@ -52,7 +52,7 @@ class HomeController extends Controller
             $img = Image::all();
             $images = [];
             foreach ($img as $image) {
-                $images[] = [$image, User::select("profile_img")->where(['id' => $image->user_id])->first()];
+                $images[] = [$image, User::select("name", "profile_img")->where(['id' => $image->user_id])->first()];
             }
 
             if (!isset($_SESSION["nMensajes"])) {
