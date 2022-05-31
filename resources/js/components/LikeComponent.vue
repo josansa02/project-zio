@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div> {{ this.info }} </div>
+        <div> {{ this.info.data }} </div>
         <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple"> recommend </span>
     </div>
 </template>
@@ -13,7 +13,7 @@
             }
         },
         mounted() {
-            axios.get('/votos')
+            axios.get('votos')
             .then(response => (this.info = response))
         }
     }
