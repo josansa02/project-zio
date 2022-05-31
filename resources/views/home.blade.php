@@ -16,9 +16,20 @@
 @else 
 <main class="container mt-3 mb-3">
     @foreach ($images as $imagen)
-        <div class="w-auto">
-            <img src="{{asset('/img/usersIMG/')}}/{{$imagen[0]->img_name}}" alt="{{$imagen[0]->title}}" class="img-fluid imagen_galeria" data-bs-toggle="modal" data-bs-target="#exampleModal{{$imagen[0]->id}}" onclick="eliminarclass()">
+        <div class="main-block bg-white d-flex flex-column justify-content-between">
+            <div class="px-3 imagen-titulo d-flex justify-content-center align-items-center"> <h4 class="text-center m-0"> {{$imagen[0]->title}} </h4> </div>
+            <div class="imagenes-div">
+                <img src="{{asset('/img/usersIMG/')}}/{{$imagen[0]->img_name}}" alt="{{$imagen[0]->title}}" class="img-fluid imagen_galeria" data-bs-toggle="modal" data-bs-target="#exampleModal{{$imagen[0]->id}}" onclick="eliminarclass()">
+            </div>
+            <div class="px-3 imagen-pie d-flex justify-content-between align-items-center"> 
+                <div class="d-flex justify-content-center align-items-center gap-1"> 
+                    <a href=""> <img src="{{asset('/img/usersIMG/')}}/{{$imagen[0]->img_name}}" class="img-fluid imagen_usu"> </a>
+                    <strong> {{$imagen[1]}} </strong>  
+                </div>
+                <span>Like</span> 
+            </div>
         </div>
+
         <div class="modal fade" id="exampleModal{{$imagen[0]->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
