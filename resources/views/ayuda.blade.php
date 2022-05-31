@@ -22,8 +22,8 @@
                     <div class="accordion-body">
                         <p> Para reportar una imagen debe seguir estos pasos:</p>
                         <ol>
-                            <li> Desde la página principal hacer clik en la imagen </li>
-                            <li> Pulsar en el botón </li>
+                            <li> Desde la página principal hacer click en la imagen </li>
+                            <li> <div class="d-flex align-items-center gap-1"> <span>Pulsar en el botón</span> <span class="material-symbols-outlined">report</span> </div> </li>
                             <li> Este mostrará una ventana desde la que podrá seleccionar la causa del reporte y enviarlo </li>
                         </ol>
                     </div>

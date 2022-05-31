@@ -21,3 +21,6 @@ body {
 }
 
 /* Main */
+.accordion-body span:nth-child(2) {
+    color: red;
+}
