@@ -68,7 +68,6 @@ main img:hover {
     width: 25px;
     height: 25px;
     border-radius: 150px;
-    border: 2px solid var(--main-purple);
 }
 
 .cerrado {

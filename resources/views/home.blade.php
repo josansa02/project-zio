@@ -37,7 +37,7 @@
                     <a href="{{route('gallery', $imagen[1]->name)}}"> <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid imagen_usu"> </a>
                     <strong> {{$imagen[1]->name}} </strong>  
                 </div>
-                <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple"> recommend </span>
+                <like-component></like-component>
             </div>
         </div>
 
@@ -80,7 +80,7 @@
                                         <input type="hidden" name="owner_id" id="owner_id" value="{{$imagen[0]->user_id}}">
                                         <input type="hidden" name="writer_id" id="writer_id" value="{{auth()->user()->id}}">
                                         <input class="btn btn-outline-secondary" type="submit" value="Comentar">
-                                      </div>
+                                    </div>
                                 </form>    
                             </div>
                         </div>
