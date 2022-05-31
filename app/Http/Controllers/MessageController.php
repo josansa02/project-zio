@@ -29,7 +29,7 @@ class MessageController extends Controller
         return view('buzonMensajes', compact('messages', 'i', 'user'));
     }
 
-    public function create(Request $request) 
+    public function store(Request $request) 
     {
         session_start();
 

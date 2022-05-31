@@ -33,7 +33,7 @@ class HomeController extends Controller
             $img = Image::all();
             $images = [];
             foreach ($img as $image) {
-                $images[] = [$image, User::select("name", "profile_img")->where(['id' => $image->user_id])->first(), Vote::select()->where(['img_id' => $image->id])->count()];
+                $images[] = [$image, User::select("id", "name", "profile_img")->where(['id' => $image->user_id])->first(), Vote::select()->where(['img_id' => $image->id])->count()];
             }
 
             if (!isset($_SESSION["nMensajes"])) {

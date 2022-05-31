@@ -9,6 +9,17 @@
 
 <!-- **Sección de contenido** -->
 @section('content')
+
+@if (isset($_SESSION["report"]))
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{$_SESSION["report"]}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @php
+    unset($_SESSION["report"])
+  @endphp
+@endif
+
 @if (count($images) == 0)
     <main class="container d-flex justify-content-center align-items-center mt-5">
         <h3 class="text-center">Aún no se han subido imágenes</h3>
@@ -83,14 +94,31 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalToggleLabel2">Reportar esta imagen</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <button type="button" class="btn-close" data-bs-target="#exampleModal{{$imagen[0]->id}}" data-bs-toggle="modal"></button>
                 </div>
-                <div class="modal-body">
-                  Hide this modal and show the first with the button below.
-                </div>
-                <div class="modal-footer">
-                  <button class="btn btn-primary" data-bs-target="#exampleModal{{$imagen[0]->id}}" data-bs-toggle="modal">Back to first</button>
-                </div>
+                <form action="{{route('reports.add')}}" method="post">
+                    @csrf
+                    @method("post")
+                    <input type="hidden" name="img_id" value="{{$imagen[0]->id}}">
+                    <input type="hidden" name="owner_id" value="{{$imagen[1]->id}}">
+                    <div class="modal-body row justify-content-center">
+                        <div class="col-10 py-4">
+                            <div class="form-floating">
+                                <select class="form-select" name="report" id="report" aria-label="Report select">
+                                  <option value="Es spam">Es spam</option>
+                                  <option value="Desnudos o actividad sexual">Desnudos o actividad sexual</option>
+                                  <option value="Lenguajes o símbolos que inciten al odio">Lenguajes o símbolos que inciten al odio</option>
+                                  <option value="Violencia">Violencia</option>
+                                  <option value="Bullying o acoso">Bullying o acoso</option>
+                                </select>
+                                <label for="floatingSelect">Seleccione el motivo del reporte</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                      <button class="btn btn-danger" data-bs-target="#exampleModal{{$imagen[0]->id}}">Enviar reporte</button>
+                    </div>
+                </form>
               </div>
             </div>
           </div>
