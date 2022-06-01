@@ -45,11 +45,13 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header gap-3">
-                        <button type="button" data-bs-target="#modalReportar{{$imagen[0]->id}}" data-bs-toggle="modal">
-                            <span class="material-symbols-outlined">report</span>
+                        <button type="button" class="btn" data-bs-target="#modalReportar{{$imagen[0]->id}}" data-bs-toggle="modal" onclick="eliminarclass()">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <span class="material-symbols-outlined text-danger">report</span>
+                            </div>
                         </button>
                         <h5 class="modal-title text-center" id="exampleModalLabel">{{$imagen[0]->title}}</h5>
-                        <button type="button" class="btn cerrado p-1" data-bs-dismiss="modal" aria-label="Close"> 
+                        <button type="button" class="btn cerrado p-1" data-bs-dismiss="modal" aria-label="Close" onclick="eliminarclass()"> 
                             <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
                         </button>
                     </div>
