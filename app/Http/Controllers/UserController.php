@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Image;
 use App\Models\Message;
+use App\Models\Report;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,22 @@ class UserController extends Controller
     {
         session_start();
         $user = User::where(['name' => $name])->get()->first();
-        $imagenes = Image::where(['user_id' => $user->id])->get();
+        $img = Image::where(['user_id' => $user->id])->get();
+        $imagenes = [];
+
+        $getReportedImg = Report::select("img_id")->where(['reporter_id' => Auth::user()->id])->get();
+        $filterImg = [];
+
+        foreach ($getReportedImg as $id) {
+            $filterImg[] = $id->img_id;
+        }
+
+        foreach ($img as $image) {
+            if (!in_array($image->id, $filterImg)) {
+                $imagenes[] = $image;
+            }
+        }
+
         $nMensajes = Message::where(['owner_id' => Auth::user()->id])->count();
         return view("galeria", compact('imagenes' ,'user', 'nMensajes'));
     }

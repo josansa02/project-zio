@@ -9,6 +9,33 @@
 
 <!-- **Sección de contenido** -->
 @section('content')
+
+<!-- Muestra un alerta que informe que un reporte ha sido llevado a cabo tras su realización -->
+@if (isset($_SESSION["report"]))
+<div class="row justify-content-center fixed-bottom">
+    <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">
+        <strong>{{$_SESSION["report"]}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      @php
+        unset($_SESSION["report"])
+      @endphp    
+</div>
+@endif
+
+<!-- Muestra un alerta que informe que un mensaje enviado sobre una imagen -->
+@if (isset($_SESSION["message"]))
+<div class="row justify-content-center fixed-bottom">
+    <div class="alert alert-primary alert-dismissible fade show w-25" role="alert">
+        <strong>{{$_SESSION["message"]}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      @php
+        unset($_SESSION["message"])
+      @endphp    
+</div>
+@endif
+
 @if (isset($_SESSION["update"]))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Perfil actualizado correctamente</strong>
@@ -81,6 +108,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header gap-3">
+                        @if ($user->id == Auth::user()->id)
                         <button type="button" class="btn dropdown-button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="d-flex justify-content-center align-items-center material-symbols-outlined">menu</span>
                         </button>
@@ -93,6 +121,11 @@
                                 </form>
                             </li>
                         </ul>
+                        @else 
+                            <button type="button" data-bs-target="#modalReportar{{$imagen->id}}" data-bs-toggle="modal">
+                                <span class="material-symbols-outlined">report</span>
+                            </button>
+                        @endif
                         <h5 class="modal-title text-center" id="exampleModalLabel">{{$imagen->title}}</h5>
                         <button type="button" class="btn cerrado p-1" data-bs-dismiss="modal" aria-label="Close"> 
                             <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
@@ -110,7 +143,60 @@
                             </p>
                         </div>
                     </div>
+                    @if ($user->id != Auth::user()->id)
+                        <div class="modal-footer justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <img style="width: 30px" src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg">
+                                <form action="{{ route('messages.add') }}" method="post">
+                                    @csrf
+                                    @method("post")
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="message" id="message">
+                                        <input type="hidden" name="img_id" id="img_id" value="{{$imagen->id}}">
+                                        <input type="hidden" name="owner_id" id="owner_id" value="{{$imagen->user_id}}">
+                                        <input type="hidden" name="name" id="name" value="{{$user->name}}">
+                                        <input class="btn btn-outline-secondary" type="submit" value="Comentar">
+                                    </div>
+                                </form>    
+                            </div>
+                        </div>
+                    @endif
                 </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalReportar{{$imagen->id}}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalToggleLabel2">Reportar esta imagen</h5>
+                  <button type="button" class="btn-close" data-bs-target="#exampleModal{{$imagen->id}}" data-bs-toggle="modal"></button>
+                </div>
+                <form action="{{route('reports.add')}}" method="post">
+                    @csrf
+                    @method("post")
+                    <input type="hidden" name="img_id" value="{{$imagen->id}}">
+                    <input type="hidden" name="owner_id" value="{{$imagen->user_id}}">
+                    <input type="hidden" name="name" value="{{$user->name}}">
+                    <div class="modal-body row justify-content-center">
+                        <div class="col-10 py-4">
+                            <div class="form-floating">
+                                <select class="form-select" name="report" id="report" aria-label="Report select">
+                                  <option value="Es spam">Es spam</option>
+                                  <option value="Desnudos o actividad sexual">Desnudos o actividad sexual</option>
+                                  <option value="Lenguajes o símbolos que inciten al odio">Lenguajes o símbolos que inciten al odio</option>
+                                  <option value="Violencia">Violencia</option>
+                                  <option value="Bullying o acoso">Bullying o acoso</option>
+                                </select>
+                                <label for="floatingSelect">Seleccione el motivo del reporte</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                      <button class="btn btn-danger" data-bs-target="#exampleModal{{$imagen->id}}">Enviar reporte</button>
+                    </div>
+                </form>
+              </div>
             </div>
         </div>
     @endforeach

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Message;
+use App\Models\Report;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Http\Request;
@@ -32,8 +33,17 @@ class HomeController extends Controller
         if (Auth::user()->enabled) {
             $img = Image::all();
             $images = [];
+            $getReportedImg = Report::select("img_id")->where(['reporter_id' => Auth::user()->id])->get();
+            $filterImg = [];
+
+            foreach ($getReportedImg as $id) {
+                $filterImg[] = $id->img_id;
+            }
+
             foreach ($img as $image) {
-                $images[] = [$image, User::select("id", "name", "profile_img")->where(['id' => $image->user_id])->first(), Vote::select()->where(['img_id' => $image->id])->count()];
+                if (!in_array($image->id, $filterImg)) {
+                    $images[] = [$image, User::select("id", "name", "profile_img")->where(['id' => $image->user_id])->first(), Vote::select()->where(['img_id' => $image->id])->count()];
+                }
             }
 
             if (!isset($_SESSION["nMensajes"])) {
@@ -52,8 +62,17 @@ class HomeController extends Controller
         if (Auth::user()->enabled) {
             $img = Image::all();
             $images = [];
+            $getReportedImg = Report::select("img_id")->where(['reporter_id' => Auth::user()->id])->get();
+            $filterImg = [];
+
+            foreach ($getReportedImg as $id) {
+                $filterImg[] = $id->img_id;
+            }
+            
             foreach ($img as $image) {
-                $images[] = [$image, User::select("name", "profile_img")->where(['id' => $image->user_id])->first()];
+                if (!in_array($image->id, $filterImg)) {
+                    $images[] = [$image, User::select("id", "name", "profile_img")->where(['id' => $image->user_id])->first(), Vote::select()->where(['img_id' => $image->id])->count()];
+                }
             }
 
             if (!isset($_SESSION["nMensajes"])) {

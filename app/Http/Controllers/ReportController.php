@@ -46,7 +46,9 @@ class ReportController extends Controller
         $report->save();
 
         $_SESSION["report"] = "Imagen reportada satisfactoriamente";
-        
+        if (isset($request->name)) {
+            return redirect()->route('gallery', $request->name);
+        }
         return redirect()->route('home');
     }
 

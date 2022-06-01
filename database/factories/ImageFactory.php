@@ -20,8 +20,8 @@ class ImageFactory extends Factory
         $users = User::pluck('id')->toArray();
         return [
             'img_name' => $this->faker->image('public/img/usersIMG',640,480, null, false),
-            'title' => $this->faker->sentence(),
-            'footer' => $this->faker->sentence(),
+            'title' => $this->faker->text(20),
+            'footer' => $this->faker->text(30),
             'user_id' => $this->faker->randomElement($users)
         ];
     }

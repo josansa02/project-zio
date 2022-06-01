@@ -10,14 +10,30 @@
 <!-- **Sección de contenido** -->
 @section('content')
 
+<!-- Muestra un alerta que infrme que un reporte ha sido llevado a cabo tras su realización -->
 @if (isset($_SESSION["report"]))
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong>{{$_SESSION["report"]}}</strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  @php
-    unset($_SESSION["report"])
-  @endphp
+<div class="row justify-content-center fixed-bottom">
+    <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">
+        <strong>{{$_SESSION["report"]}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      @php
+        unset($_SESSION["report"])
+      @endphp    
+</div>
+@endif
+
+<!-- Muestra un alerta que informe que un mensaje enviado sobre una imagen -->
+@if (isset($_SESSION["message"]))
+<div class="row justify-content-center fixed-bottom">
+    <div class="alert alert-primary alert-dismissible fade show w-25" role="alert">
+        <strong>{{$_SESSION["message"]}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      @php
+        unset($_SESSION["message"])
+      @endphp    
+</div>
 @endif
 
 @if (count($images) == 0)
@@ -45,9 +61,11 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header gap-3">
-                        <button type="button" data-bs-target="#modalReportar{{$imagen[0]->id}}" data-bs-toggle="modal">
-                            <span class="material-symbols-outlined">report</span>
-                        </button>
+                        @if ($imagen[1]->id != auth()->user()->id)
+                            <button type="button" data-bs-target="#modalReportar{{$imagen[0]->id}}" data-bs-toggle="modal">
+                                <span class="material-symbols-outlined">report</span>
+                            </button>
+                        @endif
                         <h5 class="modal-title text-center" id="exampleModalLabel">{{$imagen[0]->title}}</h5>
                         <button type="button" class="btn cerrado p-1" data-bs-dismiss="modal" aria-label="Close"> 
                             <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
@@ -68,6 +86,7 @@
                                 </div>
                             </div>
                         </div>
+                        @if ($imagen[1]->id != auth()->user()->id)
                         <div class="modal-footer justify-content-between">
                             <div class="d-flex align-items-center">
                                 <img style="width: 30px" src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg">
@@ -78,12 +97,12 @@
                                         <input type="text" class="form-control" name="message" id="message">
                                         <input type="hidden" name="img_id" id="img_id" value="{{$imagen[0]->id}}">
                                         <input type="hidden" name="owner_id" id="owner_id" value="{{$imagen[0]->user_id}}">
-                                        <input type="hidden" name="writer_id" id="writer_id" value="{{auth()->user()->id}}">
                                         <input class="btn btn-outline-secondary" type="submit" value="Comentar">
                                     </div>
                                 </form>    
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -121,7 +140,7 @@
                 </form>
               </div>
             </div>
-          </div>
+        </div>
     @endforeach
 </main>
 @endif

@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('img_name');
-            $table->string('title');           
-            $table->string('footer');
+            $table->string('title', 20);           
+            $table->string('footer', 30);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
