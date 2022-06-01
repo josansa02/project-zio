@@ -12,6 +12,7 @@ window.Vue = require('vue').default;
 
 /* Ruta de los componentes */
 Vue.component('like-component', require('./components/LikeComponent.vue').default);
+Vue.component('search-component', require('./components/SearchComponent.vue').default);
 Vue.component('imagenform-component', require('./components/ImagenFormComponent.vue').default);
 Vue.component('peticionform-component', require('./components/PeticionFormComponent.vue').default);
 

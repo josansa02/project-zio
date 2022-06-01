@@ -19,6 +19,12 @@ class UserController extends Controller
         return view("galeria", compact('imagenes' ,'user', 'nMensajes'));
     }
 
+    public function getAll()
+    {
+        $user = User::all();
+        return $user;
+    }
+
     public function edit(User $id)
     {
         session_start();

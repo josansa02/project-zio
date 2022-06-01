@@ -32,11 +32,16 @@
 }
 
 /* */
-.barra_busqueda-input {
-    background: white;
-    border: 2px solid var(--main-purple);
-    border-radius: 5px;
-    box-shadow: 0px 0px 0px 6px rgba(255,255,255,0.3);
+.barra_busqueda-input input {
+    margin: 0;
+    border: 0px;
+    padding-left: 10px;
+    background-color: var(--main-purple);
+}
+.barra_busqueda-input input:focus {
+    margin: 0;
+    border: 0px !important;
+    outline: none !important;
 }
 
 .dropdown-item:active {
