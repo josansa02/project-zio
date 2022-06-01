@@ -59916,20 +59916,25 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", [_vm._v(" " + _vm._s(this.info.data) + " ")]),
-    _vm._v(" "),
-    _c(
-      "span",
-      {
-        staticClass:
-          "material-symbols-outlined d-flex justify-content-center text-dark-purple",
-      },
-      [_vm._v(" recommend ")]
-    ),
-  ])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "span",
+        {
+          staticClass:
+            "material-symbols-outlined d-flex justify-content-center text-dark-purple",
+        },
+        [_vm._v(" recommend ")]
+      ),
+    ])
+  },
+]
 render._withStripped = true
 
 

@@ -1,3 +1,8 @@
+@php
+    session_start();
+@endphp
+
+
 @extends("layouts.app")
 
 @section("title", "ZIO - Ayuda")
@@ -7,6 +12,20 @@
 @endsection
 
 @section('content')
+
+<!-- Muestra un alerta si no encuentra el usuario que se busca -->
+@if (isset($_SESSION["userNotFound"]))
+<div class="row justify-content-center fixed-bottom">
+    <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">
+        <strong>{{$_SESSION["userNotFound"]}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      @php
+        unset($_SESSION["userNotFound"])
+      @endphp    
+</div>
+@endif
+
 <main class="container mt-3">
     <div>
         <div class="accordion" id="accordionExample">

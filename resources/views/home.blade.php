@@ -36,6 +36,19 @@
 </div>
 @endif
 
+<!-- Muestra un alerta si no encuentra el usuario que se busca -->
+@if (isset($_SESSION["userNotFound"]))
+<div class="row justify-content-center fixed-bottom">
+    <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">
+        <strong>{{$_SESSION["userNotFound"]}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      @php
+        unset($_SESSION["userNotFound"])
+      @endphp    
+</div>
+@endif
+
 @if (count($images) == 0)
     <main class="container d-flex justify-content-center align-items-center mt-5">
         <h3 class="text-center">Aún no se han subido imágenes</h3>

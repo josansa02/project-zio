@@ -46,7 +46,7 @@
                                 <!-- <input type="text" placeholder="Busca usuarios..." class="form-control border-0 bg-main"> -->
                                 <search-component class="barra_busqueda-input"></search-component>
                                 <div>
-                                    <button onclick="visitarUsuario()" type="button" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
+                                    <button name="{{route('gallery.route')}}" id="ruta" onclick="visitarUsuario()" type="button" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
                                 </div>
                             </div>
                         </div>
@@ -109,8 +109,12 @@
     <script>
         function visitarUsuario() {
             let autocom = document.getElementById("autocom");
-            console.log("valor: " + autocom.value);
+            let ruta = document.getElementById("ruta");
+            if (autocom.value != "") {
+                window.location.href = ruta.name + "/" + autocom.value;
+            }
         }
+        document.getElementById("js-licensing").remove();
     </script>
     @yield('js')
     

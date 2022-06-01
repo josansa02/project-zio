@@ -22,6 +22,7 @@ Route::post('reports/add', [ReportController::class, "store"])->name("reports.ad
 Route::post('mensajes/add', [MessageController::class, "store"])->name("messages.add");
 Route::get('mensajes/{user}', [MessageController::class, "show"])->name("messages");
 Route::get('galeria/{name}', [UserController::class, "show"])->name("gallery");
+Route::get('galeria/')->name("gallery.route");
 Route::get('/', [HomeController::class, 'indexLogin'])->name('index.login');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/help', [HomeController::class, 'ayuda'])->name('help');
