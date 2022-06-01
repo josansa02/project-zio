@@ -63,11 +63,13 @@
                     <div class="modal-header gap-3">
                         @if ($imagen[1]->id != auth()->user()->id)
                             <button type="button" data-bs-target="#modalReportar{{$imagen[0]->id}}" data-bs-toggle="modal">
-                                <span class="material-symbols-outlined">report</span>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <span class="material-symbols-outlined">report</span>
+                                </div>
                             </button>
                         @endif
                         <h5 class="modal-title text-center" id="exampleModalLabel">{{$imagen[0]->title}}</h5>
-                        <button type="button" class="btn cerrado p-1" data-bs-dismiss="modal" aria-label="Close"> 
+                        <button type="button" class="btn cerrado p-1" data-bs-dismiss="modal" aria-label="Close" onclick="eliminarclass()"> 
                             <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
                         </button>
                     </div>

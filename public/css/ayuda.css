@@ -19,8 +19,3 @@ body {
     color: var(--main-blue);
     transition: 0.6s ease;
 }
-
-/* Main */
-.accordion-body span:nth-child(2) {
-    color: red;
-}

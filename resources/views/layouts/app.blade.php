@@ -9,6 +9,10 @@
 
     <title>@yield('title')</title>
 
+    <style>
+    @import "../node_modules/@syncfusion/ej2-vue-dropdowns/styles/material.css";
+    </style>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -36,16 +40,17 @@
 
                 @guest
                 @else
-                    <form method="POST">
+                    <!-- <form method="POST"> -->
                         <div class="p-1 bg-main rounded rounded-pill shadow-sm">
-                            <div class="input-group">
-                                <input type="text" placeholder="Busca usuarios..." class="form-control border-0 bg-main">
+                            <div class="input-group d-flex justify-content-center align-items-center">
+                                <!-- <input type="text" placeholder="Busca usuarios..." class="form-control border-0 bg-main"> -->
+                                <search-component class="barra_busqueda-input"></search-component>
                                 <div>
-                                    <button type="submit" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
+                                    <button onclick="visitarUsuario()" type="button" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    <!-- </form> -->
                 @endguest
 
                 <div class="main-search-input-wrap">
@@ -98,9 +103,15 @@
             @yield('content')
         </div>
     </div>
+
     <script src="{{ asset('/js/app.js') }}"></script>
     <script src="{{ asset('/js/jquery-3.6.0.min.js') }}"></script>
-    
+    <script>
+        function visitarUsuario() {
+            let autocom = document.getElementById("autocom");
+            console.log("valor: " + autocom.value);
+        }
+    </script>
     @yield('js')
     
 </body>
