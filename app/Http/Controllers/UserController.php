@@ -38,7 +38,6 @@ class UserController extends Controller
             $_SESSION["userNotFound"] = "Usuario no encontrado";
             return redirect()->back();
         }
-        
     }
 
     public function getAll()
@@ -48,10 +47,10 @@ class UserController extends Controller
     }
 
     public function edit(User $id)
-    {
+    {   
         session_start();
         $user = $id;
-        return view('editProfile', compact('user'));
+        return view('editProfile', compact('user')); 
     }
 
     public function update(User $id, Request $request)

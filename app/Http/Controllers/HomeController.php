@@ -30,59 +30,51 @@ class HomeController extends Controller
     public function index()
     {
         session_start();
-        if (Auth::user()->enabled) {
-            $img = Image::all();
-            $images = [];
-            $getReportedImg = Report::select("img_id")->where(['reporter_id' => Auth::user()->id])->get();
-            $filterImg = [];
+        $img = Image::all();
+        $images = [];
+        $getReportedImg = Report::select("img_id")->where(['reporter_id' => Auth::user()->id])->get();
+        $filterImg = [];
 
-            foreach ($getReportedImg as $id) {
-                $filterImg[] = $id->img_id;
-            }
-
-            foreach ($img as $image) {
-                if (!in_array($image->id, $filterImg)) {
-                    $images[] = [$image, User::select("id", "name", "profile_img")->where(['id' => $image->user_id])->first(), Vote::select()->where(['img_id' => $image->id])->count()];
-                }
-            }
-
-            if (!isset($_SESSION["nMensajes"])) {
-                $_SESSION["nMensajes"] = Message::where(['owner_id' => Auth::user()->id])->count();
-            }
-            
-            return view('home', compact('images'));
-        } else {
-            return view('peticion');
+        foreach ($getReportedImg as $id) {
+            $filterImg[] = $id->img_id;
         }
+
+        foreach ($img as $image) {
+            if (!in_array($image->id, $filterImg)) {
+                $images[] = [$image, User::select("id", "name", "profile_img")->where(['id' => $image->user_id])->first(), Vote::select()->where(['img_id' => $image->id])->count()];
+            }
+        }
+
+        if (!isset($_SESSION["nMensajes"])) {
+            $_SESSION["nMensajes"] = Message::where(['owner_id' => Auth::user()->id])->count();
+        }
+
+        return view('home', compact('images'));
     }
 
     public function indexLogin()
     {
         session_start();
-        if (Auth::user()->enabled) {
-            $img = Image::all();
-            $images = [];
-            $getReportedImg = Report::select("img_id")->where(['reporter_id' => Auth::user()->id])->get();
-            $filterImg = [];
+        $img = Image::all();
+        $images = [];
+        $getReportedImg = Report::select("img_id")->where(['reporter_id' => Auth::user()->id])->get();
+        $filterImg = [];
 
-            foreach ($getReportedImg as $id) {
-                $filterImg[] = $id->img_id;
-            }
-            
-            foreach ($img as $image) {
-                if (!in_array($image->id, $filterImg)) {
-                    $images[] = [$image, User::select("id", "name", "profile_img")->where(['id' => $image->user_id])->first(), Vote::select()->where(['img_id' => $image->id])->count()];
-                }
-            }
-
-            if (!isset($_SESSION["nMensajes"])) {
-                $_SESSION["nMensajes"] = Message::where(['owner_id' => Auth::user()->id])->count();
-            }
-            
-            return view('home', compact('images'));
-        } else {
-            return view('peticion');
+        foreach ($getReportedImg as $id) {
+            $filterImg[] = $id->img_id;
         }
+
+        foreach ($img as $image) {
+            if (!in_array($image->id, $filterImg)) {
+                $images[] = [$image, User::select("id", "name", "profile_img")->where(['id' => $image->user_id])->first(), Vote::select()->where(['img_id' => $image->id])->count()];
+            }
+        }
+
+        if (!isset($_SESSION["nMensajes"])) {
+            $_SESSION["nMensajes"] = Message::where(['owner_id' => Auth::user()->id])->count();
+        }
+
+        return view('home', compact('images'));
     }
 
     public function ayuda()

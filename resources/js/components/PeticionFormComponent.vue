@@ -10,13 +10,15 @@
                 <form method="POST" v-on:submit.prevent="enviarPeticion()">
                     <div class="py-4">
                         <textarea v-model="unban_reason" type="text" rows="5" placeholder="Escriba aquí su petición" class="form-control"></textarea>
-                        <input type="submit" value="Enviar peticion" class="mt-2 btn btn-primary">
+                        <input type="submit" value="Enviar peticion" class="mt-2 btn btn-primary swal-peticion-enviada">
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </template>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     export default {
@@ -29,7 +31,11 @@
             enviarPeticion() {
                 axios.post("peticiones", {unban_reason: this.unban_reason})
                 .then(response => { 
-                    alert("Mensaje enviado");
+                    Swal.fire(
+                        'Petición enviada',
+                        'Has enviado tu petición de rehabilitación de cuenta, ahora debes esperar a que los administradores la revisen y tomen una decisión',
+                        'success'
+                    );
                 })
                 .catch(error => {
                     console.log(error.response) 
@@ -39,3 +45,4 @@
         }
     }
 </script>
+
