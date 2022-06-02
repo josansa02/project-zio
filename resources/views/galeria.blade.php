@@ -153,6 +153,12 @@
                                 <img src="{{asset('/img/profileIMG/' . $user->profile_img)}}" class="img-fluid imagen_modal_usu"> 
                                 <strong> {{$user->name}}: </strong> 
                                 <span> {{$imagen[0]->footer}} </span>
+                                @if ($user->id == auth()->user()->id)
+                                    <div class="d-flex flex-column justify-content-center align-items-center gap-1">
+                                        <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple"> recommend </span>
+                                        <span> {{$imagen[1]}} </span>    
+                                    </div>
+                                @endif
                             </p>
                         </div>
                     </div>
