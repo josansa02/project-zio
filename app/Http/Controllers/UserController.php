@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Models\Message;
 use App\Models\Report;
 use App\Models\User;
+use App\Models\Vote;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -28,7 +29,7 @@ class UserController extends Controller
     
             foreach ($img as $image) {
                 if (!in_array($image->id, $filterImg)) {
-                    $imagenes[] = $image;
+                    $imagenes[] = [$image, Vote::select()->where(['img_id' => $image->id])->count()];
                 }
             }
     

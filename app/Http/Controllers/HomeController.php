@@ -41,7 +41,7 @@ class HomeController extends Controller
 
         foreach ($img as $image) {
             if (!in_array($image->id, $filterImg)) {
-                $images[] = [$image, User::select("id", "name", "profile_img")->where(['id' => $image->user_id])->first(), Vote::select()->where(['img_id' => $image->id])->count()];
+                $images[] = [$image, User::select("id", "name", "profile_img")->where(['id' => $image->user_id])->first()];
             }
         }
 
@@ -66,7 +66,7 @@ class HomeController extends Controller
 
         foreach ($img as $image) {
             if (!in_array($image->id, $filterImg)) {
-                $images[] = [$image, User::select("id", "name", "profile_img")->where(['id' => $image->user_id])->first(), Vote::select()->where(['img_id' => $image->id])->count()];
+                $images[] = [$image, User::select("id", "name", "profile_img")->where(['id' => $image->user_id])->first()];
             }
         }
 

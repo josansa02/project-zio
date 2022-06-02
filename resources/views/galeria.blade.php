@@ -113,11 +113,11 @@
 <main class="container mt-3 mb-3">
     @foreach ($imagenes as $imagen)
         <div class="imagenes-div">
-            <img src="{{asset('/img/usersIMG/' . $imagen->img_name)}}" alt="{{$imagen->title}}" class="img-fluid imagen_galeria" data-bs-toggle="modal" data-bs-target="#exampleModal{{$imagen->id}}" onclick="eliminarclass()">
+            <img src="{{asset('/img/usersIMG/' . $imagen[0]->img_name)}}" alt="{{$imagen[0]->title}}" class="img-fluid imagen_galeria" data-bs-toggle="modal" data-bs-target="#exampleModal{{$imagen[0]->id}}" onclick="eliminarclass()">
         </div>
 
         <!-- Modal de cada imagen -->
-        <div class="modal fade" id="exampleModal{{$imagen->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal{{$imagen[0]->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header gap-3">
@@ -127,7 +127,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                                <form class="swal-confirmar-borrar" action="{{route('image.delete', $imagen->id)}}" method="post">
+                                <form class="swal-confirmar-borrar" action="{{route('image.delete', $imagen[0]->id)}}" method="post">
                                     @csrf
                                     @method("delete")
                                     <input type="submit" class="dropdown-item" value="Eliminar">
@@ -135,24 +135,24 @@
                             </li>
                         </ul>
                         @else 
-                            <button class="btn d-flex justify-content-center align-items-center" type="button" data-bs-target="#modalReportar{{$imagen->id}}" data-bs-toggle="modal">
+                            <button class="btn d-flex justify-content-center align-items-center" type="button" data-bs-target="#modalReportar{{$imagen[0]->id}}" data-bs-toggle="modal">
                                 <span class="material-symbols-outlined text-danger">report</span>
                             </button>
                         @endif
-                        <h5 class="modal-title text-center" id="exampleModalLabel">{{$imagen->title}}</h5>
+                        <h5 class="modal-title text-center" id="exampleModalLabel">{{$imagen[0]->title}}</h5>
                         <button type="button" class="btn cerrado p-1" data-bs-dismiss="modal" aria-label="Close"> 
                             <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="imagen_modal">
-                            <img src="{{asset('/img/usersIMG/' . $imagen->img_name)}}" class="img-fluid">
+                            <img src="{{asset('/img/usersIMG/' . $imagen[0]->img_name)}}" class="img-fluid">
                         </div>
                         <div class="mt-3 px-3">
                             <p class="d-flex align-items-center gap-1"> 
                                 <img src="{{asset('/img/profileIMG/' . $user->profile_img)}}" class="img-fluid imagen_modal_usu"> 
                                 <strong> {{$user->name}}: </strong> 
-                                <span> {{$imagen->footer}} </span>
+                                <span> {{$imagen[0]->footer}} </span>
                             </p>
                         </div>
                     </div>
@@ -165,8 +165,8 @@
                                     @method("post")
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="message" id="message">
-                                        <input type="hidden" name="img_id" id="img_id" value="{{$imagen->id}}">
-                                        <input type="hidden" name="owner_id" id="owner_id" value="{{$imagen->user_id}}">
+                                        <input type="hidden" name="img_id" id="img_id" value="{{$imagen[0]->id}}">
+                                        <input type="hidden" name="owner_id" id="owner_id" value="{{$imagen[0]->user_id}}">
                                         <input type="hidden" name="name" id="name" value="{{$user->name}}">
                                         <input class="btn btn-outline-secondary" type="submit" value="Comentar">
                                     </div>
@@ -178,18 +178,18 @@
             </div>
         </div>
 
-        <div class="modal fade" id="modalReportar{{$imagen->id}}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal fade" id="modalReportar{{$imagen[0]->id}}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalToggleLabel2">Reportar esta imagen</h5>
-                  <button type="button" class="btn-close" data-bs-target="#exampleModal{{$imagen->id}}" data-bs-toggle="modal" onclick="eliminarclass()"></button>
+                  <button type="button" class="btn-close" data-bs-target="#exampleModal{{$imagen[0]->id}}" data-bs-toggle="modal" onclick="eliminarclass()"></button>
                 </div>
                 <form action="{{route('reports.add')}}" method="post">
                     @csrf
                     @method("post")
-                    <input type="hidden" name="img_id" value="{{$imagen->id}}">
-                    <input type="hidden" name="owner_id" value="{{$imagen->user_id}}">
+                    <input type="hidden" name="img_id" value="{{$imagen[0]->id}}">
+                    <input type="hidden" name="owner_id" value="{{$imagen[0]->user_id}}">
                     <input type="hidden" name="name" value="{{$user->name}}">
                     <div class="modal-body row justify-content-center">
                         <div class="col-10 py-4">
@@ -206,7 +206,7 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
-                      <button class="btn btn-danger" data-bs-target="#exampleModal{{$imagen->id}}">Enviar reporte</button>
+                      <button class="btn btn-danger" data-bs-target="#exampleModal{{$imagen[0]->id}}">Enviar reporte</button>
                     </div>
                 </form>
               </div>
