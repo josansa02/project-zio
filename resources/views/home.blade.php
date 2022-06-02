@@ -90,29 +90,27 @@
                         <div class="imagen_modal">
                             <img src="{{asset('/img/usersIMG/')}}/{{$imagen[0]->img_name}}" class="img-fluid">
                         </div>
-                        <div class="mt-3 px-3">
-                            <div class="d-flex align-items-center gap-1"> 
-                                <div class="d-flex align-items-center">
-                                    <p class="mt-3"> <strong> <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid imagen_modal_usu"> {{$imagen[1]->name}} </strong> </p>
-                                    <p> {{$imagen[0]->footer}} </p>
-                                    <p class="row align-items-center justify-content-center"> 
-                                        <span class="material-symbols-outlined d-flex justify-content-center"> recommend </span> {{$imagen[2]}}
-                                    </p>
+                        <div class="mt-3 mb-3 px-3">
+                            <div class="d-flex align-items-center gap-2"> 
+                                <div class="d-flex align-items-center gap-2">
+                                    <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid imagen_modal_usu">
+                                    <p class="m-0"> <strong> {{$imagen[1]->name}} </strong> </p>
                                 </div>
+                                <p class="m-0"> {{$imagen[0]->footer}} </p>
                             </div>
                         </div>
                         @if ($imagen[1]->id != auth()->user()->id)
                         <div class="modal-footer justify-content-between">
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center gap-1">
                                 <img style="width: 30px" src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg">
                                 <form action="{{ route('messages.add') }}" method="post">
                                     @csrf
                                     @method("post")
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="message" id="message">
+                                        <input type="text" class="form-control text-comment" name="message" id="message">
                                         <input type="hidden" name="img_id" id="img_id" value="{{$imagen[0]->id}}">
                                         <input type="hidden" name="owner_id" id="owner_id" value="{{$imagen[0]->user_id}}">
-                                        <input class="btn btn-outline-secondary" type="submit" value="Comentar">
+                                        <input class="btn btn-comment" type="submit" value="Comentar">
                                     </div>
                                 </form>    
                             </div>
@@ -127,8 +125,10 @@
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalToggleLabel2">Reportar esta imagen</h5>
-                  <button type="button" class="btn-close" data-bs-target="#exampleModal{{$imagen[0]->id}}" data-bs-toggle="modal" onclick="eliminarclass()"></button>
+                    <h5 class="text-dark-purple modal-title" id="exampleModalToggleLabel2">Reportar esta fotografía</h5>
+                    <button type="button" class="btn cerrado p-1" data-bs-target="#exampleModal{{$imagen[0]->id}}" data-bs-toggle="modal" onclick="eliminarclass()">
+                        <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
+                    </button>
                 </div>
                 <form action="{{route('reports.add')}}" method="post">
                     @csrf
@@ -150,7 +150,7 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
-                      <button class="btn btn-danger" data-bs-target="#exampleModal{{$imagen[0]->id}}">Enviar reporte</button>
+                        <button class="btn btn-danger" data-bs-target="#exampleModal{{$imagen[0]->id}}">Enviar reporte</button>
                     </div>
                 </form>
               </div>
