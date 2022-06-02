@@ -33,24 +33,27 @@
     <div id="app">
         <nav class="navbar navbar-expand navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand d-flex justify-content-center align-items-center gap-2" href="{{ url('/home') }}">
                     <!-- {{ config('app.name', 'ZIO') }} -->
                     <img src="{{asset('/img/logo_ZIO.svg')}}" alt="Logo ZIO" width="40" height="40" class="d-inline-block">
+                    <h3 class="m-0">ZIO</h3>
                 </a>
 
                 @guest
                 @else
-                    <!-- <form method="POST"> -->
-                        <div class="p-1 bg-main rounded rounded-pill shadow-sm">
-                            <div class="input-group d-flex justify-content-center align-items-center">
-                                <!-- <input type="text" placeholder="Busca usuarios..." class="form-control border-0 bg-main"> -->
-                                <search-component class="barra_busqueda-input"></search-component>
-                                <div>
-                                    <button name="{{route('gallery.route')}}" id="ruta" onclick="visitarUsuario()" type="button" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
+                    @if (auth()->user()->enabled)
+                        <!-- <form method="POST"> -->
+                            <div class="p-1 bg-main rounded rounded-pill shadow-sm">
+                                <div class="input-group d-flex justify-content-center align-items-center">
+                                    <!-- <input type="text" placeholder="Busca usuarios..." class="form-control border-0 bg-main"> -->
+                                    <search-component class="barra_busqueda-input"></search-component>
+                                    <div>
+                                        <button name="{{route('gallery.route')}}" id="ruta" onclick="visitarUsuario()" type="button" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <!-- </form> -->
+                        <!-- </form> -->
+                    @endif            
                 @endguest
 
                 <div class="main-search-input-wrap">
@@ -70,29 +73,39 @@
                                 </li>
                             @endif
                         @else
-                            <!-- Menú desplegable del usuario -->
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img style="width: 50px" src="{{asset('img/profileIMG')}}/{{auth()->user()->profile_img}}" alt="ProfileImg">
-                                    <div class="d-flex align-items-end">
-                                        <span class="material-symbols-outlined">expand_more</span>
-                                    </div>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="navbarDropdown" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px;">
-                                    <a class="dropdown-item d-flex justify-content-between align-items-center gap-3" href="{{route('gallery', auth()->user()->name)}}">Galería personal <span class="material-symbols-outlined"> home </span></a>
-                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{route('messages', auth()->user()->id)}}">Comentarios <span class="material-symbols-outlined"> chat </span></a>
-                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{route('usuarios.edit', auth()->user()->id)}}">Editar perfil <span class="material-symbols-outlined"> settings </span></a>
-                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{route('help')}}">Ayuda <span class="material-symbols-outlined"> help </span></a>
-                                    <a class="dropdown-item border-top d-flex justify-content-between align-items-center" href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{ __('Cerrar sesión') }} <span class="material-symbols-outlined"> logout </span>
+                            @if (auth()->user()->enabled)
+                                <!-- Menú desplegable del usuario -->
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        <img style="width: 50px" src="{{asset('img/profileIMG')}}/{{auth()->user()->profile_img}}" alt="ProfileImg">
+                                        <div class="d-flex align-items-end">
+                                            <span class="material-symbols-outlined">expand_more</span>
+                                        </div>
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                    <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="navbarDropdown" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px;">
+                                        <a class="dropdown-item d-flex justify-content-between align-items-center gap-3" href="{{route('gallery', auth()->user()->name)}}">Galería personal <span class="material-symbols-outlined"> home </span></a>
+                                        <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{route('messages', auth()->user()->id)}}">Comentarios <span class="material-symbols-outlined"> chat </span></a>
+                                        <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{route('usuarios.edit', auth()->user()->id)}}">Editar perfil <span class="material-symbols-outlined"> settings </span></a>
+                                        <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{route('help')}}">Ayuda <span class="material-symbols-outlined"> help </span></a>
+                                        <a class="dropdown-item border-top d-flex justify-content-between align-items-center" href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {{ __('Cerrar sesión') }} <span class="material-symbols-outlined"> logout </span>
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @else 
+                            <a class="nav-link" href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                {{ __('Cerrar sesión') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                            @endif
                         @endguest
                     </ul>
                 </div>

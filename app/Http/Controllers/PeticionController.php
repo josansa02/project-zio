@@ -15,7 +15,7 @@ class PeticionController extends Controller
      */
     public function index()
     {
-        //
+        return view("peticion");
     }
 
     /**

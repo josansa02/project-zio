@@ -4,19 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Vote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VoteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getVotos()
-    {
-        $votes = Vote::all()->count();
-        return $votes;
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -36,7 +27,15 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $voto = Vote::where(['img_id' => $request->img_id, 'user_id' => auth()->user()->id])->get()->first();
+        if (!$voto) {
+            $nuevoVoto = new Vote();
+            $nuevoVoto->img_id = $request->img_id;
+            $nuevoVoto->user_id = auth()->user()->id;
+            $nuevoVoto->save();
+        } else {
+            $voto->delete();
+        }
     }
 
     /**

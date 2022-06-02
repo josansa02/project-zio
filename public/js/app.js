@@ -32905,21 +32905,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      info: null
+      paco: null
     };
   },
   props: ["img_id"],
   methods: {
     recogerId: function recogerId() {
-      console.log("Id de la imagen clickada: " + this.img_id);
+      axios.post("votos", {
+        img_id: this.img_id
+      }).then(function (response) {
+        console.log(response); // Swal.fire(
+        //     'Petición enviada',
+        //     'Has enviado tu petición de rehabilitación de cuenta, ahora debes esperar a que los administradores la revisen y tomen una decisión',
+        //     'success'
+        // );
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
     }
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    axios.get('votos').then(function (response) {
-      return _this.info = response;
-    });
   }
 });
 
@@ -32956,6 +32959,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -32967,7 +32972,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.post("peticiones", {
         unban_reason: this.unban_reason
       }).then(function (response) {
-        alert("Mensaje enviado");
+        Swal.fire('Petición enviada', 'Has enviado tu petición de rehabilitación de cuenta, ahora debes esperar a que los administradores la revisen y tomen una decisión', 'success');
       })["catch"](function (error) {
         console.log(error.response);
       });
@@ -60033,7 +60038,7 @@ var render = function () {
               }),
               _vm._v(" "),
               _c("input", {
-                staticClass: "mt-2 btn btn-primary",
+                staticClass: "mt-2 btn btn-primary swal-peticion-enviada",
                 attrs: { type: "submit", value: "Enviar peticion" },
               }),
             ]),
