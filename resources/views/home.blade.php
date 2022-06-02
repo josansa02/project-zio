@@ -66,7 +66,7 @@
                     <a href="{{route('gallery', $imagen[1]->name)}}"> <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid imagen_usu"> </a>
                     <strong> {{$imagen[1]->name}} </strong>  
                 </div>
-                <like-component :img_id="{{json_encode($imagen[1]->id)}}"></like-component>
+                <like-component :img_id="{{json_encode($imagen[0]->id)}}"></like-component>
             </div>
         </div>
 

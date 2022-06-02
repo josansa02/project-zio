@@ -29,10 +29,10 @@ Route::group(['middleware' => 'enabled'], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/help', [HomeController::class, 'ayuda'])->name('help');
 
-    Route::get("/votos", [VoteController::class, 'getVotos']);
     Route::get("/usuarios", [UserController::class, 'getAll']);
 
     Route::resource("/imagenes", ImageController::class);
+    Route::resource("/votos", VoteController::class);
 
 });
 

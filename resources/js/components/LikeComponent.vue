@@ -14,18 +14,25 @@
     export default {
         data () {
             return {
-                info: null
+                paco: null
             }
         },
         props: ["img_id"],
         methods: {
             recogerId() {
-                console.log("Id de la imagen clickada: " + this.img_id);
+                axios.post("votos", {img_id: this.img_id})
+                .then(response => { 
+                    // Swal.fire(
+                    //     'Petición enviada',
+                    //     'Has enviado tu petición de rehabilitación de cuenta, ahora debes esperar a que los administradores la revisen y tomen una decisión',
+                    //     'success'
+                    // );
+                })
+                .catch(error => {
+                    console.log(error.response) 
+                });
+
             }
-        },
-        mounted() {
-            axios.get('votos')
-            .then(response => (this.info = response))
         }
     }
 </script>
