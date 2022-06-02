@@ -32897,11 +32897,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       info: null
     };
+  },
+  props: ["img_id"],
+  methods: {
+    recogerId: function recogerId() {
+      console.log("Id de la imagen clickada: " + this.img_id);
+    }
   },
   mounted: function mounted() {
     var _this = this;
@@ -59916,22 +59927,38 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c(
+      "form",
+      {
+        attrs: { method: "POST" },
+        on: {
+          submit: function ($event) {
+            $event.preventDefault()
+            return _vm.recogerId()
+          },
+        },
+      },
+      [_vm._m(0)]
+    ),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "span",
-        {
-          staticClass:
-            "material-symbols-outlined d-flex justify-content-center text-dark-purple",
-        },
-        [_vm._v(" recommend ")]
-      ),
+    return _c("div", { staticClass: "py-4" }, [
+      _c("button", { staticClass: "btn-like", attrs: { type: "submit" } }, [
+        _c(
+          "span",
+          {
+            staticClass:
+              "material-symbols-outlined d-flex justify-content-center text-dark-purple",
+          },
+          [_vm._v(" recommend ")]
+        ),
+      ]),
     ])
   },
 ]
