@@ -66,7 +66,7 @@
                     <a href="{{route('gallery', $imagen[1]->name)}}"> <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid imagen_usu"> </a>
                     <strong> {{$imagen[1]->name}} </strong>  
                 </div>
-                <like-component></like-component>
+                <like-component :img_id="{{json_encode($imagen[1]->id)}}"></like-component>
             </div>
         </div>
 
@@ -75,9 +75,9 @@
                 <div class="modal-content">
                     <div class="modal-header gap-3">
                         @if ($imagen[1]->id != auth()->user()->id)
-                            <button type="button" data-bs-target="#modalReportar{{$imagen[0]->id}}" data-bs-toggle="modal">
+                            <button type="button" class="btn d-flex justify-content-center align-items-center" data-bs-target="#modalReportar{{$imagen[0]->id}}" data-bs-toggle="modal" onclick="eliminarclass()">
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <span class="material-symbols-outlined">report</span>
+                                    <span class="material-symbols-outlined text-danger">report</span>
                                 </div>
                             </button>
                         @endif
@@ -128,7 +128,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalToggleLabel2">Reportar esta imagen</h5>
-                  <button type="button" class="btn-close" data-bs-target="#exampleModal{{$imagen[0]->id}}" data-bs-toggle="modal"></button>
+                  <button type="button" class="btn-close" data-bs-target="#exampleModal{{$imagen[0]->id}}" data-bs-toggle="modal" onclick="eliminarclass()"></button>
                 </div>
                 <form action="{{route('reports.add')}}" method="post">
                     @csrf

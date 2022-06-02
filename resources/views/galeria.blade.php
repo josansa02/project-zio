@@ -135,8 +135,8 @@
                             </li>
                         </ul>
                         @else 
-                            <button type="button" data-bs-target="#modalReportar{{$imagen->id}}" data-bs-toggle="modal">
-                                <span class="material-symbols-outlined">report</span>
+                            <button class="btn d-flex justify-content-center align-items-center" type="button" data-bs-target="#modalReportar{{$imagen->id}}" data-bs-toggle="modal">
+                                <span class="material-symbols-outlined text-danger">report</span>
                             </button>
                         @endif
                         <h5 class="modal-title text-center" id="exampleModalLabel">{{$imagen->title}}</h5>
@@ -183,7 +183,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalToggleLabel2">Reportar esta imagen</h5>
-                  <button type="button" class="btn-close" data-bs-target="#exampleModal{{$imagen->id}}" data-bs-toggle="modal"></button>
+                  <button type="button" class="btn-close" data-bs-target="#exampleModal{{$imagen->id}}" data-bs-toggle="modal" onclick="eliminarclass()"></button>
                 </div>
                 <form action="{{route('reports.add')}}" method="post">
                     @csrf

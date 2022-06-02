@@ -70,6 +70,13 @@ main img:hover {
     border-radius: 150px;
 }
 
+.btn-like {
+    border: 0px;
+    outline: none;
+    background-color: white;
+    padding-top: 5px;
+}
+
 .cerrado {
     background-color: var(--main-purple);
 }
