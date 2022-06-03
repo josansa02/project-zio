@@ -95,7 +95,7 @@
                         <div class="mt-3 mb-3 px-3">
                             <div class="d-flex align-items-center gap-2"> 
                                 <div class="d-flex align-items-center gap-2">
-                                    <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid imagen_modal_usu">
+                                    <a href="{{route('gallery', $imagen[1]->name)}}" class="imagen_modal_usu"> <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid"> </a>
                                     <p class="m-0"> <strong> {{$imagen[1]->name}} </strong> </p>
                                 </div>
                                 <p class="m-0"> {{$imagen[0]->footer}} </p>
@@ -104,7 +104,7 @@
                         @if ($imagen[1]->id != auth()->user()->id)
                         <div class="modal-footer justify-content-between">
                             <div class="d-flex align-items-center gap-1">
-                                <img style="width: 30px" src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg">
+                                <img style="width: 30px" src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg" class="no-photo-link">
                                 <form action="{{ route('messages.add') }}" method="post">
                                     @csrf
                                     @method("post")
@@ -141,7 +141,7 @@
                         <div class="col-10 py-4">
                             <div class="form-floating">
                                 <select class="form-select" name="report" id="report" aria-label="Report select">
-                                  <option value="Es spam">Es spam</option>
+                                  <option value="Spam">Spam</option>
                                   <option value="Desnudos o actividad sexual">Desnudos o actividad sexual</option>
                                   <option value="Lenguajes o símbolos que inciten al odio">Lenguajes o símbolos que inciten al odio</option>
                                   <option value="Violencia">Violencia</option>

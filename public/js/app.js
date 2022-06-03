@@ -32902,19 +32902,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      paco: null
+      mostrar: true
     };
   },
   props: ["img_id"],
   methods: {
     recogerId: function recogerId() {
+      var _this = this;
+
       axios.post("votos", {
         img_id: this.img_id
       }).then(function (response) {
-        console.log(response); // Swal.fire(
+        _this.mostrar = false; // Swal.fire(
         //     'Petición enviada',
         //     'Has enviado tu petición de rehabilitación de cuenta, ahora debes esperar a que los administradores la revisen y tomen una decisión',
         //     'success'
@@ -59933,19 +59936,32 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "form",
-      {
-        attrs: { method: "POST" },
-        on: {
-          submit: function ($event) {
-            $event.preventDefault()
-            return _vm.recogerId()
+    this.mostrar
+      ? _c(
+          "form",
+          {
+            attrs: { method: "POST" },
+            on: {
+              submit: function ($event) {
+                $event.preventDefault()
+                return _vm.recogerId()
+              },
+            },
           },
-        },
-      },
-      [_vm._m(0)]
-    ),
+          [_vm._m(0)]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    !this.mostrar
+      ? _c(
+          "span",
+          {
+            staticClass:
+              "material-symbols-outlined d-flex justify-content-center text-dark-purple cursor-default",
+          },
+          [_vm._v(" check_circle ")]
+        )
+      : _vm._e(),
   ])
 }
 var staticRenderFns = [

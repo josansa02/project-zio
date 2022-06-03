@@ -128,8 +128,7 @@ main img:hover {
     border-radius: 150px;
 }
 .imagen_modal_usu:hover{
-    opacity: 1;
-    cursor: auto;
+    cursor: pointer;
 }
 
 .modal-title {
@@ -138,6 +137,15 @@ main img:hover {
 
 .dropdown-button span {
     color: var(--main-purple);
+}
+
+.no-photo-link:hover {
+    opacity: 1;
+    cursor: auto;
+}
+
+.cursor-default {
+    cursor: default;
 }
 
 /* Media Queries */
