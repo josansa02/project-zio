@@ -70,6 +70,13 @@ main img:hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.no-photo-link {
+    cursor: auto;
+}
+.no-photo-link:hover {
+    opacity: 1;
+}
+
 /* Modal */
 .modal-body {
     padding: 0px !important;
@@ -138,6 +145,26 @@ main img:hover {
 
 .modal-title {
     color: black !important;
+}
+
+.text-comment {
+    border-radius: 25px;
+    border: 1px solid var(--main-purple);
+}
+.text-comment:focus {
+    border: 1px solid var(--main-purple);
+}
+
+.btn-comment {
+    border: 1px solid var(--main-purple);
+    background-color: var(--main-purple);
+    color: white;
+    border-radius: 25px;
+    transition: 0.6s;
+}
+.btn-comment:hover {
+    color: var(--main-purple);
+    background-color: white;
 }
 
 .dropdown-button span {

@@ -150,7 +150,7 @@
                         </div>
                         <div class="mt-3 px-3">
                             <p class="d-flex align-items-center gap-1"> 
-                                <img src="{{asset('/img/profileIMG/' . $user->profile_img)}}" class="img-fluid imagen_modal_usu"> 
+                                <img src="{{asset('/img/profileIMG/' . $user->profile_img)}}" class="img-fluid imagen_modal_usu no-photo-link"> 
                                 <strong> {{$user->name}}: </strong> 
                                 <span> {{$imagen[0]->footer}} </span>
                                 @if ($user->id == auth()->user()->id)
@@ -164,17 +164,17 @@
                     </div>
                     @if ($user->id != Auth::user()->id)
                         <div class="modal-footer justify-content-between">
-                            <div class="d-flex align-items-center">
-                                <img style="width: 30px" src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg">
+                            <div class="d-flex align-items-center gap-1">
+                                <img style="width: 30px" src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg" class="no-photo-link">
                                 <form action="{{ route('messages.add') }}" method="post">
                                     @csrf
                                     @method("post")
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="message" id="message">
+                                        <input type="text" class="form-control text-comment" name="message" id="message">
                                         <input type="hidden" name="img_id" id="img_id" value="{{$imagen[0]->id}}">
                                         <input type="hidden" name="owner_id" id="owner_id" value="{{$imagen[0]->user_id}}">
                                         <input type="hidden" name="name" id="name" value="{{$user->name}}">
-                                        <input class="btn btn-outline-secondary" type="submit" value="Comentar">
+                                        <input class="btn btn-comment" type="submit" value="Comentar">
                                     </div>
                                 </form>    
                             </div>
@@ -188,8 +188,10 @@
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalToggleLabel2">Reportar esta imagen</h5>
-                  <button type="button" class="btn-close" data-bs-target="#exampleModal{{$imagen[0]->id}}" data-bs-toggle="modal" onclick="eliminarclass()"></button>
+                    <h5 class="modal-title" id="exampleModalToggleLabel2">Reportar esta imagen</h5>
+                    <button type="button" class="btn cerrado p-1" data-bs-target="#exampleModal{{$imagen[0]->id}}" data-bs-toggle="modal" onclick="eliminarclass()">
+                        <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
+                    </button>
                 </div>
                 <form action="{{route('reports.add')}}" method="post">
                     @csrf
@@ -201,7 +203,7 @@
                         <div class="col-10 py-4">
                             <div class="form-floating">
                                 <select class="form-select" name="report" id="report" aria-label="Report select">
-                                  <option value="Es spam">Es spam</option>
+                                  <option value="Spam">Spam</option>
                                   <option value="Desnudos o actividad sexual">Desnudos o actividad sexual</option>
                                   <option value="Lenguajes o símbolos que inciten al odio">Lenguajes o símbolos que inciten al odio</option>
                                   <option value="Violencia">Violencia</option>
