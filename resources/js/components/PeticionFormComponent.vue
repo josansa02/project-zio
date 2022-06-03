@@ -10,6 +10,11 @@
                 <form method="POST" v-on:submit.prevent="enviarPeticion()">
                     <div class="py-4">
                         <textarea v-model="unban_reason" type="text" rows="5" placeholder="Escriba aquí su petición" class="form-control"></textarea>
+                        
+                        <div class="alert alert-danger mt-1" v-if="errors && errors.unban_reason">
+                            Debe completar este campo
+                        </div>
+
                         <input type="submit" value="Enviar peticion" class="mt-2 btn btn-primary swal-peticion-enviada">
                     </div>
                 </form>
@@ -25,6 +30,7 @@
         data() {
             return {
                 unban_reason: "",
+                errors: {}
             }
         },
         methods: {
@@ -36,8 +42,12 @@
                         'Has enviado tu petición de rehabilitación de cuenta, ahora debes esperar a que los administradores la revisen y tomen una decisión',
                         'success'
                     );
+                    // console.log(response);
                 })
                 .catch(error => {
+                    if (error.response.status === 422) {
+                        this.errors = error.response.data.errors;
+                    }
                     console.log(error.response) 
                 });
                 this.unban_reason = "";

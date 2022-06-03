@@ -32913,8 +32913,7 @@ __webpack_require__.r(__webpack_exports__);
     recogerId: function recogerId() {
       axios.post("votos", {
         img_id: this.img_id
-      }).then(function (response) {
-        console.log(response); // Swal.fire(
+      }).then(function (response) {// Swal.fire(
         //     'Petición enviada',
         //     'Has enviado tu petición de rehabilitación de cuenta, ahora debes esperar a que los administradores la revisen y tomen una decisión',
         //     'success'
@@ -32961,19 +32960,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      unban_reason: ""
+      unban_reason: "",
+      errors: {}
     };
   },
   methods: {
     enviarPeticion: function enviarPeticion() {
+      var _this = this;
+
       axios.post("peticiones", {
         unban_reason: this.unban_reason
       }).then(function (response) {
-        Swal.fire('Petición enviada', 'Has enviado tu petición de rehabilitación de cuenta, ahora debes esperar a que los administradores la revisen y tomen una decisión', 'success');
+        Swal.fire('Petición enviada', 'Has enviado tu petición de rehabilitación de cuenta, ahora debes esperar a que los administradores la revisen y tomen una decisión', 'success'); // console.log(response);
       })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this.errors = error.response.data.errors;
+        }
+
         console.log(error.response);
       });
       this.unban_reason = "";
@@ -60036,6 +60047,14 @@ var render = function () {
                   },
                 },
               }),
+              _vm._v(" "),
+              _vm.errors && _vm.errors.unban_reason
+                ? _c("div", { staticClass: "alert alert-danger" }, [
+                    _vm._v(
+                      "\n                        Debe completar este campo\n                    "
+                    ),
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("input", {
                 staticClass: "mt-2 btn btn-primary swal-peticion-enviada",
