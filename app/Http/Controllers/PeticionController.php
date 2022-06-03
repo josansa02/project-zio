@@ -36,6 +36,10 @@ class PeticionController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'unban_reason' => 'required'
+        ]);
+
         $peticion = new Petitions();
         $peticion->unban_reason = $request->unban_reason;
         $peticion->user_id = Auth::user()->id;
