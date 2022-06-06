@@ -37,6 +37,13 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'name' => 'required',
+            'title' => 'required',
+            'footer' => 'required',
+        ]);
+
         $image = new Image();
         $image_nombre = time() . "-" . $request->name;
         $image->title = $request->title;
@@ -45,6 +52,7 @@ class ImageController extends Controller
         $image->user_id = Auth::user()->id;
         $image->save();
         $request->file('files')->move("../public/img/usersIMG/", $image_nombre);
+
     }
 
     /**
