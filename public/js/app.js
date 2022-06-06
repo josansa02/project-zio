@@ -5387,6 +5387,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5396,7 +5407,8 @@ __webpack_require__.r(__webpack_exports__);
         pie: "",
         nombre: "",
         imagen: ""
-      }
+      },
+      errors: {}
     };
   },
   methods: {
@@ -5419,15 +5431,21 @@ __webpack_require__.r(__webpack_exports__);
       reader.readAsDataURL(file);
     },
     guardarImagen: function guardarImagen() {
+      var _this2 = this;
+
       var formData = new FormData();
       formData.append('title', this.image.titulo);
       formData.append('footer', this.image.pie);
       formData.append('name', this.image.nombre);
       formData.append('files', this.image.imagen);
       axios.post("../imagenes", formData).then(function (response) {
-        console.log(response.data);
         location.reload();
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this2.errors = error.response.data.errors;
+        }
       });
+      ;
     }
   },
   computed: {
@@ -32867,6 +32885,14 @@ var render = function () {
             },
           }),
           _vm._v(" "),
+          _vm.errors && _vm.errors.title
+            ? _c("div", { staticClass: "alert alert-danger mt-1" }, [
+                _vm._v(
+                  "\n                Debe completar este campo titulo\n            "
+                ),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -32889,10 +32915,26 @@ var render = function () {
             },
           }),
           _vm._v(" "),
+          _vm.errors && _vm.errors.footer
+            ? _c("div", { staticClass: "alert alert-danger mt-1" }, [
+                _vm._v(
+                  "\n                Debe completar el campo pie\n            "
+                ),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _c("input", {
             attrs: { type: "file" },
             on: { change: _vm.obtenerImagen },
           }),
+          _vm._v(" "),
+          _vm.errors && _vm.errors.name
+            ? _c("div", { staticClass: "alert alert-danger mt-1" }, [
+                _vm._v(
+                  "\n                Debe seleccionar una imagen\n            "
+                ),
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _vm.imagen != ""
             ? _c("figure", [

@@ -4,8 +4,19 @@
         <form method="POST" @submit.prevent="guardarImagen()" enctype="multipart/form-data">
             <div class="py-4">
                 <input v-model="image.titulo" type="text" placeholder="Titulo" class="text-xl p-2 w-full border-b-2 border-green-500">
+                <div class="alert alert-danger mt-1" v-if="errors && errors.title">
+                    Debe completar este campo titulo
+                </div>
+
                 <input v-model="image.pie" type="text" placeholder="Pie de página" class="text-xl p-2 w-full border-b-2 border-green-500">
+                <div class="alert alert-danger mt-1" v-if="errors && errors.footer">
+                    Debe completar el campo pie
+                </div>
+
                 <input type="file" @change="obtenerImagen">
+                <div class="alert alert-danger mt-1" v-if="errors && errors.name">
+                    Debe seleccionar una imagen
+                </div>
 
                 <figure v-if="imagen != ''">
                     <img height="200" width="200" :src="imagen">
@@ -27,7 +38,8 @@
                     pie: "",
                     nombre: "",
                     imagen: ""
-                }
+                },
+                errors: {}
             }
         },
         methods: {
@@ -55,9 +67,13 @@
                 formData.append('files', this.image.imagen);
                 axios.post("../imagenes", formData)
                 .then(response => {
-                    console.log(response.data);
                     location.reload();
+                }).catch(error => {
+                    if (error.response.status === 422) {
+                        this.errors = error.response.data.errors;
+                    }
                 });
+                ;
             }
         },
         computed: {
