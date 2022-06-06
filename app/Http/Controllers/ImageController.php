@@ -40,8 +40,8 @@ class ImageController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'title' => 'required',
-            'footer' => 'required',
+            'title' => ['required', 'max:20'],
+            'footer' => ['required', 'max:30'],
         ]);
 
         $image = new Image();

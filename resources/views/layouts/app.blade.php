@@ -46,7 +46,7 @@
                             <div class="p-1 bg-main rounded rounded-pill shadow-sm">
                                 <div class="input-group d-flex justify-content-center align-items-center">
                                     <!-- <input type="text" placeholder="Busca usuarios..." class="form-control border-0 bg-main"> -->
-                                    <search-component class="barra_busqueda-input"></search-component>
+                                    {{-- <search-component class="barra_busqueda-input"></search-component> --}}
                                     <div>
                                         <button name="{{route('gallery.route')}}" id="ruta" onclick="visitarUsuario()" type="button" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
                                     </div>

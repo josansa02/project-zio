@@ -15,6 +15,7 @@ Vue.component('like-component', require('./components/LikeComponent.vue').defaul
 Vue.component('search-component', require('./components/SearchComponent.vue').default);
 Vue.component('imagenform-component', require('./components/ImagenFormComponent.vue').default);
 Vue.component('peticionform-component', require('./components/PeticionFormComponent.vue').default);
+Vue.component('updateimagen-component', require('./components/UpdateImagenComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

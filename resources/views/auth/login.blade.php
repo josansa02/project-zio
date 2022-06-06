@@ -37,12 +37,6 @@
                     </span>
                 @enderror
 
-                {{-- @if (Route::has('password.request'))
-                    <a class="mt-1 d-block btn-link" href="{{ route('password.request') }}">
-                        {{ __('Forgot Your Password?') }}
-                    </a>
-                @endif --}}
-
                 <div class="d-flex justify-content-center">
                     <input type="submit" class="boton_sesion" value="Iniciar sesión">
                 </div>

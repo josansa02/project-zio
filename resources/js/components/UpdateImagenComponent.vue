@@ -1,28 +1,24 @@
 <template>
-    <div class="container">
-        <h2>Formulario de imagen</h2>
-        <form method="POST" @submit.prevent="guardarImagen()" enctype="multipart/form-data">
-            <div class="py-4">
-                <input v-model="image.titulo" type="text" placeholder="Titulo" class="text-xl p-2 w-full border-b-2 border-green-500">
-                <div class="alert alert-danger mt-1" v-if="errors && errors.title">
-                    {{errors.title[0]}}
+    <div>
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Actualizar imagen</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="POST" @submit.prevent="actualizarImagen()" enctype="multipart/form-data">
+            <div class="modal-body">
+                <div class="modal_input">
+                    <label for="file" class="subir_boton"> Haz clic aquí para seleccionar una imagen </label>
+                    <input type="file" @change="obtenerImagen">
+                    <div class="alert alert-danger mt-1" v-if="errors && errors.name">
+                        Debe seleccionar una imagen
+                    </div>            
                 </div>
-
-                <input v-model="image.pie" type="text" placeholder="Pie de página" class="text-xl p-2 w-full border-b-2 border-green-500">
-                <div class="alert alert-danger mt-1" v-if="errors && errors.footer">
-                    {{errors.footer[0]}}
-                </div>
-
-                <input type="file" @change="obtenerImagen">
-                <div class="alert alert-danger mt-1" v-if="errors && errors.name">
-                    Debe seleccionar una imagen
-                </div>
-
                 <figure v-if="imagen != ''">
                     <img height="200" width="200" :src="imagen">
                 </figure>
-
-                <input type="submit" value="Guardar" class="btn btn-primary">
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Actualizar" class="btn btn-primary">
             </div>
         </form>
     </div>
@@ -42,6 +38,7 @@
                 errors: {}
             }
         },
+        props: ["user_id"],
         methods: {
             obtenerImagen(e) {
                 let file = e.target.files[0];
@@ -59,15 +56,13 @@
 
                 reader.readAsDataURL(file);
             },
-            guardarImagen() {
+            actualizarImagen() {
                 let formData = new FormData();
-                formData.append('title', this.image.titulo);
-                formData.append('footer', this.image.pie);
-                formData.append('name', this.image.nombre);
-                formData.append('files', this.image.imagen);
-                axios.post("../imagenes", formData)
+                axios.put("../../usuarios/edit/profileimg/" + this.user_id, {name: this.image.nombre, files: this.image.imagen})
                 .then(response => {
-                    location.reload();
+                    console.log(response);
+                    // location.reload();
+
                 }).catch(error => {
                     if (error.response.status === 422) {
                         this.errors = error.response.data.errors;

@@ -9,6 +9,7 @@ use App\Models\Report;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -57,54 +58,42 @@ class UserController extends Controller
     public function update(User $id, Request $request)
     {   
         session_start();
+
+        $user = $id;
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'bio' => 'required'
+            'name' => ['required', Rule::unique('users')->ignore($user->id), 'max:25'],
+            'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
+            'bio' => ['required', 'max:50']
         ]);
         
-        $usuarios = User::select("id", "name", "email")->get();
-        $error1 = False;
-        $error2 = False;
-        foreach ($usuarios as $user) {
-            if ($user->id != $id->id) {
-                if ($user->name == $request->name) {
-                    $error1 = True;
-                }
-                if ($user->email == $request->email) {
-                    $error2 = True;
-                }          
-            }
-        }
-        if (!$error1 && !$error2) {
-            $id->name = $request->name;
-            $id->email = $request->email;
-            $id->bio = $request->bio;
-            $id->update();
-            $_SESSION["update"] = "";
-            return redirect('galeria/home/'.$id->name);
-        } else {
-            if (($error1 && $error2)||$error2) {
-                $_SESSION["updateError"] = "<div class='error'>Ya existe un usuario registrado que usa ese email.<br>Por favor, inténtelo de nuevo</div>";
-            } else {
-                $_SESSION["updateError"] = "<div class='error'>Ya existe un usuario que usa ese nombre.<br>Por favor, inténtelo de nuevo</div>";
-            }
-            return redirect('usuarios/edit/'.$id->id);
-        }
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->bio = $request->bio;
+        $user->update();
+
+        $_SESSION["update"] = "Perfil actualizado correctamente";
+        return redirect()->route('gallery', $user->name);
     }
 
     public function updateProfileImg(User $id, Request $request)
     {
         session_start();
-        $request->validate([
-            'files' => 'required',
-            'img' => 'required',
-        ]);
-        $id->profileimg = $request->img;
-        move_uploaded_file($_FILES["files"]["tmp_name"], "c:/xampp/htdocs/Laravel/ProyectoLaravel/public/img/profileIMG/" . $_FILES["files"]["name"]);
-        $id->update();
-        $_SESSION["update"] = "";
-        return redirect('galeria/home/'.$id->name);
+        return $request;
+        // $user = $id;
+
+        // $request->validate([
+        //     'files' => 'required',
+        //     'name' => 'required',
+        // ]);
+
+        // $image_nombre = time() . "-" . $request->name;
+        // $user->profileimg = $image_nombre;
+        // $request->file('files')->move("../public/img/profileIMG/", $image_nombre);
+        
+        // $user->update();
+        // $_SESSION["update"] = "Perfil actualizado correctamente";
+        
+        // return redirect()->route('gallery', $user->name);
     }
 
 }

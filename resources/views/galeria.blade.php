@@ -39,7 +39,7 @@
 <!-- Muestra un alerta si no encuentra el usuario que se busca -->
 @if (isset($_SESSION["userNotFound"]))
 <div class="row justify-content-center fixed-bottom">
-    <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">
+      <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">
         <strong>{{$_SESSION["userNotFound"]}}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
@@ -49,14 +49,17 @@
 </div>
 @endif
 
+<!-- Muestra un alerta que indica que el perfil se ha actualizado correctamente -->
 @if (isset($_SESSION["update"]))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Perfil actualizado correctamente</strong>
+<div class="row justify-content-center fixed-bottom">
+    <div class="alert alert-success alert-dismissible fade show w-25" role="alert">
+        <strong>{{$_SESSION["update"]}}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @php
         unset($_SESSION["update"]);
     @endphp
+</div>
 @endif
 
 <div class="profile d-flex flex-column justify-content-center align-items-center gap-3">
