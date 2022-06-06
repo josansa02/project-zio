@@ -42,10 +42,22 @@ class UserController extends Controller
         }
     }
 
-    public function getAll()
+    // Función que recoge a todos los usuarios y los filtra por nombre
+    public function getAll(Request $request)
     {
-        $user = User::all();
-        return $user;
+        $users = User::all();
+        $filtro = $request->q;
+
+        $usersBuscados = [];
+
+        foreach ($users as $user) {
+            $comparacion = strpos(strtolower($user->name), strtolower($filtro)); // No distingue entre mayúsculas y minúsculas
+            if ($comparacion === 0) {
+                $usersBuscados[] = $user;
+            }
+        }
+
+        return $usersBuscados;
     }
 
     public function edit(User $id)

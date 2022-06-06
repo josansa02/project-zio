@@ -9,10 +9,6 @@
 
     <title>@yield('title')</title>
 
-    <style>
-    @import "../node_modules/@syncfusion/ej2-vue-dropdowns/styles/material.css";
-    </style>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -42,17 +38,14 @@
                 @guest
                 @else
                     @if (auth()->user()->enabled)
-                        <!-- <form method="POST"> -->
-                            <div class="p-1 bg-main rounded rounded-pill shadow-sm">
-                                <div class="input-group d-flex justify-content-center align-items-center">
-                                    <!-- <input type="text" placeholder="Busca usuarios..." class="form-control border-0 bg-main"> -->
-                                    {{-- <search-component class="barra_busqueda-input"></search-component> --}}
-                                    <div>
-                                        <button name="{{route('gallery.route')}}" id="ruta" onclick="visitarUsuario()" type="button" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
-                                    </div>
+                        <div class="p-1 bg-main rounded rounded-pill shadow-sm">
+                            <div class="input-group d-flex justify-content-center align-items-center">
+                                <search-component class="barra_busqueda-input" :ruta="{{json_encode(asset('usuarios'))}}"></search-component>
+                                <div>
+                                    <button name="{{route('gallery.route')}}" id="ruta" onclick="visitarUsuario()" type="button" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
                                 </div>
                             </div>
-                        <!-- </form> -->
+                        </div>
                     @endif            
                 @endguest
 
@@ -127,7 +120,6 @@
                 window.location.href = ruta.name + "/" + autocom.value;
             }
         }
-        document.getElementById("js-licensing").remove();
     </script>
     @yield('js')
     

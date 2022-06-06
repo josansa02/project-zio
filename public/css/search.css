@@ -35,8 +35,8 @@
 .barra_busqueda-input input {
     margin: 0;
     border: 0px;
-    padding-left: 10px;
-    background-color: var(--main-purple);
+    padding-left: 15px;
+    background-color: transparent;
 }
 .barra_busqueda-input input:focus {
     margin: 0;
@@ -44,8 +44,8 @@
     outline: none !important;
 }
 
-.dropdown-item:active {
-    background-color: var(--main-purple) !important;
+.dropdown-item:focus {
+    background-color: var(--main-purple);
 }
 
 .form-control:focus {
@@ -57,4 +57,37 @@
     border-bottom-width: 1px;
     border-radius: 0;
     padding-left: 0;
+}
+
+/* Autocompletar */  
+.autocomplete ul{
+    border-radius: 5px;
+    z-index: 5;
+}
+  
+.autocomplete ul li a{
+    background: white !important;
+}
+  
+.autocomplete ul li a:hover, .autocomplete ul li.focus-list a{
+    background: var(--main-purple) !important;
+}
+
+/* Barra de scroll */
+body::-webkit-scrollbar-track
+{
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: white;
+}
+
+body::-webkit-scrollbar
+{
+	width: 10px;
+}
+
+body::-webkit-scrollbar-thumb
+{
+    padding: 5px;
+	background-color: var(--main-purple);
+    border-radius: 25px;
 }

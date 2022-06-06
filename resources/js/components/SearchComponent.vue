@@ -1,30 +1,26 @@
 <template>
     <div>
-        <ejs-autocomplete id="autocom" :dataSource='usersData' :placeholder="waterMark" ></ejs-autocomplete>
+        <autocomplete id="autocom"
+            :url="ruta"
+            anchor="name"
+            label="Usuarios"
+            :min="1"
+            :on-select="getData">
+        </autocomplete>
     </div>
 </template>
 
 <script>
-    import Vue from "vue";
-    import { AutoCompletePlugin } from "@syncfusion/ej2-vue-dropdowns";
-    Vue.use(AutoCompletePlugin);
+    import Autocomplete from 'vue2-autocomplete-js';
+    require('vue2-autocomplete-js/dist/style/vue2-autocomplete.css');
 
     export default {
-        name: 'app',
-        data () {
-            return {
-                waterMark : 'Busca usuarios...',
-                usersData: []
+        components: { Autocomplete },
+        props: ["ruta"],
+        methods: {
+            getData(obj) {
+                console.log(obj);
             }
-        },
-        mounted() {
-            axios.get('usuarios')
-            .then(response => {
-                let respuesta = response;
-                for(let i = 0 ; i < respuesta.data.length ; i++) {
-                    this.usersData.push(respuesta.data[i].name);
-                }
-            })
         }
     }
 </script>
