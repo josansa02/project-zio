@@ -24,7 +24,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "@syncfusion/ej2-vue-dropdowns": "^20.1.58",
-        "sweetalert2": "^11.4.17"
+        "sweetalert2": "^11.4.17",
+        "vue2-autocomplete-js": "^0.2.2"
     }
 }

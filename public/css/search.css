@@ -35,8 +35,8 @@
 .barra_busqueda-input input {
     margin: 0;
     border: 0px;
-    padding-left: 10px;
-    background-color: var(--main-purple);
+    padding-left: 15px;
+    background-color: transparent;
 }
 .barra_busqueda-input input:focus {
     margin: 0;
@@ -44,9 +44,7 @@
     outline: none !important;
 }
 
-.dropdown-item:active {
-    background-color: var(--main-purple) !important;
-}
+
 
 .form-control:focus {
     box-shadow: none;
@@ -58,3 +56,49 @@
     border-radius: 0;
     padding-left: 0;
 }
+
+/* Autocompletar */  
+.autocomplete ul{
+    z-index: 5;
+}
+  
+.autocomplete ul:before{
+    content: "";
+    display: block;
+    position: absolute;
+    height: 0;
+    width: 0;
+    border: 10px solid transparent;
+    border-bottom: 10px solid #f8f8f8;
+    left: 46%;
+    top: -20px;
+    z-index: 5;
+}
+  
+.autocomplete ul li a{
+    text-decoration: none;
+    display: block;
+    background: #f8f8f8;
+    color: #2b2b2b;
+    padding: 5px;
+    padding-left: 10px;
+}
+  
+.autocomplete ul li a:hover, .autocomplete ul li.focus-list a{
+    background: var(--main-purple) !important;
+}
+  
+.autocomplete ul li a span, /*backwards compat*/
+.autocomplete ul li a .autocomplete-anchor-label{
+    display: block;
+    margin-top: 3px;
+    color: grey;
+    font-size: 13px;
+}
+  
+.autocomplete ul li a:hover .autocomplete-anchor-label, 
+.autocomplete ul li.focus-list a span, /*backwards compat*/
+.autocomplete ul li a:hover .autocomplete-anchor-label, 
+.autocomplete ul li.focus-list a span{ /*backwards compat*/
+    color: white;
+} 
