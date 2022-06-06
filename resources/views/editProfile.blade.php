@@ -21,6 +21,19 @@
 </div>
 @endif
 
+<!-- Muestra un alerta que indica que el perfil se ha actualizado correctamente -->
+@if (isset($_SESSION["update"]))
+<div class="row justify-content-center fixed-bottom">
+    <div class="alert alert-success alert-dismissible fade show w-50" role="alert">
+        <strong>{{$_SESSION["update"]}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @php
+        unset($_SESSION["update"]);
+    @endphp
+</div>
+@endif
+
 <main class="container mt-3 position-relative">
     <div class="row">
         <h2 class="text-center"> Editar perfil </h2>

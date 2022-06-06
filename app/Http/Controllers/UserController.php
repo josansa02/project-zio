@@ -90,22 +90,22 @@ class UserController extends Controller
     public function updateProfileImg(User $id, Request $request)
     {
         session_start();
-        return $request;
-        // $user = $id;
-
-        // $request->validate([
-        //     'files' => 'required',
-        //     'name' => 'required',
-        // ]);
-
-        // $image_nombre = time() . "-" . $request->name;
-        // $user->profileimg = $image_nombre;
-        // $request->file('files')->move("../public/img/profileIMG/", $image_nombre);
         
-        // $user->update();
-        // $_SESSION["update"] = "Perfil actualizado correctamente";
+        $user = $id;
+
+        $request->validate([
+            'files' => 'required',
+            'name' => 'required',
+        ]);
+
+        unlink("../public/img/profileIMG/" . $user->profile_img);
+
+        $image_nombre = time() . "-" . $request->name;
+        $user->profile_img = $image_nombre;
+        $request->file('files')->move("../public/img/profileIMG/", $image_nombre);
         
-        // return redirect()->route('gallery', $user->name);
+        $user->update();
+        $_SESSION["update"] = "Imagen de perfil actualizada correctamente";
     }
 
 }

@@ -15,7 +15,7 @@ Route::group(['middleware' => 'enabled'], function () {
     
 
     Route::put('usuarios/edit/{id}', [UserController::class, "update"])->name("usuarios.edit");
-    Route::put('usuarios/edit/profileimg/{id}', [UserController::class, "updateProfileImg"])->name("usuarios.edit.profileimg.update");
+    Route::post('usuarios/edit/profileimg/{id}', [UserController::class, "updateProfileImg"])->name("usuarios.edit.profileimg.update");
     Route::get('usuarios/edit/{id}', [UserController::class, "edit"])->name("usuarios.edit");
     Route::delete('image/remove/{image}', [ImageController::class, "destroy"])->name("image.delete");
     Route::delete('mensajes/delete/all', [MessageController::class, "destroyAll"])->name("messages.delete.all");

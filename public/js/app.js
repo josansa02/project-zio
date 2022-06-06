@@ -5662,9 +5662,9 @@ __webpack_require__.r(__webpack_exports__);
       image: {
         titulo: "",
         pie: "",
-        nombre: "",
-        imagen: ""
+        nombre: ""
       },
+      file: "",
       errors: {}
     };
   },
@@ -5672,8 +5672,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     obtenerImagen: function obtenerImagen(e) {
       var file = e.target.files[0];
-      this.image.imagen = file;
-      console.log(file);
+      this.file = file;
+      console.log(this.file);
       this.image.nombre = file.name;
       this.cargarImagen(file);
     },
@@ -5692,11 +5692,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var formData = new FormData();
-      axios.put("../../usuarios/edit/profileimg/" + this.user_id, {
-        name: this.image.nombre,
-        files: this.image.imagen
-      }).then(function (response) {
-        console.log(response); // location.reload();
+      formData.append('name', this.image.nombre);
+      formData.append('files', this.file);
+      axios.post("../../usuarios/edit/profileimg/" + this.user_id, formData).then(function (response) {
+        location.reload();
       })["catch"](function (error) {
         if (error.response.status === 422) {
           _this2.errors = error.response.data.errors;

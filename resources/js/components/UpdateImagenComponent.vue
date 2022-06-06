@@ -33,8 +33,8 @@
                     titulo: "",
                     pie: "",
                     nombre: "",
-                    imagen: ""
                 },
+                file: "",
                 errors: {}
             }
         },
@@ -42,8 +42,8 @@
         methods: {
             obtenerImagen(e) {
                 let file = e.target.files[0];
-                this.image.imagen = file;
-                console.log(file);
+                this.file = file;
+                console.log(this.file);
                 this.image.nombre = file.name;
                 this.cargarImagen(file);
             },
@@ -58,11 +58,11 @@
             },
             actualizarImagen() {
                 let formData = new FormData();
-                axios.put("../../usuarios/edit/profileimg/" + this.user_id, {name: this.image.nombre, files: this.image.imagen})
+                formData.append('name', this.image.nombre);
+                formData.append('files', this.file);
+                axios.post("../../usuarios/edit/profileimg/" + this.user_id, formData)
                 .then(response => {
-                    console.log(response);
-                    // location.reload();
-
+                    location.reload();
                 }).catch(error => {
                     if (error.response.status === 422) {
                         this.errors = error.response.data.errors;
