@@ -1,9 +1,10 @@
 <template>
-    <div>        
+    <div>
         <autocomplete id="autocom"
-            url="usuarios"
+            :url="ruta"
             anchor="name"
             label="Usuarios"
+            :min="1"
             :on-select="getData">
         </autocomplete>
     </div>
@@ -15,6 +16,7 @@
 
     export default {
         components: { Autocomplete },
+        props: ["ruta"],
         methods: {
             getData(obj) {
                 console.log(obj);

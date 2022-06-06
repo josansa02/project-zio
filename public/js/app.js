@@ -5601,10 +5601,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-// import Vue from "vue";
-// import { Autocomplete } from "vue2-autocomplete-js";
-// Vue.use(Autocomplete);
 
 
 __webpack_require__(/*! vue2-autocomplete-js/dist/style/vue2-autocomplete.css */ "./node_modules/vue2-autocomplete-js/dist/style/vue2-autocomplete.css");
@@ -5613,29 +5609,13 @@ __webpack_require__(/*! vue2-autocomplete-js/dist/style/vue2-autocomplete.css */
   components: {
     Autocomplete: (vue2_autocomplete_js__WEBPACK_IMPORTED_MODULE_0___default())
   },
+  props: ["ruta"],
   methods: {
     getData: function getData(obj) {
       console.log(obj);
     }
   }
-}); // export default {
-//     name: 'app',
-//     data () {
-//         return {
-//             waterMark : 'Busca usuarios...',
-//             usersData: []
-//         }
-//     },
-//     mounted() {
-//         axios.get('usuarios')
-//         .then(response => {
-//             let respuesta = response;
-//             for(let i = 0 ; i < respuesta.data.length ; i++) {
-//                 this.usersData.push(respuesta.data[i].name);
-//             }
-//         })
-//     }
-// }
+});
 
 /***/ }),
 
@@ -33158,9 +33138,10 @@ var render = function () {
       _c("autocomplete", {
         attrs: {
           id: "autocom",
-          url: "usuarios",
+          url: _vm.ruta,
           anchor: "name",
           label: "Usuarios",
+          min: 1,
           "on-select": _vm.getData,
         },
       }),
