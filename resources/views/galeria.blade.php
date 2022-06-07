@@ -228,7 +228,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Insertar imagen</h5>
-                    <button type="button" class="btn-close cerrado" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn cerrado p-1" data-bs-dismiss="modal" aria-label="Close">
+                        <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
+                    </button>
                 </div>
                 <imagenform-component></imagenform-component>
             </div>
@@ -250,9 +252,7 @@
                 boton.disabled = false;
             }
         }
-    </script>
 
-    <script>
         function eliminarclass() {
             bod = document.getElementById("bod");
             bod.setAttribute("style", "");
