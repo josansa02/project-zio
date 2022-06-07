@@ -28,7 +28,7 @@
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
-                                <td> <img src="{{asset('/img/usersIMG/' . $user->profile_img)}}" alt="Imagen de perfil del usuario {{$user->name}}"> </td>
+                                <td> <img style="width: 60px" src="{{asset('/img/profileIMG/' . $user->profile_img)}}" alt="Imagen de perfil del usuario {{$user->name}}"> </td>
                                 <td> {{$user->name}} </td>
                                 <td> {{$user->email}} </td>
                                 <td> 
@@ -49,5 +49,38 @@
 </div>
 
 @endif
+
+@section('js')
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $('.swal-confirmar-borrar').submit(function(e){
+        e.preventDefault();
+        const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger me-2'
+        },
+        buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: '¿Estás seguro?',
+            text: "¿Seguro que quieres eliminar este usuario?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Si, eliminar',
+            cancelButtonText: 'No, cancelar',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+</script>
+
+@endsection
 
 @endsection
