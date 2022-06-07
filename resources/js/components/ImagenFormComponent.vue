@@ -1,34 +1,36 @@
 <template>
     <div class="container">
-        <h2>Formulario de imagen</h2>
         <form method="POST" @submit.prevent="guardarImagen()" enctype="multipart/form-data">
             <div class="py-4">
-                <input v-model="image.titulo" type="text" placeholder="Titulo" class="text-xl p-2 w-full border-b-2 border-green-500">
-                <div class="alert alert-danger mt-1" v-if="errors && errors.title">
-                    {{errors.title[0]}}
+                <vue-dropzone ref="myVueDropzone" name="file" id="dropzone" 
+                :options="dropzoneOptions"
+                @vdropzone-complete="obtenerImagen">
+                </vue-dropzone>
+
+                <div class="mt-3">
+                    <input v-model="image.titulo" type="text" placeholder="Titulo" class="text-xl p-2 w-full border-b-2 border-green-500">
+                    <div class="alert alert-danger mt-1" v-if="errors && errors.title">
+                        {{errors.title[0]}}
+                    </div>
+
+                    <input v-model="image.pie" type="text" placeholder="Pie de página" class="text-xl p-2 w-full border-b-2 border-green-500">
+                    <div class="alert alert-danger mt-1" v-if="errors && errors.footer">
+                        {{errors.footer[0]}}
+                    </div>
                 </div>
 
-                <input v-model="image.pie" type="text" placeholder="Pie de página" class="text-xl p-2 w-full border-b-2 border-green-500">
-                <div class="alert alert-danger mt-1" v-if="errors && errors.footer">
-                    {{errors.footer[0]}}
+                <div class="d-flex justify-content-center">
+                    <input type="submit" value="Subir" class="btn btn-form mt-3 w-25">
                 </div>
-
-                <input type="file" @change="obtenerImagen">
-                <div class="alert alert-danger mt-1" v-if="errors && errors.name">
-                    Debe seleccionar una imagen
-                </div>
-
-                <figure v-if="imagen != ''">
-                    <img height="200" width="200" :src="imagen">
-                </figure>
-
-                <input type="submit" value="Guardar" class="btn btn-primary">
             </div>
         </form>
     </div>
 </template>
 
 <script>
+    import vue2Dropzone from 'vue2-dropzone'
+    import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+
     export default {
         data() {
             return {
@@ -39,25 +41,23 @@
                     nombre: "",
                     imagen: ""
                 },
+                dropzoneOptions: {
+                    url: 'https://httpbin.org/post',
+                    thumbnailWidth: 150,
+                    maxFilesize: 30,
+                    maxFiles: 1,
+                    acceptedFiles: "image/*"
+                },
                 errors: {}
             }
         },
+        components: {
+            vueDropzone: vue2Dropzone
+        },
         methods: {
-            obtenerImagen(e) {
-                let file = e.target.files[0];
-                this.image.imagen = file;
-                console.log(file);
-                this.image.nombre = file.name;
-                this.cargarImagen(file);
-            },
-            cargarImagen(file) {
-                let reader = new FileReader();
-
-                reader.onload = (e) => {
-                    this.imagenMiniatura = e.target.result;
-                }
-
-                reader.readAsDataURL(file);
+            obtenerImagen(response) {
+                this.image.imagen = response;
+                this.image.nombre = response.name;
             },
             guardarImagen() {
                 let formData = new FormData();
