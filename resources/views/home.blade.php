@@ -109,10 +109,10 @@
                                     @csrf
                                     @method("post")
                                     <div class="input-group">
-                                        <input type="text" class="form-control text-comment" name="message" id="message">
+                                        <input type="text" class="form-control text-comment" onkeyup="comprobar('message{{$imagen[0]->id}}', 'comentar{{$imagen[0]->id}}')" name="message" id="message{{$imagen[0]->id}}">
                                         <input type="hidden" name="img_id" id="img_id" value="{{$imagen[0]->id}}">
                                         <input type="hidden" name="owner_id" id="owner_id" value="{{$imagen[0]->user_id}}">
-                                        <input class="btn btn-comment" type="submit" value="Comentar">
+                                        <input class="btn btn-comment" id="comentar{{$imagen[0]->id}}" disabled type="submit" value="Comentar">
                                     </div>
                                 </form>    
                             </div>
@@ -164,12 +164,25 @@
 
 <!-- Sección de scripts de la página -->
 @section('js')
+
+<script>
+    function comprobar(id1, id2) {
+        var input = document.getElementById(id1);
+        var boton = document.getElementById(id2);
+        boton.disabled = true;
+        if (input.value != ""){            
+            boton.disabled = false;
+        }
+    }
+</script>
+
 <script>
     function eliminarclass() {
         bod = document.getElementById("bod");
         bod.setAttribute("style", "");
     }
 </script>
+
 @endsection
     
 @endsection

@@ -82,18 +82,11 @@
         </button>
         @if ($_SESSION["nMensajes"] < $nMensajes)
             <a type="button" href="{{route('messages', $user->id)}}" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center">
-                <span>
-                    <svg width="26" height="26" viewBox="0 0 55 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_22_8728)">
-                    <path d="M8.58366 14.3334H41.917V39.3334H11.0212L8.58366 41.7709V14.3334ZM8.58366 10.1667C6.29199 10.1667 4.43783 12.0417 4.43783 14.3334L4.41699 51.8334L12.7503 43.5001H41.917C44.2087 43.5001 46.0837 41.6251 46.0837 39.3334V14.3334C46.0837 12.0417 44.2087 10.1667 41.917 10.1667H8.58366ZM12.7503 31.0001H29.417V35.1667H12.7503V31.0001ZM12.7503 24.7501H37.7503V28.9167H12.7503V24.7501ZM12.7503 18.5001H37.7503V22.6667H12.7503V18.5001Z" fill="white"/>
-                    </g>
-                    <circle cx="45.25" cy="9.5" r="9.5" fill="#FF0000"/>
-                    <defs>
-                    <clipPath id="clip0_22_8728">
-                    <rect width="50" height="50" fill="white" transform="translate(0.25 6)"/>
-                    </clipPath>
-                    </defs>
-                    </svg>
+                <span class="material-symbols-outlined">
+                    chat
+                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                        <span class="visually-hidden">New alerts</span>
+                    </span>
                 </span>
             </a>
         @else 
@@ -173,11 +166,11 @@
                                     @csrf
                                     @method("post")
                                     <div class="input-group">
-                                        <input type="text" class="form-control text-comment" name="message" id="message">
+                                        <input type="text" class="form-control text-comment" onkeyup="comprobar('message{{$imagen[0]->id}}', 'comentar{{$imagen[0]->id}}')" name="message" id="message{{$imagen[0]->id}}">
                                         <input type="hidden" name="img_id" id="img_id" value="{{$imagen[0]->id}}">
                                         <input type="hidden" name="owner_id" id="owner_id" value="{{$imagen[0]->user_id}}">
                                         <input type="hidden" name="name" id="name" value="{{$user->name}}">
-                                        <input class="btn btn-comment" type="submit" value="Comentar">
+                                        <input class="btn btn-comment" id="comentar{{$imagen[0]->id}}" type="submit" disabled value="Comentar">
                                     </div>
                                 </form>    
                             </div>
@@ -245,13 +238,27 @@
 
 <!-- Sección de scripts de la página -->
 @section('js')
+
+<script>
+    function comprobar(id1, id2) {
+        var input = document.getElementById(id1);
+        var boton = document.getElementById(id2);
+        boton.disabled = true;
+        if (input.value != ""){            
+            boton.disabled = false;
+        }
+    }
+</script>
+
 <script>
     function eliminarclass() {
         bod = document.getElementById("bod");
         bod.setAttribute("style", "");
     }
 </script>
+
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     $('.swal-confirmar-borrar').submit(function(e){
         e.preventDefault();
@@ -278,6 +285,7 @@
         })
     });
 </script>
+
 @endsection
 
 @endsection

@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 class VoteController extends Controller
 {
 
+    public function getAll()
+    {
+        return json_encode(Vote::all());
+    }
+
     /**
      * Show the form for creating a new resource.
      *

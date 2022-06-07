@@ -28,6 +28,7 @@ Route::group(['middleware' => 'enabled'], function () {
     Route::get('/', [HomeController::class, 'indexLogin'])->name('index.login');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/help', [HomeController::class, 'ayuda'])->name('help');
+    Route::get('/getVotos', [VoteController::class, 'getAll'])->name('get.votos');
 
     Route::get("/usuarios", [UserController::class, 'getAll']);
 
