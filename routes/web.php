@@ -38,6 +38,7 @@ Route::group(['middleware' => 'enabled'], function () {
 
 Route::group(['middleware' => 'admin'], function () {
     Route::get("/users", [UserController::class, 'users'])->name('usersAdmin');
+    Route::delete("users/delete/{user}", [UserController::class, 'destroyUser'])->name('delete.user');
 });
 
 Auth::routes();

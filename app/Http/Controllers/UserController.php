@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMail;
 use Illuminate\Http\Request;
 use App\Models\Image;
 use App\Models\Message;
@@ -9,6 +10,7 @@ use App\Models\Report;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -114,6 +116,20 @@ class UserController extends Controller
     {
         $users = User::where(['role' => 0])->get();
         return view('adminUsers', compact('users'));
+    }
+
+    public function destroyUser(User $user)
+    {
+
+        $details = [
+            'title' => 'Se ha eliminado su cuenta de ZIO',
+            'body' => 'disculpe',
+        ];
+
+        Mail::to($user->email)->send(new SendMail($details));
+        $user->delete();
+        return redirect()->route('usersAdmin');
+
     }
 
 }

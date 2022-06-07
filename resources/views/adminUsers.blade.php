@@ -17,11 +17,32 @@
                 enlaces
             </li>
             <li class="list-group-item">
-                @foreach ($users as $user)
-                    <div class="d-flex align-items-center justify-content-center gap-3 my-3">
-                        {{$user}}
-                    </div>
-                @endforeach
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Foto de perfil</th>
+                            <th>Nombre de usuario</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($users as $user)
+                            <tr>
+                                <td> <img src="{{asset('/img/usersIMG/' . $user->profile_img)}}" alt="Imagen de perfil del usuario {{$user->name}}"> </td>
+                                <td> {{$user->name}} </td>
+                                <td> {{$user->email}} </td>
+                                <td> 
+                                    <form class="swal-confirmar-borrar" action="{{route('delete.user', $user->id)}}" method="post">
+                                        @csrf
+                                        @method("delete")
+                                        <input type="submit" class="btn btn-danger" value="Eliminar">
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                
             </li>
         </ul>
     </div>
