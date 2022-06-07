@@ -31,7 +31,7 @@
     color: var(--secunday-purple);
 }
 
-/* */
+/* Barra de búsqueda */
 .barra_busqueda-input input {
     margin: 0;
     border: 0px;
@@ -44,10 +44,6 @@
     outline: none !important;
 }
 
-.dropdown-item:focus {
-    background-color: var(--main-purple);
-}
-
 .form-control:focus {
     box-shadow: none;
 }
@@ -57,6 +53,18 @@
     border-bottom-width: 1px;
     border-radius: 0;
     padding-left: 0;
+}
+
+/* Perfil */
+.dropdown-item:focus {
+    background-color: var(--main-purple);
+}
+
+.img-profile {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 150px;
 }
 
 /* Autocompletar */  

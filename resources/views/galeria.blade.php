@@ -64,7 +64,7 @@
 
 <div class="profile d-flex flex-column justify-content-center align-items-center gap-3">
     <div class="d-flex align-items-center gap-3">
-        <img src="{{asset('/img/profileIMG/')}}/{{$user->profile_img}}" class="img-fluid">
+        <img src="{{asset('/img/profileIMG/')}}/{{$user->profile_img}}" class="img-fluid imagen_usu">
         <div class="mt-2">
           <h3>{{$user->name}}</h3>
           <p>{{$user->bio}}</p>
@@ -144,18 +144,18 @@
                         <div class="imagen_modal">
                             <img src="{{asset('/img/usersIMG/' . $imagen[0]->img_name)}}" class="img-fluid">
                         </div>
-                        <div class="mt-3 px-3">
+                        <div class="d-flex justify-content-between align-items-center mt-3 px-3">
                             <p class="d-flex align-items-center gap-1"> 
                                 <img src="{{asset('/img/profileIMG/' . $user->profile_img)}}" class="img-fluid imagen_modal_usu no-photo-link"> 
                                 <strong> {{$user->name}}: </strong> 
                                 <span> {{$imagen[0]->footer}} </span>
-                                @if ($user->id == auth()->user()->id)
-                                    <div class="d-flex flex-column justify-content-center align-items-center gap-1">
-                                        <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple"> recommend </span>
-                                        <span> {{$imagen[1]}} </span>    
-                                    </div>
-                                @endif
                             </p>
+                            @if ($user->id == auth()->user()->id)
+                                <div class="d-flex flex-column justify-content-center align-items-center gap-1">
+                                    <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple no-photo-link"> recommend </span>
+                                    <span> {{$imagen[1]}} </span>    
+                                </div>
+                            @endif
                         </div>
                     </div>
                     @if ($user->id != Auth::user()->id)

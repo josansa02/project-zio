@@ -70,7 +70,7 @@
                                 <!-- Menú desplegable del usuario -->
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        <img style="width: 50px" src="{{asset('img/profileIMG')}}/{{auth()->user()->profile_img}}" alt="ProfileImg">
+                                        <img class="img-profile" src="{{asset('img/profileIMG')}}/{{auth()->user()->profile_img}}" alt="ProfileImg">
                                         <div class="d-flex align-items-end">
                                             <span class="material-symbols-outlined">expand_more</span>
                                         </div>

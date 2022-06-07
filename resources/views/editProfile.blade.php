@@ -42,7 +42,7 @@
                 @csrf
                 @method('put')
                 <div class="d-flex flex-column justify-content-center align-items-center gap-2">
-                    <img src="{{asset('/img/profileIMG')}}/{{$user->profile_img}}" class="img-fluid mod_profile">
+                    <img data-bs-toggle="modal" data-bs-target="#exampleModal" src="{{asset('/img/profileIMG')}}/{{$user->profile_img}}" class="img-fluid mod_profile cambiar_img">
                     <div data-bs-toggle="modal" data-bs-target="#exampleModal" class="cambiar_img"> Cambiar imagen de perfil </div> 
                 </div>
                 <div>
@@ -68,7 +68,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <textarea id="bio" name="bio" class="form-control" style="resize: none;" rows="3" maxlength="38">{{$user->bio}}</textarea>
+                    <textarea id="bio" name="bio" class="form-control" style="resize: none;" rows="3" maxlength="40">{{$user->bio}}</textarea>
 
                     <div class="d-flex justify-content-center">
                         <input type="submit" class="boton_sesion" value="Actualizar datos">

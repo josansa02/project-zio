@@ -7,7 +7,14 @@
                 </button>
             </div>
         </form>
-        <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple cursor-default" v-if="!this.mostrar"> check_circle </span>
+
+        <form method="POST" @submit.prevent="recogerId()" v-if="!this.mostrar">
+            <div class="py-4">
+                <button type="submit" class="btn-like">
+                    <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple"> check_circle </span>
+                </button>
+            </div>
+        </form>
     </div>
 </template>
 
@@ -18,23 +25,36 @@
                 mostrar: true
             }
         },
-        props: ["img_id"],
+        props: ["img_id", "user_id"],
         methods: {
             recogerId() {
                 axios.post("votos", {img_id: this.img_id})
                 .then(response => { 
-                    this.mostrar = false;
-                    // Swal.fire(
-                    //     'Petición enviada',
-                    //     'Has enviado tu petición de rehabilitación de cuenta, ahora debes esperar a que los administradores la revisen y tomen una decisión',
-                    //     'success'
-                    // );
+                    if (this.mostrar == true) {
+                        this.mostrar = false;
+                    }
+                    else {
+                        this.mostrar = true;
+                    }
                 })
                 .catch(error => {
                     console.log(error.response) 
                 });
-
+            },
+            comprobarTipo() {
+                axios.get("getVotos")
+                .then(response => {
+                    console.log(response.data);
+                    for (let i = 0; i < response.data.length; i++) {
+                        if(response.data[i].img_id == this.img_id && response.data[i].user_id == this.user_id) {
+                            this.mostrar = false;
+                        }
+                    }
+                })
             }
+        },
+        mounted () {
+            this.comprobarTipo();
         }
     }
 </script>
