@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'enabled'], function () {
     
-
     Route::put('usuarios/edit/{id}', [UserController::class, "update"])->name("usuarios.edit");
     Route::post('usuarios/edit/profileimg/{id}', [UserController::class, "updateProfileImg"])->name("usuarios.edit.profileimg.update");
     Route::get('usuarios/edit/{id}', [UserController::class, "edit"])->name("usuarios.edit");
@@ -35,6 +34,11 @@ Route::group(['middleware' => 'enabled'], function () {
     Route::resource("/imagenes", ImageController::class);
     Route::resource("/votos", VoteController::class);
 
+});
+
+Route::group(['middleware' => 'admin'], function () {
+    Route::get("/users", [UserController::class, 'users'])->name('usersAdmin');
+    Route::delete("users/delete/{user}", [UserController::class, 'destroyUser'])->name('delete.user');
 });
 
 Auth::routes();
