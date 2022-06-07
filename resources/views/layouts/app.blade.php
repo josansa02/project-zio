@@ -36,17 +36,17 @@
                 </a>
 
                 @guest
-                @else
-                    @if (auth()->user()->enabled)
-                        <div class="p-1 bg-main rounded rounded-pill shadow-sm">
-                            <div class="input-group d-flex justify-content-center align-items-center">
-                                <search-component class="barra_busqueda-input" :ruta="{{json_encode(asset('usuarios'))}}"></search-component>
-                                <div>
-                                    <button name="{{route('gallery.route')}}" id="ruta" onclick="visitarUsuario()" type="button" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
+                    @else
+                        @if (auth()->user()->enabled)
+                            <div class="p-1 bg-main rounded rounded-pill shadow-sm">
+                                <div class="input-group d-flex justify-content-center align-items-center">
+                                    <search-component class="barra_busqueda-input" :ruta="{{json_encode(asset('usuarios'))}}"></search-component>
+                                    <div>
+                                        <button name="{{route('gallery.route')}}" id="ruta" onclick="visitarUsuario()" type="button" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif            
+                        @endif            
                 @endguest
 
                 <div class="main-search-input-wrap">

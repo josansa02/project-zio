@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Petitions;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -89,5 +90,12 @@ class PeticionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function petitions()
+    {
+        $petitions = Petitions::paginate(5);
+        $users = User::where(['role' => 0, 'enabled' => 0])->get();
+        return view('admin/adminPetitions', compact('petitions', 'users'));
     }
 }

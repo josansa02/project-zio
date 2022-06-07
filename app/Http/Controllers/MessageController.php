@@ -12,7 +12,6 @@ class MessageController extends Controller
 {
     public function show(User $user)
     {
-        
         session_start();
         
         if ($user->id == auth()->user()->id) {
