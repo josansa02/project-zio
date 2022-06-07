@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Report;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -92,8 +94,17 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Report $report)
     {
-        //
+        $report->delete();
+        return redirect()->back();
+    }
+
+    public function reports()
+    {
+        $reports = Report::paginate(5);
+        $images = Image::all();
+        $users = User::where(['role' => 0, 'enabled' => 1])->get();
+        return view('admin/adminReports', compact('reports', 'images', 'users'));
     }
 }

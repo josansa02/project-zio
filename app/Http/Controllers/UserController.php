@@ -6,6 +6,7 @@ use App\Mail\SendMail;
 use Illuminate\Http\Request;
 use App\Models\Image;
 use App\Models\Message;
+use App\Models\Petitions;
 use App\Models\Report;
 use App\Models\User;
 use App\Models\Vote;
@@ -114,13 +115,12 @@ class UserController extends Controller
 
     public function users()
     {
-        $users = User::where(['role' => 0])->get();
-        return view('adminUsers', compact('users'));
+        $users = User::where(['role' => 0])->paginate(5);
+        return view('admin/adminUsers', compact('users'));
     }
 
-    public function destroyUser(User $user)
+    public function destroy(User $user)
     {
-
         $details = [
             'title' => 'Se ha eliminado su cuenta de ZIO',
             'body' => 'disculpe',
@@ -129,7 +129,21 @@ class UserController extends Controller
         Mail::to($user->email)->send(new SendMail($details));
         $user->delete();
         return redirect()->route('usersAdmin');
+    }
 
+    public function changeEnabled(User $user)
+    {
+        if ($user->enabled) {
+            $user->enabled = false;
+            Report::where(['owner_id' => $user->id])->delete();
+        } else {
+            $user->enabled = true;
+            Petitions::where(['user_id' => $user->id])->delete();
+        }
+
+        $user->update();
+        
+        return redirect()->back();
     }
 
 }
