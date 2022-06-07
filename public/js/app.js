@@ -5480,13 +5480,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       mostrar: true
     };
   },
-  props: ["img_id"],
+  props: ["img_id", "user_id"],
   methods: {
     recogerId: function recogerId() {
       var _this = this;
@@ -5494,15 +5501,31 @@ __webpack_require__.r(__webpack_exports__);
       axios.post("votos", {
         img_id: this.img_id
       }).then(function (response) {
-        _this.mostrar = false; // Swal.fire(
-        //     'Petición enviada',
-        //     'Has enviado tu petición de rehabilitación de cuenta, ahora debes esperar a que los administradores la revisen y tomen una decisión',
-        //     'success'
-        // );
+        if (_this.mostrar == true) {
+          _this.mostrar = false;
+        } else {
+          _this.mostrar = true;
+        }
       })["catch"](function (error) {
         console.log(error.response);
       });
+    },
+    comprobarTipo: function comprobarTipo() {
+      var _this2 = this;
+
+      axios.get("getVotos").then(function (response) {
+        console.log(response.data);
+
+        for (var i = 0; i < response.data.length; i++) {
+          if (response.data[i].img_id == _this2.img_id && response.data[i].user_id == _this2.user_id) {
+            _this2.mostrar = false;
+          }
+        }
+      });
     }
+  },
+  mounted: function mounted() {
+    this.comprobarTipo();
   }
 });
 
@@ -33145,12 +33168,17 @@ var render = function () {
     _vm._v(" "),
     !this.mostrar
       ? _c(
-          "span",
+          "form",
           {
-            staticClass:
-              "material-symbols-outlined d-flex justify-content-center text-dark-purple cursor-default",
+            attrs: { method: "POST" },
+            on: {
+              submit: function ($event) {
+                $event.preventDefault()
+                return _vm.recogerId()
+              },
+            },
           },
-          [_vm._v(" check_circle ")]
+          [_vm._m(1)]
         )
       : _vm._e(),
   ])
@@ -33169,6 +33197,23 @@ var staticRenderFns = [
               "material-symbols-outlined d-flex justify-content-center text-dark-purple",
           },
           [_vm._v(" recommend ")]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "py-4" }, [
+      _c("button", { staticClass: "btn-like", attrs: { type: "submit" } }, [
+        _c(
+          "span",
+          {
+            staticClass:
+              "material-symbols-outlined d-flex justify-content-center text-dark-purple",
+          },
+          [_vm._v(" check_circle ")]
         ),
       ]),
     ])

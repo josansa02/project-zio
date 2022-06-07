@@ -20,9 +20,10 @@ body {
 }
 
 /* Header */
-.profile img {
+.imagen_usu {
     width: 90px;
     height: 90px;
+    object-fit: cover;
     border-radius: 150px;
 }
 
@@ -38,7 +39,7 @@ body {
 main {
     color: var(--main-blue);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-auto-rows: 300px;
     gap: 3px;
 }
@@ -71,7 +72,7 @@ main img:hover {
 }
 
 .no-photo-link {
-    cursor: auto;
+    cursor: default;
 }
 .no-photo-link:hover {
     opacity: 1;
@@ -135,6 +136,7 @@ main img:hover {
 .imagen_modal_usu {
     width: 40px;
     height: 40px;
+    object-fit: cover;
     border-radius: 150px;
 }
 
@@ -172,13 +174,19 @@ main img:hover {
 }
 
 /* Media Queries */
-@media all and (min-width: 272px) {
+@media all and (min-width: 468px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media all and (min-width: 768px) {
     main {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
-@media all and (max-width: 768px) {
+@media all and (max-width: 768px) {    
     nav {
         flex-direction: column;
     }

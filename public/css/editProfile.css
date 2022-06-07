@@ -28,6 +28,8 @@ label {
 .mod_profile {
     width: 100px;
     height: 100px;
+    object-fit: cover;
+    border-radius: 150px;
 }
 
 .cambiar_img {

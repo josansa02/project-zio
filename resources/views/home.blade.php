@@ -62,16 +62,17 @@
                 <img src="{{asset('/img/usersIMG/')}}/{{$imagen[0]->img_name}}" alt="{{$imagen[0]->title}}" class="img-fluid imagen_galeria" data-bs-toggle="modal" data-bs-target="#exampleModal{{$imagen[0]->id}}" onclick="eliminarclass()">
             </div>
             <div class="px-3 imagen-pie d-flex justify-content-between align-items-center"> 
-                <div class="d-flex justify-content-center align-items-center gap-1"> 
+                <div class="d-flex justify-content-center align-items-center gap-2"> 
                     <a href="{{route('gallery', $imagen[1]->name)}}"> <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid imagen_usu"> </a>
                     <strong> {{$imagen[1]->name}} </strong>  
                 </div>
                 @if ($imagen[0]->user_id != auth()->user()->id)
-                    <like-component :img_id="{{json_encode($imagen[0]->id)}}"></like-component>
+                    <like-component :img_id="{{json_encode($imagen[0]->id)}}" :user_id="{{json_encode(auth()->user()->id)}}"></like-component>
                 @endif
             </div>
         </div>
 
+        <!-- Modal -->
         <div class="modal fade" id="exampleModal{{$imagen[0]->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -95,7 +96,7 @@
                         <div class="mt-3 mb-3 px-3">
                             <div class="d-flex align-items-center gap-2"> 
                                 <div class="d-flex align-items-center gap-2">
-                                    <a href="{{route('gallery', $imagen[1]->name)}}" class="imagen_modal_usu"> <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid"> </a>
+                                    <a href="{{route('gallery', $imagen[1]->name)}}" class="imagen_modal_usu"> <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid my-modal-img"> </a>
                                     <p class="m-0"> <strong> {{$imagen[1]->name}} </strong> </p>
                                 </div>
                                 <p class="m-0"> {{$imagen[0]->footer}} </p>
@@ -104,7 +105,7 @@
                         @if ($imagen[1]->id != auth()->user()->id)
                         <div class="modal-footer justify-content-between">
                             <div class="d-flex align-items-center gap-1">
-                                <img style="width: 30px" src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg" class="no-photo-link">
+                                <img src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg" class="no-photo-link my-modal-img">
                                 <form action="{{ route('messages.add') }}" method="post">
                                     @csrf
                                     @method("post")
