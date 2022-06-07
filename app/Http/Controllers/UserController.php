@@ -98,7 +98,9 @@ class UserController extends Controller
             'name' => 'required',
         ]);
 
-        unlink("../public/img/profileIMG/" . $user->profile_img);
+        if ($user->profile_img != 'defaultprofileimg.svg') {
+            unlink("../public/img/profileIMG/" . $user->profile_img);
+        }
 
         $image_nombre = time() . "-" . $request->name;
         $user->profile_img = $image_nombre;
@@ -106,6 +108,12 @@ class UserController extends Controller
         
         $user->update();
         $_SESSION["update"] = "Imagen de perfil actualizada correctamente";
+    }
+
+    public function users()
+    {
+        $users = User::where(['role' => 0])->get();
+        return view('adminUsers', compact('users'));
     }
 
 }
