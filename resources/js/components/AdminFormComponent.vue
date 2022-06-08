@@ -66,15 +66,7 @@
             addAdmin() {
                 axios.post(this.route, {name: this.admin.name, email: this.admin.email, password: this.admin.password})
                 .then(response => {
-                    Swal.fire(
-                        'Usuario administrador creado',
-                        'El administrador ' + this.admin.name + ' ha sido registrado satisfactoriamente',
-                        'success'
-                    );
-                    this.admin.name = '';
-                    this.admin.email = '';
-                    this.admin.password = '';
-                    document.getElementById("bsubir").disabled = true;
+                    location.reload();
                 }).catch(error => {
                     if (error.response.status === 422) {
                         this.errors = error.response.data.errors;

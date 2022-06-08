@@ -20,6 +20,10 @@ class CheckEnabled
             return redirect()->route('petition');
         }
 
+        if (auth()->user()->role) {
+            return redirect()->route('usersAdmin');
+        }
+
         return $next($request);
     }
 }

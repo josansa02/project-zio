@@ -120,9 +120,10 @@ class UserController extends Controller
         return view('admin/adminUsers', compact('users'));
     }
 
-    public function addAdmin()
+    public function admins()
     {
-        return view('admin/adminAdd');
+        $users = User::where(['role' => 1])->paginate(5);
+        return view('admin/admins', compact('users'));
     }
 
     public function storeAdmin(Request $request)
@@ -153,7 +154,7 @@ class UserController extends Controller
 
         Mail::to($user->email)->send(new SendMail($details));
         $user->delete();
-        return redirect()->route('usersAdmin');
+        return redirect()->back();
     }
 
     public function changeEnabled(User $user)

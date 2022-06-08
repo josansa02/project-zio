@@ -5441,11 +5441,7 @@ __webpack_require__.r(__webpack_exports__);
         email: this.admin.email,
         password: this.admin.password
       }).then(function (response) {
-        Swal.fire('Usuario administrador creado', 'El administrador ' + _this.admin.name + ' ha sido registrado satisfactoriamente', 'success');
-        _this.admin.name = '';
-        _this.admin.email = '';
-        _this.admin.password = '';
-        document.getElementById("bsubir").disabled = true;
+        location.reload();
       })["catch"](function (error) {
         if (error.response.status === 422) {
           _this.errors = error.response.data.errors;
@@ -5707,7 +5703,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.post("peticiones", {
         unban_reason: this.unban_reason
       }).then(function (response) {
-        Swal.fire('Petición enviada', 'Has enviado tu petición de rehabilitación de cuenta, ahora debes esperar a que los administradores la revisen y tomen una decisión', 'success'); // console.log(response);
+        Swal.fire('Petición enviada', 'Has enviado tu petición de rehabilitación de cuenta, ahora debes esperar a que los administradores la revisen y tomen una decisión', 'success');
       })["catch"](function (error) {
         if (error.response.status === 422) {
           _this.errors = error.response.data.errors;

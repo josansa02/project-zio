@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section("title", "Usuarios - ZIO")
+@section("title", "Administradores - ZIO")
 
 @section('content')
 
@@ -8,12 +8,16 @@
     <div class="card">
         <ul class="list-group list-group-flush">
             <li class="list-group-item align-items-center d-flex justify-content-center gap-3">
-                <a href="{{route('usersAdmin')}}" class="btn btn-primary active rounded-pill" role="button" aria-pressed="true">Usuarios</a>
-                <a href="{{route('admins')}}" class="btn btn-primary rounded-pill" role="button">Administradores</a>
-                <a href="{{route('usersReports')}}" class="btn btn-primary rounded-pill" role="button">Reportes</a>
+                <a href="{{route('usersAdmin')}}" class="btn btn-primary rounded-pill" role="button">Usuarios</a>
+                <a href="{{route('admins')}}" class="btn btn-primary active rounded-pill" role="button">Administradores</a>
+                <a href="{{route('usersReports')}}" class="btn btn-primary rounded-pill" role="button" aria-pressed="true">Reportes</a>
                 <a href="{{route('usersPetitions')}}" class="btn btn-primary rounded-pill" role="button">Cuentas suspendidas</a>
             </li>
+        
             <li class="list-group-item">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#adminModal">
+                    Registrar administrador
+                </button>
                 @if (count($users) == 0)
                     <main class="container d-flex justify-content-center align-items-center mt-5">
                         <h3 class="text-center">No hay usuarios registrados</h3>
@@ -23,25 +27,25 @@
                         <table class="col-10">
                             <thead>
                                 <tr>
-                                    <th>Foto de perfil</th>
                                     <th>Nombre de usuario</th>
                                     <th>Email</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($users as $user)
-                                    <tr>
-                                        <td> <img style="width: 60px" src="{{asset('/img/profileIMG/' . $user->profile_img)}}" alt="Imagen de perfil del usuario {{$user->name}}"> </td>
-                                        <td> {{$user->name}} </td>
-                                        <td> {{$user->email}} </td>
-                                        <td> 
-                                            <form class="swal-confirmar-borrar" action="{{route('delete.user', $user->id)}}" method="post">
-                                                @csrf
-                                                @method("delete")
-                                                <input type="submit" class="btn btn-danger" value="Eliminar">
-                                            </form>
-                                        </td>
-                                    </tr>
+                                    @if (auth()->user()->id != $user->id)
+                                        <tr>
+                                            <td> {{$user->name}} </td>
+                                            <td> {{$user->email}} </td>
+                                            <td> 
+                                                <form class="swal-confirmar-borrar" action="{{route('delete.user', $user->id)}}" method="post">
+                                                    @csrf
+                                                    @method("delete")
+                                                    <input type="submit" class="btn btn-danger" value="Eliminar">
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
         
                             </tbody>
@@ -57,6 +61,20 @@
     </div>
 </div>
 
+<!-- Modal registrar administradores -->
+<div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Registrar nuevo administrador</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <adminform-component :route="{{json_encode(route('store.admin'))}}"></adminform-componen>
+    </div>
+    </div>
+</div>
+</div>
 
 @section('js')
 
@@ -75,7 +93,7 @@
 
         swalWithBootstrapButtons.fire({
             title: '¿Estás seguro?',
-            text: "¿Seguro que quieres eliminar este usuario?",
+            text: "¿Seguro que quieres eliminar este administrador?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Si, eliminar',

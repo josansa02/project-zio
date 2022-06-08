@@ -40,7 +40,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get("/users", [UserController::class, 'users'])->name('usersAdmin');
     Route::get("/reports", [ReportController::class, 'reports'])->name('usersReports');
     Route::get("/petitions", [PeticionController::class, 'petitions'])->name('usersPetitions');
-    Route::get("/add/admin", [UserController::class, 'addAdmin'])->name('addAdmin');
+    Route::get("/admins", [UserController::class, 'admins'])->name('admins');
     Route::post("/add/admin", [UserController::class, 'storeAdmin'])->name('store.admin');
     Route::delete("users/delete/{user}", [UserController::class, 'destroy'])->name('delete.user');
     Route::delete("reports/delete/{report}", [ReportController::class, 'destroy'])->name('delete.report');
