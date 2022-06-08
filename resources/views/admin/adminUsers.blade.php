@@ -8,8 +8,8 @@
     <div class="card">
         <ul class="list-group list-group-flush">
             <li class="list-group-item align-items-center d-flex justify-content-center gap-3">
-                <a href="{{route('usersAdmin')}}" class="btn btn-primary active rounded-pill" role="button" data-bs-toggle="button" aria-pressed="true">Usuarios</a>
-                <a href="" class="btn btn-primary rounded-pill" role="button" data-bs-toggle="button">Añadir administrador</a>
+                <a href="{{route('usersAdmin')}}" class="btn btn-primary active rounded-pill" role="button" aria-pressed="true">Usuarios</a>
+                <a href="{{route('addAdmin')}}" class="btn btn-primary rounded-pill" role="button">Añadir administrador</a>
                 <a href="{{route('usersReports')}}" class="btn btn-primary rounded-pill" role="button">Reportes</a>
                 <a href="{{route('usersPetitions')}}" class="btn btn-primary rounded-pill" role="button">Cuentas suspendidas</a>
             </li>

@@ -95,4 +95,9 @@ class HomeController extends Controller
     {
         return view('ayuda');
     }
+
+    public function ayudaAdmin()
+    {
+        return view('ayudaAdmin');
+    }
 }

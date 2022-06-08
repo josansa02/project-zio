@@ -14,6 +14,7 @@ window.Vue = require('vue').default;
 Vue.component('like-component', require('./components/LikeComponent.vue').default);
 Vue.component('search-component', require('./components/SearchComponent.vue').default);
 Vue.component('imagenform-component', require('./components/ImagenFormComponent.vue').default);
+Vue.component('adminform-component', require('./components/AdminFormComponent.vue').default);
 Vue.component('peticionform-component', require('./components/PeticionFormComponent.vue').default);
 Vue.component('updateimagen-component', require('./components/UpdateImagenComponent.vue').default);
 

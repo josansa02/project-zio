@@ -42,7 +42,6 @@
                         'Has enviado tu petición de rehabilitación de cuenta, ahora debes esperar a que los administradores la revisen y tomen una decisión',
                         'success'
                     );
-                    // console.log(response);
                 })
                 .catch(error => {
                     if (error.response.status === 422) {
