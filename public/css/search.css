@@ -83,6 +83,7 @@
 
 /* Dropzone */
 .dz-preview {
+    position: relative;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -97,7 +98,22 @@
     align-items: center !important;
 }
 
+.dz-success-mark, .dz-error-mark {
+    top: 0px !important;
+    height: 100%;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
 /* Boton formulario */
+.cerrado {
+    background-color: var(--main-purple);
+}
+.cerrado span {
+    color: white;
+}
+
 .btn-form {
     background-color: var(--main-purple);
     color: white;

@@ -1,71 +1,82 @@
 <template>
-    <div>
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Actualizar imagen</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+    <div class="container">
         <form method="POST" @submit.prevent="actualizarImagen()" enctype="multipart/form-data">
-            <div class="modal-body">
-                <div class="modal_input">
-                    <label for="file" class="subir_boton"> Haz clic aquí para seleccionar una imagen </label>
-                    <input type="file" @change="obtenerImagen">
-                    <div class="alert alert-danger mt-1" v-if="errors && errors.name">
-                        Debe seleccionar una imagen
-                    </div>            
+            <div class="p-4">
+                <vue-dropzone ref="myVueDropzone" name="file" id="dropzone" 
+                :options="dropzoneOptions"
+                @vdropzone-success="obtenerImagen">
+                </vue-dropzone>
+
+                <div class="d-flex justify-content-center mt-3">
+                    <input type="submit" id="bsubir" value="Actualizar" class="btn btn-form w-25" disabled>
                 </div>
-                <figure v-if="imagen != ''">
-                    <img height="200" width="200" :src="imagen">
-                </figure>
-            </div>
-            <div class="modal-footer">
-                <input type="submit" value="Actualizar" class="btn btn-primary">
             </div>
         </form>
     </div>
 </template>
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
+    import vue2Dropzone from 'vue2-dropzone'
+    import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+
     export default {
         data() {
             return {
+                imagenSubida: false,
                 imagenMiniatura: "",
                 image: {
                     titulo: "",
                     pie: "",
                     nombre: "",
+                    imagen: ""
                 },
-                file: "",
+                dropzoneOptions: {
+                    url: 'https://httpbin.org/post',
+                    thumbnailWidth: 150,
+                    maxFilesize: 30,
+                    maxFiles: 1,
+                    acceptedFiles: "image/*",
+                    dictDefaultMessage: "Arrastre y suelte su imagen o haga click aquí...",
+                    dictInvalidFileType: "No puede subir archivos de este tipo"
+                },
                 errors: {}
             }
         },
+        components: {
+            vueDropzone: vue2Dropzone
+        },
         props: ["user_id"],
         methods: {
-            obtenerImagen(e) {
-                let file = e.target.files[0];
-                this.file = file;
-                console.log(this.file);
-                this.image.nombre = file.name;
-                this.cargarImagen(file);
-            },
-            cargarImagen(file) {
-                let reader = new FileReader();
-
-                reader.onload = (e) => {
-                    this.imagenMiniatura = e.target.result;
+            comprobar() {
+                var boton = document.getElementById("bsubir");
+                boton.disabled = true;
+                if (this.imagenSubida){            
+                    boton.disabled = false;
                 }
-
-                reader.readAsDataURL(file);
+            },
+            obtenerImagen(response) {
+                this.image.imagen = response;
+                this.image.nombre = response.name;
+                this.imagenSubida = true;
+                this.comprobar();
             },
             actualizarImagen() {
                 let formData = new FormData();
                 formData.append('name', this.image.nombre);
-                formData.append('files', this.file);
+                formData.append('files', this.image.imagen);
                 axios.post("../../usuarios/edit/profileimg/" + this.user_id, formData)
                 .then(response => {
                     location.reload();
                 }).catch(error => {
                     if (error.response.status === 422) {
                         this.errors = error.response.data.errors;
+                        Swal.fire(
+                        'Error',
+                        'No puede subir archivos que no tengan formato de imagen',
+                        'error'
+                        );
                     }
                 });
             }

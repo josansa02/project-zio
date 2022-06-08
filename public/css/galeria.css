@@ -37,7 +37,6 @@ body {
 
 /* Main */
 main {
-    color: var(--main-blue);
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: 300px;
@@ -78,6 +77,36 @@ main img:hover {
     opacity: 1;
 }
 
+/* Formulario */
+.input-form {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #bbb;
+    color: var(--main-blue);
+    padding-bottom: 0;
+    transition: all .5s;
+}
+  
+.input-form:focus {
+    box-shadow: inset 0 -2px 0 var(--main-blue);
+    padding-bottom: 0.3em;
+    outline: 0;
+}
+
+.vue-dropzone {
+    background-color: var(--main-bg-color) !important;
+    border: 1px dashed var(--main-purple) !important;
+    border-radius: 10px;
+}
+
+.dz-message {
+    color: black !important;
+}
+
+label {
+    color: var(--main-purple);
+}
+
 /* Modal */
 .modal-body {
     padding: 0px !important;
@@ -110,18 +139,6 @@ main img:hover {
     opacity: 0.6;
 }
 
-.cerrado {
-    background-color: var(--main-purple);
-}
-.cerrado span {
-    color: white;
-}
-
-.modal-content {
-    color: var(--main-blue);
-    background-color: var(--main-bg-color);
-}
-
 .modal_input {
     display: flex;
     gap: 20px;
@@ -136,6 +153,13 @@ main img:hover {
 .imagen_modal_usu {
     width: 40px;
     height: 40px;
+    object-fit: cover;
+    border-radius: 150px;
+}
+
+.my-modal-img {
+    width: 35px;
+    height: 35px;
     object-fit: cover;
     border-radius: 150px;
 }

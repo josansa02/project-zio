@@ -32,7 +32,7 @@
                 <a class="navbar-brand d-flex justify-content-center align-items-center gap-2" href="{{ url('/home') }}">
                     <!-- {{ config('app.name', 'ZIO') }} -->
                     <img src="{{asset('/img/logo_ZIO.svg')}}" alt="Logo ZIO" width="40" height="40" class="d-inline-block">
-                    <h3 class="m-0">ZIO</h3>
+                    <h3 class="m-0 d-none d-md-block">ZIO</h3>
                 </a>
 
                 @guest
@@ -105,7 +105,7 @@
             </div>
         </nav>
 
-        <div class="py-4">
+        <div>
             @yield('content')
         </div>
     </div>

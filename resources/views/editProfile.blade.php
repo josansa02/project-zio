@@ -34,16 +34,16 @@
 </div>
 @endif
 
-<main class="container mt-3 position-relative">
+<main class="container mt-4 position-relative">
     <div class="row">
-        <h2 class="text-center"> Editar perfil </h2>
+        <h2 class="text-center text-blue"> Editar perfil </h2>
         <div class="d-flex align-items-center justify-content-center mt-3">
             <form action="{{route('usuarios.edit', $user->id)}}" method="POST" class="d-flex gap-5 formEdit">
                 @csrf
                 @method('put')
                 <div class="d-flex flex-column justify-content-center align-items-center gap-2">
-                    <img data-bs-toggle="modal" data-bs-target="#exampleModal" src="{{asset('/img/profileIMG')}}/{{$user->profile_img}}" class="img-fluid mod_profile cambiar_img">
-                    <div data-bs-toggle="modal" data-bs-target="#exampleModal" class="cambiar_img"> Cambiar imagen de perfil </div> 
+                    <img data-bs-toggle="modal" data-bs-target="#exampleModal" src="{{asset('/img/profileIMG')}}/{{$user->profile_img}}" class="img-fluid mod_profile cambiar_img" onclick="eliminarclass()">
+                    <div data-bs-toggle="modal" data-bs-target="#exampleModal" class="cambiar_img text-dark-purple" onclick="eliminarclass()"> Cambiar imagen de perfil </div> 
                 </div>
                 <div>
                     <label for="name"> Usuario: </label>
@@ -86,9 +86,25 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar fotografía</h5>
+                <button type="button" class="btn cerrado p-1" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
+                </button>
+            </div>
             <updateimagen-component :user_id="{{$user->id}}"></updateimagen-component>
         </div>
     </div>
 </div>
+
+<!-- Sección de scripts de la página -->
+@section('js')
+<script>
+    function eliminarclass() {
+        bod = document.getElementById("bod");
+        bod.setAttribute("style", "");
+    }
+</script>
+@endsection
 
 @endsection

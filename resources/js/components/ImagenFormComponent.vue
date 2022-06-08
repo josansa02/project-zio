@@ -1,31 +1,39 @@
 <template>
     <div class="container">
         <form method="POST" @submit.prevent="guardarImagen()" enctype="multipart/form-data">
-            <div class="py-4">
+            <div class="p-4">
                 <vue-dropzone ref="myVueDropzone" name="file" id="dropzone" 
                 :options="dropzoneOptions"
-                @vdropzone-complete="obtenerImagen">
+                @vdropzone-success="obtenerImagen">
                 </vue-dropzone>
 
                 <div class="mt-3">
-                    <input v-model="image.titulo" type="text" placeholder="Titulo" class="text-xl p-2 w-full border-b-2 border-green-500">
-                    <div class="alert alert-danger mt-1" v-if="errors && errors.title">
-                        {{errors.title[0]}}
+                    <div>
+                        <label for="titulo">Título de la imagen: </label> <br>
+                        <input id="titulo" v-model="image.titulo" v-on:keyup="comprobar" type="text" class="input-form w-100">
+                        <div class="alert alert-danger mt-1" v-if="errors && errors.title">
+                            {{errors.title[0]}}
+                        </div>
                     </div>
 
-                    <input v-model="image.pie" type="text" placeholder="Pie de página" class="text-xl p-2 w-full border-b-2 border-green-500">
-                    <div class="alert alert-danger mt-1" v-if="errors && errors.footer">
-                        {{errors.footer[0]}}
+                    <div class="mt-3">
+                        <label for="pie">Pie de foto: </label> <br>
+                        <input id="pie" v-model="image.pie" v-on:keyup="comprobar" type="text" class="input-form w-100">
+                        <div class="alert alert-danger mt-1" v-if="errors && errors.footer">
+                            {{errors.footer[0]}}
+                        </div>
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-center">
-                    <input type="submit" value="Subir" class="btn btn-form mt-3 w-25">
+                <div class="d-flex justify-content-center mt-3">
+                    <input type="submit" id="bsubir" value="Subir" class="btn btn-form w-25" disabled>
                 </div>
             </div>
         </form>
     </div>
 </template>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     import vue2Dropzone from 'vue2-dropzone'
@@ -34,6 +42,7 @@
     export default {
         data() {
             return {
+                imagenSubida: false,
                 imagenMiniatura: "",
                 image: {
                     titulo: "",
@@ -46,7 +55,9 @@
                     thumbnailWidth: 150,
                     maxFilesize: 30,
                     maxFiles: 1,
-                    acceptedFiles: "image/*"
+                    acceptedFiles: "image/*",
+                    dictDefaultMessage: "Arrastre y suelte su imagen o haga click aquí...",
+                    dictInvalidFileType: "No puede subir archivos de este tipo"
                 },
                 errors: {}
             }
@@ -55,9 +66,20 @@
             vueDropzone: vue2Dropzone
         },
         methods: {
+            comprobar() {
+                var input1 = document.getElementById("titulo");
+                var input2 = document.getElementById("pie");
+                var boton = document.getElementById("bsubir");
+                boton.disabled = true;
+                if (input1.value != "" && input2.value != "" && this.imagenSubida){            
+                    boton.disabled = false;
+                }
+            },
             obtenerImagen(response) {
                 this.image.imagen = response;
                 this.image.nombre = response.name;
+                this.imagenSubida = true;
+                this.comprobar();
             },
             guardarImagen() {
                 let formData = new FormData();
@@ -71,6 +93,11 @@
                 }).catch(error => {
                     if (error.response.status === 422) {
                         this.errors = error.response.data.errors;
+                        Swal.fire(
+                        'Error',
+                        'No puede subir archivos que no tengan formato de imagen',
+                        'error'
+                        );
                     }
                 });
             }

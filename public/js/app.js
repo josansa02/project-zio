@@ -5400,11 +5400,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      imagenSubida: false,
       imagenMiniatura: "",
       image: {
         titulo: "",
@@ -5417,7 +5426,9 @@ __webpack_require__.r(__webpack_exports__);
         thumbnailWidth: 150,
         maxFilesize: 30,
         maxFiles: 1,
-        acceptedFiles: "image/*"
+        acceptedFiles: "image/*",
+        dictDefaultMessage: "Arrastre y suelte su imagen o haga click aquí...",
+        dictInvalidFileType: "No puede subir archivos de este tipo"
       },
       errors: {}
     };
@@ -5426,9 +5437,21 @@ __webpack_require__.r(__webpack_exports__);
     vueDropzone: (vue2_dropzone__WEBPACK_IMPORTED_MODULE_0___default())
   },
   methods: {
+    comprobar: function comprobar() {
+      var input1 = document.getElementById("titulo");
+      var input2 = document.getElementById("pie");
+      var boton = document.getElementById("bsubir");
+      boton.disabled = true;
+
+      if (input1.value != "" && input2.value != "" && this.imagenSubida) {
+        boton.disabled = false;
+      }
+    },
     obtenerImagen: function obtenerImagen(response) {
       this.image.imagen = response;
       this.image.nombre = response.name;
+      this.imagenSubida = true;
+      this.comprobar();
     },
     guardarImagen: function guardarImagen() {
       var _this = this;
@@ -5443,6 +5466,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         if (error.response.status === 422) {
           _this.errors = error.response.data.errors;
+          Swal.fire('Error', 'No puede subir archivos que no tengan formato de imagen', 'error');
         }
       });
     }
@@ -5652,6 +5676,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vue2_dropzone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue2-dropzone */ "./node_modules/vue2-dropzone/dist/vue2Dropzone.js");
+/* harmony import */ var vue2_dropzone__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue2_dropzone__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue2_dropzone_dist_vue2Dropzone_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-dropzone/dist/vue2Dropzone.min.css */ "./node_modules/vue2-dropzone/dist/vue2Dropzone.min.css");
 //
 //
 //
@@ -5671,57 +5698,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      imagenSubida: false,
       imagenMiniatura: "",
       image: {
         titulo: "",
         pie: "",
-        nombre: ""
+        nombre: "",
+        imagen: ""
       },
-      file: "",
+      dropzoneOptions: {
+        url: 'https://httpbin.org/post',
+        thumbnailWidth: 150,
+        maxFilesize: 30,
+        maxFiles: 1,
+        acceptedFiles: "image/*",
+        dictDefaultMessage: "Arrastre y suelte su imagen o haga click aquí...",
+        dictInvalidFileType: "No puede subir archivos de este tipo"
+      },
       errors: {}
     };
   },
+  components: {
+    vueDropzone: (vue2_dropzone__WEBPACK_IMPORTED_MODULE_0___default())
+  },
   props: ["user_id"],
   methods: {
-    obtenerImagen: function obtenerImagen(e) {
-      var file = e.target.files[0];
-      this.file = file;
-      console.log(this.file);
-      this.image.nombre = file.name;
-      this.cargarImagen(file);
+    comprobar: function comprobar() {
+      var boton = document.getElementById("bsubir");
+      boton.disabled = true;
+
+      if (this.imagenSubida) {
+        boton.disabled = false;
+      }
     },
-    cargarImagen: function cargarImagen(file) {
-      var _this = this;
-
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-        _this.imagenMiniatura = e.target.result;
-      };
-
-      reader.readAsDataURL(file);
+    obtenerImagen: function obtenerImagen(response) {
+      this.image.imagen = response;
+      this.image.nombre = response.name;
+      this.imagenSubida = true;
+      this.comprobar();
     },
     actualizarImagen: function actualizarImagen() {
-      var _this2 = this;
+      var _this = this;
 
       var formData = new FormData();
       formData.append('name', this.image.nombre);
-      formData.append('files', this.file);
+      formData.append('files', this.image.imagen);
       axios.post("../../usuarios/edit/profileimg/" + this.user_id, formData).then(function (response) {
         location.reload();
       })["catch"](function (error) {
         if (error.response.status === 422) {
-          _this2.errors = error.response.data.errors;
+          _this.errors = error.response.data.errors;
+          Swal.fire('Error', 'No puede subir archivos que no tengan formato de imagen', 'error');
         }
       });
     }
@@ -33085,7 +33117,7 @@ var render = function () {
       [
         _c(
           "div",
-          { staticClass: "py-4" },
+          { staticClass: "p-4" },
           [
             _c("vue-dropzone", {
               ref: "myVueDropzone",
@@ -33094,73 +33126,91 @@ var render = function () {
                 id: "dropzone",
                 options: _vm.dropzoneOptions,
               },
-              on: { "vdropzone-complete": _vm.obtenerImagen },
+              on: { "vdropzone-success": _vm.obtenerImagen },
             }),
             _vm._v(" "),
             _c("div", { staticClass: "mt-3" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.image.titulo,
-                    expression: "image.titulo",
+              _c("div", [
+                _c("label", { attrs: { for: "titulo" } }, [
+                  _vm._v("Título de la imagen: "),
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.image.titulo,
+                      expression: "image.titulo",
+                    },
+                  ],
+                  staticClass: "input-form w-100",
+                  attrs: { id: "titulo", type: "text" },
+                  domProps: { value: _vm.image.titulo },
+                  on: {
+                    keyup: _vm.comprobar,
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.image, "titulo", $event.target.value)
+                    },
                   },
-                ],
-                staticClass: "text-xl p-2 w-full border-b-2 border-green-500",
-                attrs: { type: "text", placeholder: "Titulo" },
-                domProps: { value: _vm.image.titulo },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.image, "titulo", $event.target.value)
-                  },
-                },
-              }),
+                }),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.title
+                  ? _c("div", { staticClass: "alert alert-danger mt-1" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.errors.title[0]) +
+                          "\n                    "
+                      ),
+                    ])
+                  : _vm._e(),
+              ]),
               _vm._v(" "),
-              _vm.errors && _vm.errors.title
-                ? _c("div", { staticClass: "alert alert-danger mt-1" }, [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.errors.title[0]) +
-                        "\n                "
-                    ),
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.image.pie,
-                    expression: "image.pie",
+              _c("div", { staticClass: "mt-3" }, [
+                _c("label", { attrs: { for: "pie" } }, [
+                  _vm._v("Pie de foto: "),
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.image.pie,
+                      expression: "image.pie",
+                    },
+                  ],
+                  staticClass: "input-form w-100",
+                  attrs: { id: "pie", type: "text" },
+                  domProps: { value: _vm.image.pie },
+                  on: {
+                    keyup: _vm.comprobar,
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.image, "pie", $event.target.value)
+                    },
                   },
-                ],
-                staticClass: "text-xl p-2 w-full border-b-2 border-green-500",
-                attrs: { type: "text", placeholder: "Pie de página" },
-                domProps: { value: _vm.image.pie },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.image, "pie", $event.target.value)
-                  },
-                },
-              }),
-              _vm._v(" "),
-              _vm.errors && _vm.errors.footer
-                ? _c("div", { staticClass: "alert alert-danger mt-1" }, [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.errors.footer[0]) +
-                        "\n                "
-                    ),
-                  ])
-                : _vm._e(),
+                }),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.footer
+                  ? _c("div", { staticClass: "alert alert-danger mt-1" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.errors.footer[0]) +
+                          "\n                    "
+                      ),
+                    ])
+                  : _vm._e(),
+              ]),
             ]),
             _vm._v(" "),
             _vm._m(0),
@@ -33176,10 +33226,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex justify-content-center" }, [
+    return _c("div", { staticClass: "d-flex justify-content-center mt-3" }, [
       _c("input", {
-        staticClass: "btn btn-form mt-3 w-25",
-        attrs: { type: "submit", value: "Subir" },
+        staticClass: "btn btn-form w-25",
+        attrs: { type: "submit", id: "bsubir", value: "Subir", disabled: "" },
       }),
     ])
   },
@@ -33444,9 +33494,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
+  return _c("div", { staticClass: "container" }, [
     _c(
       "form",
       {
@@ -33459,38 +33507,24 @@ var render = function () {
         },
       },
       [
-        _c("div", { staticClass: "modal-body" }, [
-          _c("div", { staticClass: "modal_input" }, [
-            _c(
-              "label",
-              { staticClass: "subir_boton", attrs: { for: "file" } },
-              [_vm._v(" Haz clic aquí para seleccionar una imagen ")]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "file" },
-              on: { change: _vm.obtenerImagen },
+        _c(
+          "div",
+          { staticClass: "p-4" },
+          [
+            _c("vue-dropzone", {
+              ref: "myVueDropzone",
+              attrs: {
+                name: "file",
+                id: "dropzone",
+                options: _vm.dropzoneOptions,
+              },
+              on: { "vdropzone-success": _vm.obtenerImagen },
             }),
             _vm._v(" "),
-            _vm.errors && _vm.errors.name
-              ? _c("div", { staticClass: "alert alert-danger mt-1" }, [
-                  _vm._v(
-                    "\n                    Debe seleccionar una imagen\n                "
-                  ),
-                ])
-              : _vm._e(),
-          ]),
-          _vm._v(" "),
-          _vm.imagen != ""
-            ? _c("figure", [
-                _c("img", {
-                  attrs: { height: "200", width: "200", src: _vm.imagen },
-                }),
-              ])
-            : _vm._e(),
-        ]),
-        _vm._v(" "),
-        _vm._m(1),
+            _vm._m(0),
+          ],
+          1
+        ),
       ]
     ),
   ])
@@ -33500,31 +33534,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("Actualizar imagen")]
-      ),
-      _vm._v(" "),
-      _c("button", {
-        staticClass: "btn-close",
-        attrs: {
-          type: "button",
-          "data-bs-dismiss": "modal",
-          "aria-label": "Close",
-        },
-      }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
+    return _c("div", { staticClass: "d-flex justify-content-center mt-3" }, [
       _c("input", {
-        staticClass: "btn btn-primary",
-        attrs: { type: "submit", value: "Actualizar" },
+        staticClass: "btn btn-form w-25",
+        attrs: {
+          type: "submit",
+          id: "bsubir",
+          value: "Actualizar",
+          disabled: "",
+        },
       }),
     ])
   },

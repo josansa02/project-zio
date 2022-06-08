@@ -64,7 +64,7 @@
 
 @if ($user->enabled)
 
-    <div class="profile d-flex flex-column justify-content-center align-items-center gap-3">
+    <div class="profile d-flex flex-column justify-content-center align-items-center gap-3 py-4">
         <div class="d-flex align-items-center gap-3">
             <img src="{{asset('/img/profileIMG/')}}/{{$user->profile_img}}" class="img-fluid imagen_usu">
             <div class="mt-2">
@@ -103,7 +103,7 @@
     <!-- Si el usuario NO TIENE imagenes hace lo siguiente: -->
     @if (count($imagenes) == 0)
         <main class="container d-flex justify-content-center align-items-center mt-5">
-            <h3 class="text-center">Aún no ha subido ninguna imagen</h3>
+            <h3 class="text-center text-blue">Aún no ha subido ninguna imagen</h3>
         </main>
     @else 
 
@@ -163,7 +163,7 @@
                         @if ($user->id != Auth::user()->id)
                             <div class="modal-footer justify-content-between">
                                 <div class="d-flex align-items-center gap-1">
-                                    <img style="width: 30px" src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg" class="no-photo-link">
+                                    <img src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg" class="my-modal-img no-photo-link">
                                     <form action="{{ route('messages.add') }}" method="post">
                                         @csrf
                                         @method("post")
@@ -227,7 +227,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Insertar imagen</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Subir fotografía</h5>
                     <button type="button" class="btn cerrado p-1" data-bs-dismiss="modal" aria-label="Close">
                         <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
                     </button>

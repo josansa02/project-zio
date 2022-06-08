@@ -24,7 +24,7 @@
 
 @if (count($messages) == 0)
     <main class="container d-flex justify-content-center align-items-center mt-5">
-        <h3 class="text-center">No tiene mensajes</h3>
+        <h3 class="text-center text-blue">No tiene mensajes</h3>
     </main>
 @else 
 <div class="container mt-3 mb-3">

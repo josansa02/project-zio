@@ -54,7 +54,7 @@
         <h3 class="text-center">Aún no se han subido imágenes</h3>
     </main>
 @else 
-<main class="container mt-3 mb-3">
+<main class="container mt-3 mb-3 py-4">
     @foreach ($images as $imagen)
         <div class="main-block bg-white d-flex flex-column justify-content-between">
             <div class="px-3 imagen-titulo d-flex justify-content-center align-items-center"> <h4 class="text-center m-0"> {{$imagen[0]->title}} </h4> </div>
