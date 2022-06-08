@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('email')->unique();
-            $table->string('bio')->default("¡Hola! Espero que te gusten mis fotos.");
-            $table->string('profile_img')->default("defaultprofileimg.svg");
+            $table->string('bio')->default("¡Hola! Espero que te gusten mis fotos.")->nullable();
+            $table->string('profile_img')->default("defaultprofileimg.svg")->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('enabled')->default(true);

@@ -4,14 +4,12 @@
 
 @section('content')
 
-
-
 <div class="container mt-3 mb-3">
     <div class="card">
         <ul class="list-group list-group-flush">
             <li class="list-group-item align-items-center d-flex justify-content-center gap-3">
                 <a href="{{route('usersAdmin')}}" class="btn btn-primary rounded-pill" role="button">Usuarios</a>
-                <a href="" class="btn btn-primary rounded-pill" role="button">Añadir administrador</a>
+                <a href="{{route('admins')}}" class="btn btn-primary rounded-pill" role="button">Administradores</a>
                 <a href="{{route('usersReports')}}" class="btn active btn-primary rounded-pill" role="button" aria-pressed="true">Reportes</a>
                 <a href="{{route('usersPetitions')}}" class="btn btn-primary rounded-pill" role="button">Cuentas suspendidas</a>
             </li>
@@ -38,7 +36,24 @@
                                         <td>
                                             @foreach ($images as $image)
                                                 @if ($image->id == $report->img_id)
-                                                    <img style="height: 40px; width: 70px; border-radius: 50px" src="{{asset('/img/usersIMG/')}}/{{$image->img_name}}" alt="Foto reportada">
+                                                    <a href="#exampleModal{{$image->id}}" data-bs-toggle="modal"> <img style="height: 40px; width: 70px; border-radius: 50px" src="{{asset('/img/usersIMG/')}}/{{$image->img_name}}" alt="Foto reportada"> </a>
+                                                    <div class="modal fade" id="exampleModal{{$image->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header gap-3">
+                                                                    <h5 class="modal-title text-center" id="exampleModalLabel">{{$image->title}}</h5>
+                                                                    <button type="button" class="btn cerrado p-1" data-bs-dismiss="modal" aria-label="Close"> 
+                                                                        <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="imagen_modal">
+                                                                        <img src="{{asset('/img/usersIMG/' . $image->img_name)}}" class="img-fluid">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 @endif
                                             @endforeach
                                         </td>

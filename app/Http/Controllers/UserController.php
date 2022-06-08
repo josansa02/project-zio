@@ -11,6 +11,7 @@ use App\Models\Report;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
@@ -119,6 +120,31 @@ class UserController extends Controller
         return view('admin/adminUsers', compact('users'));
     }
 
+    public function admins()
+    {
+        $users = User::where(['role' => 1])->paginate(5);
+        return view('admin/admins', compact('users'));
+    }
+
+    public function storeAdmin(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:25', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
+        ]);
+
+        $admin = new User();
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->password = Hash::make($request->password);
+        $admin->role = true;
+        $admin->bio = null;
+        $admin->profile_img = null;
+
+        $admin->save();
+    }
+
     public function destroy(User $user)
     {
         $details = [
@@ -128,7 +154,7 @@ class UserController extends Controller
 
         Mail::to($user->email)->send(new SendMail($details));
         $user->delete();
-        return redirect()->route('usersAdmin');
+        return redirect()->back();
     }
 
     public function changeEnabled(User $user)

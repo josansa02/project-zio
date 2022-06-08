@@ -37,7 +37,7 @@
 
                 @guest
                     @else
-                        @if (auth()->user()->enabled)
+                        @if (auth()->user()->enabled && !auth()->user()->role)
                             <div class="p-1 bg-main rounded rounded-pill shadow-sm">
                                 <div class="input-group d-flex justify-content-center align-items-center">
                                     <search-component class="barra_busqueda-input" :ruta="{{json_encode(asset('usuarios'))}}"></search-component>
@@ -66,7 +66,25 @@
                                 </li>
                             @endif
                         @else
-                            @if (auth()->user()->enabled)
+                            @if (auth()->user()->role)
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        <span class="d-flex justify-content-center align-items-center material-symbols-outlined">menu</span>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="navbarDropdown" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 7px;">
+                                        <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{route('help.admin')}}">Ayuda <span class="material-symbols-outlined"> help </span></a>
+                                        <a class="dropdown-item border-top d-flex justify-content-between align-items-center" href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {{ __('Cerrar sesión') }} <span class="material-symbols-outlined"> logout </span>
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endif
+                            @if (auth()->user()->enabled && !auth()->user()->role)
                                 <!-- Menú desplegable del usuario -->
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -91,13 +109,15 @@
                                     </div>
                                 </li>
                             @else 
-                            <a class="nav-link" href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                {{ __('Cerrar sesión') }}
-                            </a>
+                                @if(!auth()->user()->enabled && !auth()->user()->role)
+                                    <a class="nav-link" href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        {{ __('Cerrar sesión') }}
+                                    </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                @endif
                             @endif
                         @endguest
                     </ul>
