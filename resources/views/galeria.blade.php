@@ -157,6 +157,10 @@
                                         <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple no-photo-link"> recommend </span>
                                         <span> {{$imagen[1]}} </span>    
                                     </div>
+                                @else
+                                    <div>
+                                        <like-component :img_id="{{json_encode($imagen[0]->id)}}" :user_id="{{json_encode(auth()->user()->id)}}" :ruta_votos="{{json_encode(asset('votos'))}}" :ruta_getvotos="{{json_encode(asset('getVotos'))}}"></like-component>
+                                    </div>
                                 @endif
                             </div>
                         </div>

@@ -67,7 +67,7 @@
                     <strong> {{$imagen[1]->name}} </strong>  
                 </div>
                 @if ($imagen[0]->user_id != auth()->user()->id)
-                    <like-component :img_id="{{json_encode($imagen[0]->id)}}" :user_id="{{json_encode(auth()->user()->id)}}"></like-component>
+                    <like-component :img_id="{{json_encode($imagen[0]->id)}}" :user_id="{{json_encode(auth()->user()->id)}}" :ruta_votos="{{json_encode(asset('votos'))}}" :ruta_getvotos="{{json_encode(asset('getVotos'))}}"></like-component>
                 @endif
             </div>
         </div>

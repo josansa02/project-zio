@@ -5517,12 +5517,12 @@ __webpack_require__.r(__webpack_exports__);
       mostrar: true
     };
   },
-  props: ["img_id", "user_id"],
+  props: ["img_id", "user_id", "ruta_votos", "ruta_getvotos"],
   methods: {
     recogerId: function recogerId() {
       var _this = this;
 
-      axios.post("votos", {
+      axios.post(this.ruta_votos, {
         img_id: this.img_id
       }).then(function (response) {
         if (_this.mostrar == true) {
@@ -5537,7 +5537,7 @@ __webpack_require__.r(__webpack_exports__);
     comprobarTipo: function comprobarTipo() {
       var _this2 = this;
 
-      axios.get("getVotos").then(function (response) {
+      axios.get(this.ruta_getvotos).then(function (response) {
         console.log(response.data);
 
         for (var i = 0; i < response.data.length; i++) {

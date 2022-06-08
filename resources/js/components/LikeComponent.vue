@@ -25,10 +25,10 @@
                 mostrar: true
             }
         },
-        props: ["img_id", "user_id"],
+        props: ["img_id", "user_id", "ruta_votos", "ruta_getvotos"],
         methods: {
             recogerId() {
-                axios.post("votos", {img_id: this.img_id})
+                axios.post(this.ruta_votos, {img_id: this.img_id})
                 .then(response => { 
                     if (this.mostrar == true) {
                         this.mostrar = false;
@@ -42,7 +42,7 @@
                 });
             },
             comprobarTipo() {
-                axios.get("getVotos")
+                axios.get(this.ruta_getvotos)
                 .then(response => {
                     console.log(response.data);
                     for (let i = 0; i < response.data.length; i++) {

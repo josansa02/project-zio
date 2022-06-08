@@ -67,6 +67,13 @@
     border-radius: 150px;
 }
 
+.btn-like {
+    border: 0px;
+    outline: none;
+    background-color: white;
+    padding-top: 5px;
+}
+
 /* Autocompletar */  
 .autocomplete ul{
     border-radius: 5px;

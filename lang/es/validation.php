@@ -129,6 +129,9 @@ return [
     'url'                  => ':Attribute debe ser una URL válida.',
     'uuid'                 => 'El campo :attribute debe ser un UUID válido.',
     'custom'               => [
+        'name'    => [
+            'unique' => 'El :attribute ya ha sido registrado.',
+        ],
         'email'    => [
             'unique' => 'El :attribute ya ha sido registrado.',
         ],
