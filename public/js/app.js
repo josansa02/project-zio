@@ -5407,8 +5407,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -33284,8 +33282,8 @@ var render = function () {
         },
       },
       [
-        _c("div", { staticClass: "p-4" }, [
-          _c("div", { staticClass: "mt-3" }, [
+        _c("div", { staticClass: "px-4" }, [
+          _c("div", [
             _c("div", [
               _c("label", { attrs: { for: "name" } }, [_vm._v("Nombre: ")]),
               _vm._v(" "),
@@ -33325,7 +33323,7 @@ var render = function () {
                 : _vm._e(),
             ]),
             _vm._v(" "),
-            _c("div", [
+            _c("div", { staticClass: "mt-3" }, [
               _c("label", { attrs: { for: "email" } }, [_vm._v("Email: ")]),
               _vm._v(" "),
               _c("br"),
@@ -33364,7 +33362,7 @@ var render = function () {
                 : _vm._e(),
             ]),
             _vm._v(" "),
-            _c("div", [
+            _c("div", { staticClass: "mt-3" }, [
               _c("label", { attrs: { for: "password" } }, [
                 _vm._v("Contraseña: "),
               ]),
@@ -33425,12 +33423,7 @@ var staticRenderFns = [
             "btn btn-success d-flex align-items-center justify-content-center gap-2",
           attrs: { type: "submit", id: "bsubir", disabled: "" },
         },
-        [
-          _vm._v("Registrar administrador "),
-          _c("span", { staticClass: "material-symbols-outlined" }, [
-            _vm._v(" person_add "),
-          ]),
-        ]
+        [_vm._v("Registrar")]
       ),
     ])
   },
@@ -33703,7 +33696,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "container mt-5" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-8 row gap-2" }, [
         _vm._m(0),
@@ -33739,6 +33732,7 @@ var render = function () {
                   type: "text",
                   rows: "5",
                   placeholder: "Escriba aquí su petición",
+                  maxlength: "140",
                 },
                 domProps: { value: _vm.unban_reason },
                 on: {
@@ -33782,7 +33776,7 @@ var staticRenderFns = [
         [_vm._v(" report ")]
       ),
       _vm._v(
-        " \n                Su cuenta ha sido suspendida, por favor rellene el siguiente formulario de petición de rehabilitación de cuenta si lo desea\n            "
+        " \n                Su cuenta ha sido suspendida, rellene el siguiente formulario de petición de rehabilitación de cuenta si lo desea\n            "
       ),
     ])
   },

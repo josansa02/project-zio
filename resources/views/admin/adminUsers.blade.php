@@ -2,16 +2,20 @@
 
 @section("title", "Usuarios - ZIO")
 
+@section("styles")
+<link rel="stylesheet" href="{{ asset('css/adminUsers.css') }}">
+@endsection
+
 @section('content')
 
 <div class="container mt-3 mb-3">
     <div class="card">
         <ul class="list-group list-group-flush">
             <li class="list-group-item align-items-center d-flex justify-content-center gap-3">
-                <a href="{{route('usersAdmin')}}" class="btn btn-primary active rounded-pill" role="button" aria-pressed="true">Usuarios</a>
-                <a href="{{route('admins')}}" class="btn btn-primary rounded-pill" role="button">Administradores</a>
-                <a href="{{route('usersReports')}}" class="btn btn-primary rounded-pill" role="button">Reportes</a>
-                <a href="{{route('usersPetitions')}}" class="btn btn-primary rounded-pill" role="button">Cuentas suspendidas</a>
+                <a href="{{route('usersAdmin')}}" class="btn btn-form btn-form-active rounded-pill" role="button" aria-pressed="true">Usuarios</a>
+                <a href="{{route('admins')}}" class="btn btn-form rounded-pill" role="button">Administradores</a>
+                <a href="{{route('usersReports')}}" class="btn btn-form rounded-pill" role="button">Reportes</a>
+                <a href="{{route('usersPetitions')}}" class="btn btn-form rounded-pill" role="button">Cuentas suspendidas</a>
             </li>
             <li class="list-group-item">
                 @if (count($users) == 0)
@@ -20,7 +24,7 @@
                     </main>
                 @else 
                     <div class="row justify-content-center align-items-center">
-                        <table class="col-10">
+                        <table>
                             <thead>
                                 <tr class="text-center">
                                     <th>Foto de perfil</th>
@@ -31,19 +35,18 @@
                             <tbody>
                                 @foreach ($users as $user)
                                     <tr class="text-center">
-                                        <td> <div class="d-flex justify-content-center"> <img style="width: 60px" src="{{asset('/img/profileIMG/' . $user->profile_img)}}" alt="Imagen de perfil del usuario {{$user->name}}"> </div> </td>
+                                        <td class="p-2"> <div class="d-flex justify-content-center"> <img class="img_usu" src="{{asset('/img/profileIMG/' . $user->profile_img)}}" alt="Imagen de perfil del usuario {{$user->name}}"> </div> </td>
                                         <td> {{$user->name}} </td>
                                         <td> {{$user->email}} </td>
-                                        <td> 
+                                        <td>
                                             <form class="swal-confirmar-borrar" action="{{route('delete.user', $user->id)}}" method="post">
                                                 @csrf
                                                 @method("delete")
-                                                <input type="submit" class="btn btn-danger" value="Eliminar">
+                                                <button type="submit" class="btn btn-danger d-flex justify-content-center align-items-center"> Eliminar <span class="material-symbols-outlined">delete</span> </button>
                                             </form>
                                         </td>
                                     </tr>
                                 @endforeach
-        
                             </tbody>
                         </table>
                         

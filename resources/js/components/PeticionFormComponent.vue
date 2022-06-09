@@ -1,15 +1,15 @@
 <template>
-    <div class="container mt-3">
+    <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8 row gap-2">
                 <h5 class="d-flex align-items-center gap-2">
                     <span class="material-symbols-outlined text-danger fs-1"> report </span> 
-                    Su cuenta ha sido suspendida, por favor rellene el siguiente formulario de petición de rehabilitación de cuenta si lo desea
+                    Su cuenta ha sido suspendida, rellene el siguiente formulario de petición de rehabilitación de cuenta si lo desea
                 </h5>
                 <h2>Formulario de petición de rehabilitación de cuenta</h2>
                 <form method="POST" v-on:submit.prevent="enviarPeticion()">
                     <div class="py-4">
-                        <textarea v-model="unban_reason" type="text" rows="5" placeholder="Escriba aquí su petición" class="form-control"></textarea>
+                        <textarea v-model="unban_reason" type="text" rows="5" placeholder="Escriba aquí su petición" class="form-control" maxlength="140"></textarea>
                         
                         <div class="alert alert-danger mt-1" v-if="errors && errors.unban_reason">
                             Debe completar este campo

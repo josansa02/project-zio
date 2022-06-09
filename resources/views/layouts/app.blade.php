@@ -69,7 +69,7 @@
                             @if (auth()->user()->role)
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        <span class="d-flex justify-content-center align-items-center material-symbols-outlined">menu</span>
+                                        <span class="d-flex justify-content-center align-items-center material-symbols-outlined text-dark-purple">menu</span>
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="navbarDropdown" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 7px;">

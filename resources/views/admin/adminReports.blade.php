@@ -2,16 +2,20 @@
 
 @section("title", "Reportes - ZIO")
 
+@section("styles")
+<link rel="stylesheet" href="{{ asset('css/adminReports.css') }}">
+@endsection
+
 @section('content')
 
 <div class="container mt-3 mb-3">
     <div class="card">
         <ul class="list-group list-group-flush">
             <li class="list-group-item align-items-center d-flex justify-content-center gap-3">
-                <a href="{{route('usersAdmin')}}" class="btn btn-primary rounded-pill" role="button">Usuarios</a>
-                <a href="{{route('admins')}}" class="btn btn-primary rounded-pill" role="button">Administradores</a>
-                <a href="{{route('usersReports')}}" class="btn active btn-primary rounded-pill" role="button" aria-pressed="true">Reportes</a>
-                <a href="{{route('usersPetitions')}}" class="btn btn-primary rounded-pill" role="button">Cuentas suspendidas</a>
+                <a href="{{route('usersAdmin')}}" class="btn btn-form rounded-pill" role="button">Usuarios</a>
+                <a href="{{route('admins')}}" class="btn btn-form rounded-pill" role="button">Administradores</a>
+                <a href="{{route('usersReports')}}" class="btn btn-form btn-form-active rounded-pill" role="button" aria-pressed="true">Reportes</a>
+                <a href="{{route('usersPetitions')}}" class="btn btn-form rounded-pill" role="button">Cuentas suspendidas</a>
             </li>
         
             <li class="list-group-item">
@@ -21,22 +25,24 @@
                     </main>
                 @else 
                     <div class="row justify-content-center align-items-center">
-                        <table class="col-10">
+                        <table>
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th>Foto de reportada</th>
                                     <th>Usuario reportado</th>
-                                    <th>Usuario reporte</th>
+                                    <th>Usuario que reporta</th>
                                     <th>Motivo</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-center">
                                 @foreach ($reports as $report)
                                     <tr>
-                                        <td>
+                                        <td class="p-2">
                                             @foreach ($images as $image)
                                                 @if ($image->id == $report->img_id)
-                                                    <a href="#exampleModal{{$image->id}}" data-bs-toggle="modal"> <img style="height: 40px; width: 70px; border-radius: 50px" src="{{asset('/img/usersIMG/')}}/{{$image->img_name}}" alt="Foto reportada"> </a>
+                                                    <div class="d-flex justify-content-center">
+                                                        <a href="#exampleModal{{$image->id}}" data-bs-toggle="modal"> <img class="img_report" src="{{asset('/img/usersIMG/')}}/{{$image->img_name}}" alt="Foto reportada"> </a>
+                                                    </div>
                                                     <div class="modal fade" id="exampleModal{{$image->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content">
@@ -46,8 +52,8 @@
                                                                         <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
                                                                     </button>
                                                                 </div>
-                                                                <div class="modal-body">
-                                                                    <div class="imagen_modal">
+                                                                <div class="p-0">
+                                                                    <div>
                                                                         <img src="{{asset('/img/usersIMG/' . $image->img_name)}}" class="img-fluid">
                                                                     </div>
                                                                 </div>
@@ -76,7 +82,7 @@
                                             <form class="swal-confirmar-borrar" action="{{route('delete.report', $report->id)}}" method="post">
                                                 @csrf
                                                 @method("delete")
-                                                <input type="submit" class="btn btn-danger" value="Eliminar">
+                                                <button type="submit" class="btn btn-danger d-flex justify-content-center align-items-center"> Eliminar <span class="material-symbols-outlined">delete</span> </button>
                                             </form>
                                         </td>
                                         <td> 
@@ -85,7 +91,7 @@
                                                     <form class="swal-confirmar-borrar-img" action="{{route('delete.img', $image->id)}}" method="post">
                                                         @csrf
                                                         @method("delete")
-                                                        <input type="submit" class="btn btn-danger" value="Eliminar imagen">
+                                                        <button type="submit" class="btn btn-danger d-flex justify-content-center align-items-center"> Eliminar imagen <span class="material-symbols-outlined">image_not_supported</span> </button>
                                                     </form>
                                                 @endif
                                             @endforeach
@@ -96,7 +102,7 @@
                                                     <form class="swal-confirmar-banear" action="{{route('enabled.user', $user->id)}}" method="post">
                                                         @csrf
                                                         @method("put")
-                                                        <input type="submit" class="btn btn-danger" value="Suspender">
+                                                        <button type="submit" class="btn btn-danger d-flex justify-content-center align-items-center"> Suspender <span class="material-symbols-outlined">person_off</span> </button>
                                                     </form>
                                                 @endif
                                             @endforeach 

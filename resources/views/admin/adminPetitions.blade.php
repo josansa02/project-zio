@@ -2,16 +2,20 @@
 
 @section("title", "Usuarios deshabilitados - ZIO")
 
+@section("styles")
+<link rel="stylesheet" href="{{ asset('css/adminPetitions.css') }}">
+@endsection
+
 @section('content')
 
 <div class="container mt-3 mb-3">
     <div class="card">
         <ul class="list-group list-group-flush">
             <li class="list-group-item align-items-center d-flex justify-content-center gap-3">
-                <a href="{{route('usersAdmin')}}" class="btn btn-primary rounded-pill" role="button">Usuarios</a>
-                <a href="{{route('admins')}}" class="btn btn-primary rounded-pill" role="button">Administradores</a>
-                <a href="{{route('usersReports')}}" class="btn btn-primary rounded-pill" role="button" aria-pressed="true">Reportes</a>
-                <a href="{{route('usersPetitions')}}" class="btn active btn-primary rounded-pill" role="button">Cuentas suspendidas</a>
+                <a href="{{route('usersAdmin')}}" class="btn btn-form rounded-pill" role="button">Usuarios</a>
+                <a href="{{route('admins')}}" class="btn btn-form rounded-pill" role="button">Administradores</a>
+                <a href="{{route('usersReports')}}" class="btn btn-form rounded-pill" role="button" aria-pressed="true">Reportes</a>
+                <a href="{{route('usersPetitions')}}" class="btn btn-form btn-form-active rounded-pill" role="button">Cuentas suspendidas</a>
             </li>
         
             <li class="list-group-item">
@@ -20,28 +24,33 @@
                         <h3 class="text-center">No hay peticiones de rehabilitación</h3>
                     </main>
                 @else 
-                    <div class="row justify-content-center align-items-center">
-                        <table class="col-10">
+                    <div class="row justify-content-center align-items-center px-3">
+                        <table>
                             <thead>
-                                <tr>
+                                <tr class="text-center">
+                                    <th>Foto de perfil</th>
                                     <th>Datos del usuario</th>
                                     <th>Petición para retirar el veto</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($petitions as $petition)
-                                    <tr>
+                                    <tr class="text-center">
+                                        <td> 
+                                            @foreach ($users as $user)
+                                                @if ($user->id == $petition->user_id)
+                                                    <div class="d-flex justify-content-center align-items-center">
+                                                        <img class="img_suspendida" src="{{asset('/img/profileIMG/')}}/{{$user->profile_img}}" alt="Foto de perfil de {{$user->name}}"> 
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </td>
                                         <td>
                                             @foreach ($users as $user)
                                                 @if ($user->id == $petition->user_id)
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <img style="height: 40px; width: 40px; border-radius: 50px" src="{{asset('/img/profileIMG/')}}/{{$user->profile_img}}" alt="Foto de perfil de {{$user->name}}">
-                                                    </div>
-                                                    <div>
-                                                        {{$user->name}}
-                                                        {{$user->email}}    
-                                                    </div>
+                                                <div class="d-flex flex-column">
+                                                    {{$user->name}}
+                                                    {{$user->email}}    
                                                 </div>
                                                 @endif
                                             @endforeach
@@ -55,7 +64,7 @@
                                                     <form class="swal-confirmar" action="{{route('enabled.user', $user->id)}}" method="post">
                                                         @csrf
                                                         @method("put")
-                                                        <input type="submit" class="btn btn-warning" value="Habilitar">
+                                                        <button type="submit" class="btn btn-warning d-flex justify-content-center align-items-center gap-1"> Habilitar <span class="material-symbols-outlined">account_circle</span> </button>
                                                     </form>
                                                 @endif
                                             @endforeach 

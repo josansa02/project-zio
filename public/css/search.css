@@ -131,6 +131,10 @@
     background-color: #3c35c2;
 }
 
+.btn-form-active {
+    background-color: #3c35c2;
+}
+
 /* Barra de scroll */
 body::-webkit-scrollbar-track
 {

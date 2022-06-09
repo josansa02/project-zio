@@ -1,9 +1,9 @@
 <template>
     <div class="container">
         <form method="POST" @submit.prevent="addAdmin()">
-            <div class="p-4">
+            <div class="px-4">
 
-                <div class="mt-3">
+                <div>
                     <div>
                         <label for="name">Nombre: </label> <br>
                         <input id="name" v-model="admin.name" v-on:keyup="comprobar" type="text" class="input-form w-100">
@@ -11,26 +11,24 @@
                             {{errors.name[0]}}
                         </div>
                     </div>
-                    <div>
+                    <div class="mt-3">
                         <label for="email">Email: </label> <br>
                         <input id="email" v-model="admin.email" v-on:keyup="comprobar" type="text" class="input-form w-100">
                         <div class="alert alert-danger mt-1" v-if="errors && errors.email">
                             {{errors.email[0]}}
                         </div>
                     </div>
-                    <div>
+                    <div class="mt-3">
                         <label for="password">Contraseña: </label> <br>
                         <input id="password" v-model="admin.password" v-on:keyup="comprobar" type="password" class="input-form w-100">
                         <div class="alert alert-danger mt-1" v-if="errors && errors.password">
                             {{errors.password[0]}}
                         </div>
                     </div>
-
-                    
                 </div>
 
                 <div class="d-flex justify-content-center mt-3">
-                    <button type="submit" id="bsubir" class="btn btn-success d-flex align-items-center justify-content-center gap-2" disabled>Registrar administrador <span class="material-symbols-outlined"> person_add </span></button>
+                    <button type="submit" id="bsubir" class="btn btn-success d-flex align-items-center justify-content-center gap-2" disabled>Registrar</button>
                 </div>
             </div>
         </form>
