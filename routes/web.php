@@ -44,6 +44,7 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::post("/add/admin", [UserController::class, 'storeAdmin'])->name('store.admin');
     Route::delete("users/delete/{user}", [UserController::class, 'destroy'])->name('delete.user');
     Route::delete("reports/delete/{report}", [ReportController::class, 'destroy'])->name('delete.report');
+    Route::delete("img/delete/{image}", [ImageController::class, 'destroyImgAdmin'])->name('delete.img');
     Route::put("users/change/enabled/{user}", [UserController::class, 'changeEnabled'])->name('enabled.user');
     Route::get('/help/admin', [HomeController::class, 'ayudaAdmin'])->name('help.admin');
 });

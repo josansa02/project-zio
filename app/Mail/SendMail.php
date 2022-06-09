@@ -30,6 +30,6 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Prueba de corrreo de ZIO')->view('emails.email');
+        return $this->subject('Adminstración ZIO')->view('emails.email');
     }
 }

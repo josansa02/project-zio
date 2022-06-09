@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMail;
 use App\Models\Image;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
@@ -101,6 +104,23 @@ class ImageController extends Controller
         if (unlink("../public/img/usersIMG/" . $image->img_name)) {
             $image->delete();
             return redirect()->route("gallery", Auth::user()->name);    
+        }
+    }
+
+    public function destroyImgAdmin(Image $image)
+    {
+        $user = new User();
+        $user = User::find($image->user_id);
+        //Este método es de PHP pero es la única forma de poder borrar el archivo estando en la carpeta assets
+        if (unlink("../public/img/usersIMG/" . $image->img_name)) {
+            $details = [
+                'titulo' => 'Su fotografía ha sido eliminada',
+                'cuerpo' => 'Hola, ' . $user->name . '. Los administradores han decidido eliminar su fotografía con título "' . $image->title . '" de la plataforma dado que ha recibiado reportes de otros usuarios, tenga cuidado.',
+            ];
+            Mail::to($user->email)->send(new SendMail($details));
+
+            $image->delete();
+            return redirect()->back();    
         }
     }
 }

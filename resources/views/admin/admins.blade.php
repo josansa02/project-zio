@@ -20,7 +20,7 @@
                 </button>
                 @if (count($users) == 0)
                     <main class="container d-flex justify-content-center align-items-center mt-5">
-                        <h3 class="text-center">No hay usuarios registrados</h3>
+                        <h3 class="text-center">No hay administradores registrados</h3>
                     </main>
                 @else 
                     <div class="row justify-content-center align-items-center">
@@ -33,19 +33,19 @@
                             </thead>
                             <tbody>
                                 @foreach ($users as $user)
-                                    @if (auth()->user()->id != $user->id)
                                         <tr>
                                             <td> {{$user->name}} </td>
                                             <td> {{$user->email}} </td>
-                                            <td> 
-                                                <form class="swal-confirmar-borrar" action="{{route('delete.user', $user->id)}}" method="post">
-                                                    @csrf
-                                                    @method("delete")
-                                                    <input type="submit" class="btn btn-danger" value="Eliminar">
-                                                </form>
-                                            </td>
+                                            @if (auth()->user()->id != $user->id)
+                                                <td> 
+                                                    <form class="swal-confirmar-borrar" action="{{route('delete.user', $user->id)}}" method="post">
+                                                        @csrf
+                                                        @method("delete")
+                                                        <input type="submit" class="btn btn-danger" value="Eliminar">
+                                                    </form>
+                                                </td>
+                                            @endif
                                         </tr>
-                                    @endif
                                 @endforeach
         
                             </tbody>

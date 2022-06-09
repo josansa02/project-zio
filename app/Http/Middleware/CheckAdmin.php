@@ -16,6 +16,10 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+        if (!auth()->user()->enabled) {
+            return redirect()->route('petition');
+        }
+        
         if (!auth()->user()->role) {
             return redirect()->route('usersAdmin');
         }

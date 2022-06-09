@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendMail;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -64,6 +66,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $details = [
+            'titulo' => 'Bienvenido a la plataforma más liviana de fotografía, ZIO',
+            'cuerpo' => 'Hola, ' . $data['name'] . '. Esperamos que le saques todo el partido a lo que la comunidad ZIO tiene por ofrecer.',
+        ];
+        Mail::to($data['email'])->send(new SendMail($details));
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
