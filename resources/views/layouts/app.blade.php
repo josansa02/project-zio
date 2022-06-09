@@ -28,7 +28,8 @@
 <body id="bod">
     <div id="app">
         <nav class="navbar navbar-expand navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container d-flex">
+                
                 <a class="navbar-brand d-flex justify-content-center align-items-center gap-2" href="{{ url('/home') }}">
                     <!-- {{ config('app.name', 'ZIO') }} -->
                     <img src="{{asset('/img/logo_ZIO.svg')}}" alt="Logo ZIO" width="40" height="40" class="d-inline-block">
@@ -50,7 +51,6 @@
                 @endguest
 
                 <div class="main-search-input-wrap">
-
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest

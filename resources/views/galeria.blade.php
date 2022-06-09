@@ -165,10 +165,10 @@
                             </div>
                         </div>
                         @if ($user->id != Auth::user()->id)
-                            <div class="modal-footer justify-content-between">
-                                <div class="d-flex align-items-center gap-1">
+                            <div class="modal-footer">
+                                <div class="d-flex align-items-center gap-1 w-100">
                                     <img src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg" class="my-modal-img no-photo-link">
-                                    <form action="{{ route('messages.add') }}" method="post">
+                                    <form class="w-100" action="{{ route('messages.add') }}" method="post">
                                         @csrf
                                         @method("post")
                                         <div class="input-group">
