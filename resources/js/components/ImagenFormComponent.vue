@@ -57,7 +57,13 @@
                     maxFiles: 1,
                     acceptedFiles: "image/*",
                     dictDefaultMessage: "Arrastre y suelte su imagen o haga click aquí...",
-                    dictInvalidFileType: "No puede subir archivos de este tipo"
+                    dictInvalidFileType: "No puede subir archivos de este tipo",
+                    init: function() {
+                        this.on("maxfilesexceeded", function(file) {
+                                this.removeAllFiles();
+                                this.addFile(file);
+                        });
+                    }  
                 },
                 errors: {}
             }

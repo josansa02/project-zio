@@ -5522,7 +5522,13 @@ __webpack_require__.r(__webpack_exports__);
         maxFiles: 1,
         acceptedFiles: "image/*",
         dictDefaultMessage: "Arrastre y suelte su imagen o haga click aquí...",
-        dictInvalidFileType: "No puede subir archivos de este tipo"
+        dictInvalidFileType: "No puede subir archivos de este tipo",
+        init: function init() {
+          this.on("maxfilesexceeded", function (file) {
+            this.removeAllFiles();
+            this.addFile(file);
+          });
+        }
       },
       errors: {}
     };
@@ -5837,7 +5843,13 @@ __webpack_require__.r(__webpack_exports__);
         maxFiles: 1,
         acceptedFiles: "image/*",
         dictDefaultMessage: "Arrastre y suelte su imagen o haga click aquí...",
-        dictInvalidFileType: "No puede subir archivos de este tipo"
+        dictInvalidFileType: "No puede subir archivos de este tipo",
+        init: function init() {
+          this.on("maxfilesexceeded", function (file) {
+            this.removeAllFiles();
+            this.addFile(file);
+          });
+        }
       },
       errors: {}
     };
@@ -33722,6 +33734,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container mt-5" }, [
+<<<<<<< HEAD
     _vm.mostrar
       ? _c("div", { staticClass: "row justify-content-center" }, [
           _c(
@@ -33729,6 +33742,25 @@ var render = function () {
             {
               staticClass:
                 "d-flex flex-column justify-content-center align-items-center gap-2",
+=======
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8 row gap-2" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("h2", [
+          _vm._v("Formulario de petición de rehabilitación de cuenta"),
+        ]),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            attrs: { method: "POST" },
+            on: {
+              submit: function ($event) {
+                $event.preventDefault()
+                return _vm.enviarPeticion()
+              },
+>>>>>>> b02b7baa4043f4c2dbd5fc96f965fa1fb2e6d774
             },
             [
               _vm._m(0),

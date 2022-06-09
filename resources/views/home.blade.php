@@ -200,7 +200,7 @@
         var input = document.getElementById(id1);
         var boton = document.getElementById(id2);
         boton.disabled = true;
-        if (input.value != ""){            
+        if (input.value != "" && input.value.length <= 50){            
             boton.disabled = false;
         }
     }
