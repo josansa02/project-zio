@@ -5634,8 +5634,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get(this.ruta_getvotos).then(function (response) {
-        console.log(response.data);
-
         for (var i = 0; i < response.data.length; i++) {
           if (response.data[i].img_id == _this2.img_id && response.data[i].user_id == _this2.user_id) {
             _this2.mostrar = false;
@@ -33703,7 +33701,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "container mt-3" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-8 row gap-2" }, [
         _vm._m(0),
