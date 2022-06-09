@@ -19,6 +19,12 @@ class PeticionController extends Controller
         return view("peticion");
     }
 
+    // Función que recoge a todas las peticiones
+    public function getAll()
+    {
+        return json_encode(Petitions::all());
+    }
+
     /**
      * Show the form for creating a new resource.
      *

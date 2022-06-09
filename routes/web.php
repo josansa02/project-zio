@@ -51,6 +51,8 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
 
 Auth::routes();
 
+Route::get("/getpeticiones", [PeticionController::class, 'getAll']);
+
 Route::group(['middleware' => ['disabled', 'auth']], function () {
     Route::get('/petition', [PeticionController::class, 'index'])->name('petition');
     Route::resource("/peticiones", PeticionController::class);

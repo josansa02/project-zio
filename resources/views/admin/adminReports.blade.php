@@ -78,7 +78,8 @@
                                             @endforeach  
                                         </td>
                                         <td> {{$report->reason}}  </td>
-                                        <td> 
+                                        <div>
+                                            <td> 
                                             <form class="swal-confirmar-borrar" action="{{route('delete.report', $report->id)}}" method="post">
                                                 @csrf
                                                 @method("delete")
@@ -107,6 +108,7 @@
                                                 @endif
                                             @endforeach 
                                         </td>
+                                        </div>
                                     </tr>
                                 @endforeach
         

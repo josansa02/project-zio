@@ -5685,13 +5685,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       unban_reason: "",
+      mostrar: true,
       errors: {}
     };
   },
+  props: ["user_id"],
   methods: {
     enviarPeticion: function enviarPeticion() {
       var _this = this;
@@ -5699,6 +5712,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.post("peticiones", {
         unban_reason: this.unban_reason
       }).then(function (response) {
+        _this.mostrar = false;
         Swal.fire('Petición enviada', 'Has enviado tu petición de rehabilitación de cuenta, ahora debes esperar a que los administradores la revisen y tomen una decisión', 'success');
       })["catch"](function (error) {
         if (error.response.status === 422) {
@@ -5709,6 +5723,19 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.unban_reason = "";
     }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    axios.get("getpeticiones").then(function (response) {
+      _this2.mostrar = true;
+
+      for (var i = 0; i < response.data.length; i++) {
+        if (response.data[i].user_id == _this2.user_id) {
+          _this2.mostrar = false;
+        }
+      }
+    });
   }
 });
 
@@ -33694,76 +33721,91 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-<<<<<<< HEAD
   return _c("div", { staticClass: "container mt-5" }, [
-=======
-  return _c("div", { staticClass: "container mt-3" }, [
->>>>>>> 8e7f3ebc6572d765926f9ba07ab345f73a96ae4a
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8 row gap-2" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("h2", [
-          _vm._v("Formulario de petición de rehabilitación de cuenta"),
-        ]),
-        _vm._v(" "),
-        _c(
-          "form",
-          {
-            attrs: { method: "POST" },
-            on: {
-              submit: function ($event) {
-                $event.preventDefault()
-                return _vm.enviarPeticion()
-              },
+    _vm.mostrar
+      ? _c("div", { staticClass: "row justify-content-center" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "d-flex flex-column justify-content-center align-items-center gap-2",
             },
-          },
-          [
-            _c("div", { staticClass: "py-4" }, [
-              _c("textarea", {
-                directives: [
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("h2", [
+                _vm._v("Formulario de petición de rehabilitación de cuenta"),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-75" }, [
+                _c(
+                  "form",
                   {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.unban_reason,
-                    expression: "unban_reason",
+                    attrs: { method: "POST" },
+                    on: {
+                      submit: function ($event) {
+                        $event.preventDefault()
+                        return _vm.enviarPeticion()
+                      },
+                    },
                   },
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  rows: "5",
-                  placeholder: "Escriba aquí su petición",
-                  maxlength: "140",
-                },
-                domProps: { value: _vm.unban_reason },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.unban_reason = $event.target.value
-                  },
-                },
-              }),
-              _vm._v(" "),
-              _vm.errors && _vm.errors.unban_reason
-                ? _c("div", { staticClass: "alert alert-danger mt-1" }, [
-                    _vm._v(
-                      "\n                        Debe completar este campo\n                    "
-                    ),
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "mt-2 btn btn-primary swal-peticion-enviada",
-                attrs: { type: "submit", value: "Enviar peticion" },
-              }),
-            ]),
-          ]
-        ),
-      ]),
-    ]),
+                  [
+                    _c("div", { staticClass: "py-4" }, [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.unban_reason,
+                            expression: "unban_reason",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          rows: "5",
+                          placeholder: "Escriba aquí su petición",
+                          maxlength: "140",
+                        },
+                        domProps: { value: _vm.unban_reason },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.unban_reason = $event.target.value
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _vm.errors && _vm.errors.unban_reason
+                        ? _c(
+                            "div",
+                            { staticClass: "alert alert-danger mt-1" },
+                            [
+                              _vm._v(
+                                "\n                            Debe completar este campo\n                        "
+                              ),
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "mt-2 btn btn-form swal-peticion-enviada",
+                        attrs: { type: "submit", value: "Enviar peticion" },
+                      }),
+                    ]),
+                  ]
+                ),
+              ]),
+            ]
+          ),
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.mostrar
+      ? _c("div", { staticClass: "row justify-content-center" }, [_vm._m(1)])
+      : _vm._e(),
   ])
 }
 var staticRenderFns = [
@@ -33780,6 +33822,23 @@ var staticRenderFns = [
       _vm._v(
         " \n                Su cuenta ha sido suspendida, rellene el siguiente formulario de petición de rehabilitación de cuenta si lo desea\n            "
       ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex justify-content-center gap-2" }, [
+      _c("h5", { staticClass: "d-flex align-items-center gap-2" }, [
+        _c(
+          "span",
+          { staticClass: "material-symbols-outlined text-danger fs-1" },
+          [_vm._v(" report ")]
+        ),
+        _vm._v(
+          " \n                Su mensaje ha sido enviado, espere a que los administradores revisen la petición\n            "
+        ),
+      ]),
     ])
   },
 ]

@@ -20,6 +20,10 @@ body {
     transition: 0.6s ease;
 }
 
+.dropdown .btn:focus {
+    box-shadow: none !important;
+}
+
 /* Main */
 main {
     color: black;

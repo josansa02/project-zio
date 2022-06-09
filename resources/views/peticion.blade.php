@@ -4,6 +4,6 @@
 
 @section('content')
 
-<peticionform-component></peticionform-component>
+<peticionform-component :user_id="{{json_encode(auth()->user()->id)}}"></peticionform-component>
 
 @endsection

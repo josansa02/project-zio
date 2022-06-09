@@ -56,28 +56,34 @@
 @else 
 
 <!-- Lista de filtros -->
-<div class="dropdown">
-    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-      Filtrar
-    </a>
-  
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <li><a class="dropdown-item" href="{{route('home')}}?f=up">Más votadas</a></li>
-      <li><a class="dropdown-item" href="{{route('home')}}?f=now">Ultimas actualizaciones</a></li>
-      <li><a class="dropdown-item" href="{{route('home')}}">Todas</a></li>
-    </ul>
+<div class="d-flex justify-content-center align-items-center gap-1 mt-3">
+    <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-1">
+        <div class="dropdown">
+            <a class="btn btn-form dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Filtrar
+            </a>
+        
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="{{route('home')}}?f=up">Más votadas</a></li>
+            <li><a class="dropdown-item" href="{{route('home')}}?f=now">Ultimas imágenes</a></li>
+            <li><a class="dropdown-item" href="{{route('home')}}">Todas</a></li>
+            </ul>
+        </div>
+
+        <!-- Muestra por lo que se filtra -->
+        @if (isset($_REQUEST["f"]))
+            <div>
+                @if ($_REQUEST["f"] == "up")
+                    Filtro: Más votadas
+                @else 
+                    Filtro: Últimas imágenes         
+                @endif
+            </div>
+        @endif 
+    </div>
 </div>
 
-<!-- Muestra por lo que se filtra -->
-@if (isset($_REQUEST["f"]))
-    @if ($_REQUEST["f"] == "up")
-        Filtro: Más votadas
-    @else 
-        Filtro: Últimas actualizaciones         
-    @endif
-@endif 
-
-<main class="container mt-3 mb-3 py-4">
+<main class="container mb-3 py-4">
     @foreach ($images as $imagen)
         <div class="main-block bg-white d-flex flex-column justify-content-between">
             <div class="px-3 imagen-titulo d-flex justify-content-center align-items-center"> <h4 class="text-center m-0"> {{$imagen[0]->title}} </h4> </div>
@@ -126,10 +132,10 @@
                             </div>
                         </div>
                         @if ($imagen[1]->id != auth()->user()->id)
-                        <div class="modal-footer justify-content-between">
-                            <div class="d-flex align-items-center gap-1">
+                        <div class="modal-footer justify-content-center">
+                            <div class="d-flex align-items-center gap-1 w-100">
                                 <img src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg" class="no-photo-link my-modal-img">
-                                <form action="{{ route('messages.add') }}" method="post">
+                                <form action="{{ route('messages.add') }}" method="post" class="w-100">
                                     @csrf
                                     @method("post")
                                     <div class="input-group">
