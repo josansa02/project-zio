@@ -80,6 +80,17 @@
                                             </form>
                                         </td>
                                         <td> 
+                                            @foreach ($images as $image)
+                                                @if ($image->id == $report->img_id)
+                                                    <form class="swal-confirmar-borrar-img" action="{{route('delete.img', $image->id)}}" method="post">
+                                                        @csrf
+                                                        @method("delete")
+                                                        <input type="submit" class="btn btn-danger" value="Eliminar imagen">
+                                                    </form>
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td> 
                                             @foreach ($users as $user)
                                                 @if ($user->id == $report->owner_id)
                                                     <form class="swal-confirmar-banear" action="{{route('enabled.user', $user->id)}}" method="post">
@@ -155,6 +166,33 @@
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Si, deshabilitar',
+            cancelButtonText: 'No, cancelar',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+</script>
+
+<script>
+    $('.swal-confirmar-borrar-img').submit(function(e){
+        e.preventDefault();
+        const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger me-2'
+        },
+        buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: '¿Estás seguro?',
+            text: "¿Seguro que quieres eliminar está imagen? Se notificará a su dueño.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Si, eliminar',
             cancelButtonText: 'No, cancelar',
             reverseButtons: true,
         }).then((result) => {

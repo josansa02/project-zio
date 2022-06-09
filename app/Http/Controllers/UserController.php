@@ -22,24 +22,29 @@ class UserController extends Controller
         session_start();
         $user = User::where(['name' => $name])->get()->first();
         if ($user) {
-            $img = Image::where(['user_id' => $user->id])->get();
-            $imagenes = [];
-    
-            $getReportedImg = Report::select("img_id")->where(['reporter_id' => Auth::user()->id])->get();
-            $filterImg = [];
-    
-            foreach ($getReportedImg as $id) {
-                $filterImg[] = $id->img_id;
-            }
-    
-            foreach ($img as $image) {
-                if (!in_array($image->id, $filterImg)) {
-                    $imagenes[] = [$image, Vote::select()->where(['img_id' => $image->id])->count()];
+            if (!$user->role) {
+                $img = Image::where(['user_id' => $user->id])->get();
+                $imagenes = [];
+        
+                $getReportedImg = Report::select("img_id")->where(['reporter_id' => Auth::user()->id])->get();
+                $filterImg = [];
+        
+                foreach ($getReportedImg as $id) {
+                    $filterImg[] = $id->img_id;
                 }
+        
+                foreach ($img as $image) {
+                    if (!in_array($image->id, $filterImg)) {
+                        $imagenes[] = [$image, Vote::select()->where(['img_id' => $image->id])->count()];
+                    }
+                }
+        
+                $nMensajes = Message::where(['owner_id' => Auth::user()->id])->count();
+                return view("galeria", compact('imagenes' ,'user', 'nMensajes'));            
+            } else {
+                $_SESSION["userNotFound"] = "Usuario no encontrado";
+                return redirect()->back();
             }
-    
-            $nMensajes = Message::where(['owner_id' => Auth::user()->id])->count();
-            return view("galeria", compact('imagenes' ,'user', 'nMensajes'));
         } else {
             $_SESSION["userNotFound"] = "Usuario no encontrado";
             return redirect()->back();
@@ -147,14 +152,29 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        $details = [
-            'title' => 'Se ha eliminado su cuenta de ZIO',
-            'body' => 'disculpe',
-        ];
+        if (!$user->role) {
+            if ($user->profile_img != 'defaultprofileimg.svg') {
+                unlink("../public/img/profileIMG/" . $user->profile_img);
+            }
+            
+            $images = Image::where(['user_id' => $user->id])->get();
+            foreach ($images as $image) {
+                unlink("../public/img/usersIMG/" . $image->img_name);
+            }
+            
+            $details = [
+                'titulo' => 'Su cuenta de ZIO ha sido eliminada',
+                'cuerpo' => 'Hola, ' . $user->name . '. Los administradores han decidido eliminar su cuenta de la plataforma.',
+            ];
+    
+            Mail::to($user->email)->send(new SendMail($details));
 
-        Mail::to($user->email)->send(new SendMail($details));
-        $user->delete();
-        return redirect()->back();
+            $user->delete();
+            return redirect()->route('usersAdmin');
+        } else {
+            $user->delete();
+            return redirect()->route('admins');    
+        }
     }
 
     public function changeEnabled(User $user)
@@ -162,9 +182,23 @@ class UserController extends Controller
         if ($user->enabled) {
             $user->enabled = false;
             Report::where(['owner_id' => $user->id])->delete();
+            
+            $details = [
+                'titulo' => 'Su cuenta de ZIO ha sido vetada permanentemente',
+                'cuerpo' => 'Hola, ' . $user->name . '. Por motivos de seguridad, los administradores han decidido vetar su cuenta de la plataforma indefinidamente, para redactar una reclamación acceda a su perfil en la plataforma y envíe una petición de rehabilitación de su cuenta.',
+            ];
+    
+            Mail::to($user->email)->send(new SendMail($details));
         } else {
             $user->enabled = true;
             Petitions::where(['user_id' => $user->id])->delete();
+
+            $details = [
+                'titulo' => 'Su cuenta de ZIO ha sido habilitada',
+                'cuerpo' => 'Hola, ' . $user->name . '. Los administradores han decidido rehabilitar su cuenta de ZIO, bienvenido de nuevo y tenga cuidado.',
+            ];
+
+            Mail::to($user->email)->send(new SendMail($details));
         }
 
         $user->update();
