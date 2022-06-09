@@ -7,7 +7,7 @@ use App\Models\Message;
 use App\Models\Report;
 use App\Models\User;
 use App\Models\Vote;
-use Illuminate\Http\Request;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -31,7 +31,33 @@ class HomeController extends Controller
     {
         if (!Auth::user()->role) {
             session_start();
-            $img = Image::all();
+            if (isset($_REQUEST["f"])) {
+                if ($_REQUEST["f"] == "up") {
+                    $allImg = Image::all();
+                    $votosFiltrar = [];
+                    $img = [];
+
+                    foreach ($allImg as $image) {
+                        $votosFiltrar[] = ['image' => $image, 'votes' => Vote::where(['img_id' => $image->id])->count()];
+                    }
+
+                    usort($votosFiltrar, function($a, $b) {
+                        return $b['votes'] <=> $a['votes'];
+                    });
+
+                    foreach ($votosFiltrar as $image) {
+                        $img[] = $image['image'];
+                    }
+                }
+                if ($_REQUEST["f"] == "now") {
+                    $img = Image::orderBy('created_at', 'DESC')->get();
+                }
+                if ($_REQUEST["f"] == "all") {
+                    return redirect()->route('home');
+                }
+            } else {
+                $img = Image::all();
+            }
             $images = [];
             $getReportedImg = Report::select("img_id")->where(['reporter_id' => Auth::user()->id])->get();
             $filterImg = [];
@@ -63,7 +89,19 @@ class HomeController extends Controller
     {
         if (!Auth::user()->role) {
             session_start();
-            $img = Image::all();
+            if (isset($_REQUEST["f"])) {
+                if ($_REQUEST["f"] == "up") {
+                    $img = Image::all();
+                }
+                if ($_REQUEST["f"] == "now") {
+                    $img = Image::orderBy('created_at');
+                }
+                if ($_REQUEST["f"] == "all") {
+                    return redirect()->route('home');
+                }
+            } else {
+                $img = Image::all();
+            }
             $images = [];
             $getReportedImg = Report::select("img_id")->where(['reporter_id' => Auth::user()->id])->get();
             $filterImg = [];
@@ -89,6 +127,11 @@ class HomeController extends Controller
         } else {
             return redirect()->route('usersAdmin');
         }
+    }
+
+    public function returnHome()
+    {
+        return redirect()->route('home');
     }
 
     public function ayuda()
