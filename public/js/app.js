@@ -33694,11 +33694,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-<<<<<<< HEAD
   return _c("div", { staticClass: "container mt-5" }, [
-=======
-  return _c("div", { staticClass: "container mt-3" }, [
->>>>>>> 8e7f3ebc6572d765926f9ba07ab345f73a96ae4a
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-8 row gap-2" }, [
         _vm._m(0),

@@ -188,38 +188,38 @@
 
             <div class="modal fade" id="modalReportar{{$imagen[0]->id}}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalToggleLabel2">Reportar esta imagen</h5>
-                        <button type="button" class="btn cerrado p-1" data-bs-target="#exampleModal{{$imagen[0]->id}}" data-bs-toggle="modal" onclick="eliminarclass()">
-                            <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
-                        </button>
-                    </div>
-                    <form action="{{route('reports.add')}}" method="post">
-                        @csrf
-                        @method("post")
-                        <input type="hidden" name="img_id" value="{{$imagen[0]->id}}">
-                        <input type="hidden" name="owner_id" value="{{$imagen[0]->user_id}}">
-                        <input type="hidden" name="name" value="{{$user->name}}">
-                        <div class="modal-body row justify-content-center">
-                            <div class="col-10 py-4">
-                                <div class="form-floating">
-                                    <select class="form-select" name="report" id="report" aria-label="Report select">
-                                    <option value="Spam">Spam</option>
-                                    <option value="Desnudos o actividad sexual">Desnudos o actividad sexual</option>
-                                    <option value="Lenguajes o símbolos que inciten al odio">Lenguajes o símbolos que inciten al odio</option>
-                                    <option value="Violencia">Violencia</option>
-                                    <option value="Bullying o acoso">Bullying o acoso</option>
-                                    </select>
-                                    <label for="floatingSelect">Seleccione el motivo del reporte</label>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalToggleLabel2">Reportar esta imagen</h5>
+                            <button type="button" class="btn cerrado p-1" data-bs-target="#exampleModal{{$imagen[0]->id}}" data-bs-toggle="modal" onclick="eliminarclass()">
+                                <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
+                            </button>
+                        </div>
+                        <form action="{{route('reports.add')}}" method="post">
+                            @csrf
+                            @method("post")
+                            <input type="hidden" name="img_id" value="{{$imagen[0]->id}}">
+                            <input type="hidden" name="owner_id" value="{{$imagen[0]->user_id}}">
+                            <input type="hidden" name="name" value="{{$user->name}}">
+                            <div class="modal-body row justify-content-center">
+                                <div class="col-10 py-4">
+                                    <div class="form-floating">
+                                        <select class="form-select" name="report" id="report" aria-label="Report select">
+                                        <option value="Spam">Spam</option>
+                                        <option value="Desnudos o actividad sexual">Desnudos o actividad sexual</option>
+                                        <option value="Lenguajes o símbolos que inciten al odio">Lenguajes o símbolos que inciten al odio</option>
+                                        <option value="Violencia">Violencia</option>
+                                        <option value="Bullying o acoso">Bullying o acoso</option>
+                                        </select>
+                                        <label for="floatingSelect">Seleccione el motivo del reporte</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer d-flex justify-content-center">
-                        <button class="btn btn-danger" data-bs-target="#exampleModal{{$imagen[0]->id}}">Enviar reporte</button>
-                        </div>
-                    </form>
-                </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                            <button class="btn btn-danger" data-bs-target="#exampleModal{{$imagen[0]->id}}">Enviar reporte</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         @endforeach
@@ -249,7 +249,7 @@
             var input = document.getElementById(id1);
             var boton = document.getElementById(id2);
             boton.disabled = true;
-            if (input.value != ""){            
+            if (input.value != "" && input.value.length <= 50){            
                 boton.disabled = false;
             }
         }
