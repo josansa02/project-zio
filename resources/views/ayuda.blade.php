@@ -5,7 +5,7 @@
 
 @extends("layouts.app")
 
-@section("title", "ZIO - Ayuda")
+@section("title", "Ayuda - ZIO")
 
 @section("styles")
 <link rel="stylesheet" href="{{ asset('css/ayuda.css') }}">
@@ -37,11 +37,11 @@
                 </h2>
 
               <!-- Acordeón 1 -->
-              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <p> Para reportar una imagen debe seguir estos pasos:</p>
                         <ol>
-                            <li> Desde la página principal hacer click en la imagen </li>
+                            <li> Pulsar la imagen para que se muestre la ventana emergente </li>
                             <li> <div class="d-flex align-items-center gap-1"> <span>Pulsar en el botón</span> <span class="material-symbols-outlined text-danger">report</span> </div> </li>
                             <li> Este mostrará una ventana desde la que podrá seleccionar la causa del reporte y enviarlo </li>
                         </ol>
@@ -58,7 +58,22 @@
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        <p> Para comentar una imagen debe seguir estos pasos:</p>
+                        <ol>
+                            <li> Pulsar la imagen para que se muestre la ventana emergente </li>
+                            <li> 
+                                <div class="d-flex align-items-center gap-2"> 
+                                    <span>Escribir el comentario en el bloque</span> 
+                                    <span>  
+                                        <div class="input-group">
+                                            <input type="text" class="form-control text-comment" name="message" disabled>
+                                            <input class="btn btn-comment" disabled type="submit" value="Comentar">
+                                        </div>
+                                    </span> 
+                                </div> 
+                            </li>
+                            <li> Pulsar en el botón de comentar </li>
+                        </ol>
                     </div>
                 </div>
             </div>
@@ -72,7 +87,12 @@
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        <p> Para cambiar el correo asociado debe seguir estos pasos:</p>
+                        <ol>
+                            <li> Pulsar en la imagen de perfil para que se muestre el desplegable con las secciones </li>
+                            <li> <span class="d-flex align-items-center gap-1"> Seleccionar <span class="d-flex align-items-center gap-2"> <strong>Editar perfil</strong> <span class="material-symbols-outlined text-black"> settings </span> </span> </span> </li>
+                            <li> Este mostrará una ventana desde la que podrá seleccionar la causa del reporte y enviarlo </li>
+                        </ol>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 @extends("layouts.app")
 
-@section("title", "ZIO - Configuración")
+@section("title", "Configuración - ZIO")
 
 @section("styles")
 <link rel="stylesheet" href="{{ asset('css/editProfile.css') }}">

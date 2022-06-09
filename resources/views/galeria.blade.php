@@ -241,9 +241,6 @@
         </div>
     </div>
 
-    {{$_SESSION["nMensajes"]}}
-    {{$nMensajes}}
-
     <!-- Sección de scripts de la página -->
     @section('js')
 

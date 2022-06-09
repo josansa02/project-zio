@@ -56,7 +56,7 @@ class UserController extends Controller
 
         foreach ($users as $user) {
             $comparacion = strpos(strtolower($user->name), strtolower($filtro)); // No distingue entre mayúsculas y minúsculas
-            if ($comparacion === 0) {
+            if ($comparacion === 0 && $user->role == 0) {
                 $usersBuscados[] = $user;
             }
         }

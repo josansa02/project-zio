@@ -51,7 +51,7 @@
 
 @if (count($images) == 0)
     <main class="container d-flex justify-content-center align-items-center mt-5">
-        <h3 class="text-center">Aún no se han subido imágenes</h3>
+        <h3 class="text-center text-blue">Aún no se han subido imágenes</h3>
     </main>
 @else 
 <main class="container mt-3 mb-3 py-4">

@@ -1,6 +1,6 @@
 @extends("layouts.app")
 
-@section("title", "Galería personal - ZIO")
+@section("title", "Mensajes - ZIO")
 
 @section("styles")
 <link rel="stylesheet" href="{{ asset('css/galeria.css') }}">
