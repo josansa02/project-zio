@@ -55,6 +55,7 @@
     </main>
 @else 
 
+<!-- Lista de filtros -->
 <div class="dropdown">
     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
       Filtrar
@@ -67,6 +68,7 @@
     </ul>
 </div>
 
+<!-- Muestra por lo que se filtra -->
 @if (isset($_REQUEST["f"]))
     @if ($_REQUEST["f"] == "up")
         Filtro: Más votadas
