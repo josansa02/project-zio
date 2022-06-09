@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class CheckAdmin
+class CheckDisabled
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,12 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->user()->role) {
-            return redirect()->route('usersAdmin');
+        if (auth()->user()->enabled) {
+            if (auth()->user()->role) {
+                return redirect()->route('usersAdmin');
+            } else {
+                return redirect()->route('home');
+            }
         }
 
         return $next($request);
