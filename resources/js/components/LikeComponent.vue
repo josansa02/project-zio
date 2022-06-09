@@ -44,7 +44,6 @@
             comprobarTipo() {
                 axios.get(this.ruta_getvotos)
                 .then(response => {
-                    console.log(response.data);
                     for (let i = 0; i < response.data.length; i++) {
                         if(response.data[i].img_id == this.img_id && response.data[i].user_id == this.user_id) {
                             this.mostrar = false;

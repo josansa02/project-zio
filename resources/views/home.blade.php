@@ -54,6 +54,29 @@
         <h3 class="text-center text-blue">Aún no se han subido imágenes</h3>
     </main>
 @else 
+
+<!-- Lista de filtros -->
+<div class="dropdown">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+      Filtrar
+    </a>
+  
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <li><a class="dropdown-item" href="{{route('home')}}?f=up">Más votadas</a></li>
+      <li><a class="dropdown-item" href="{{route('home')}}?f=now">Ultimas actualizaciones</a></li>
+      <li><a class="dropdown-item" href="{{route('home')}}">Todas</a></li>
+    </ul>
+</div>
+
+<!-- Muestra por lo que se filtra -->
+@if (isset($_REQUEST["f"]))
+    @if ($_REQUEST["f"] == "up")
+        Filtro: Más votadas
+    @else 
+        Filtro: Últimas actualizaciones         
+    @endif
+@endif 
+
 <main class="container mt-3 mb-3 py-4">
     @foreach ($images as $imagen)
         <div class="main-block bg-white d-flex flex-column justify-content-between">
