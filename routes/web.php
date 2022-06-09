@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Route::group(['middleware' => 'enabled'], function () {
+Route::group(['middleware' => ['enabled', 'auth']], function () {
     
     Route::put('usuarios/edit/{id}', [UserController::class, "update"])->name("usuarios.edit");
     Route::post('usuarios/edit/profileimg/{id}', [UserController::class, "updateProfileImg"])->name("usuarios.edit.profileimg.update");
@@ -36,7 +36,7 @@ Route::group(['middleware' => 'enabled'], function () {
 
 });
 
-Route::group(['middleware' => 'admin'], function () {
+Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get("/users", [UserController::class, 'users'])->name('usersAdmin');
     Route::get("/reports", [ReportController::class, 'reports'])->name('usersReports');
     Route::get("/petitions", [PeticionController::class, 'petitions'])->name('usersPetitions');
@@ -50,6 +50,7 @@ Route::group(['middleware' => 'admin'], function () {
 
 Auth::routes();
 
-Route::get('/petition', [PeticionController::class, 'index'])->name('petition');
-Route::resource("/peticiones", PeticionController::class);
-
+Route::group(['middleware' => ['disabled', 'auth']], function () {
+    Route::get('/petition', [PeticionController::class, 'index'])->name('petition');
+    Route::resource("/peticiones", PeticionController::class);
+});
