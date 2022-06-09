@@ -22,7 +22,7 @@
                     <div class="row justify-content-center align-items-center">
                         <table class="col-10">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th>Foto de perfil</th>
                                     <th>Nombre de usuario</th>
                                     <th>Email</th>
@@ -30,8 +30,8 @@
                             </thead>
                             <tbody>
                                 @foreach ($users as $user)
-                                    <tr>
-                                        <td> <img style="width: 60px" src="{{asset('/img/profileIMG/' . $user->profile_img)}}" alt="Imagen de perfil del usuario {{$user->name}}"> </td>
+                                    <tr class="text-center">
+                                        <td> <div class="d-flex justify-content-center"> <img style="width: 60px" src="{{asset('/img/profileIMG/' . $user->profile_img)}}" alt="Imagen de perfil del usuario {{$user->name}}"> </div> </td>
                                         <td> {{$user->name}} </td>
                                         <td> {{$user->email}} </td>
                                         <td> 

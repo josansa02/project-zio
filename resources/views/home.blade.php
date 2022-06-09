@@ -13,7 +13,7 @@
 <!-- Muestra un alerta que infrme que un reporte ha sido llevado a cabo tras su realización -->
 @if (isset($_SESSION["report"]))
 <div class="row justify-content-center fixed-bottom">
-    <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show w-50" role="alert">
         <strong>{{$_SESSION["report"]}}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
@@ -26,7 +26,7 @@
 <!-- Muestra un alerta que informe que un mensaje enviado sobre una imagen -->
 @if (isset($_SESSION["message"]))
 <div class="row justify-content-center fixed-bottom">
-    <div class="alert alert-primary alert-dismissible fade show w-25" role="alert">
+    <div class="alert alert-primary alert-dismissible fade show w-50" role="alert">
         <strong>{{$_SESSION["message"]}}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
@@ -39,7 +39,7 @@
 <!-- Muestra un alerta si no encuentra el usuario que se busca -->
 @if (isset($_SESSION["userNotFound"]))
 <div class="row justify-content-center fixed-bottom">
-    <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show w-50" role="alert">
         <strong>{{$_SESSION["userNotFound"]}}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
@@ -95,9 +95,9 @@
                         </div>
                         <div class="mt-3 mb-3 px-3">
                             <div class="d-flex align-items-center gap-2"> 
-                                <div class="d-flex align-items-center gap-2">
+                                <div class="d-flex align-items-center gap-1">
                                     <a href="{{route('gallery', $imagen[1]->name)}}" class="imagen_modal_usu"> <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid my-modal-img"> </a>
-                                    <p class="m-0"> <strong> {{$imagen[1]->name}} </strong> </p>
+                                    <p class="m-0"><strong>{{$imagen[1]->name}}:</strong></p>
                                 </div>
                                 <p class="m-0"> {{$imagen[0]->footer}} </p>
                             </div>
@@ -110,7 +110,7 @@
                                     @csrf
                                     @method("post")
                                     <div class="input-group">
-                                        <input type="text" class="form-control text-comment" onkeyup="comprobar('message{{$imagen[0]->id}}', 'comentar{{$imagen[0]->id}}')" name="message" id="message{{$imagen[0]->id}}">
+                                        <input type="text" class="form-control text-comment" onkeyup="comprobar('message{{$imagen[0]->id}}', 'comentar{{$imagen[0]->id}}')" name="message" id="message{{$imagen[0]->id}}" maxlength="150">
                                         <input type="hidden" name="img_id" id="img_id" value="{{$imagen[0]->id}}">
                                         <input type="hidden" name="owner_id" id="owner_id" value="{{$imagen[0]->user_id}}">
                                         <input class="btn btn-comment" id="comentar{{$imagen[0]->id}}" disabled type="submit" value="Comentar">

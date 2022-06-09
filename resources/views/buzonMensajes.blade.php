@@ -3,7 +3,7 @@
 @section("title", "Mensajes - ZIO")
 
 @section("styles")
-<link rel="stylesheet" href="{{ asset('css/galeria.css') }}">
+<link rel="stylesheet" href="{{ asset('css/buzonMensajes.css') }}">
 @endsection
 
 
@@ -31,7 +31,9 @@
     <div class="card">
         <ul class="list-group list-group-flush">
             <li class="list-group-item align-items-center d-flex justify-content-center gap-3">
-                Mensajes en la bandeja de entrada: {{count($messages)}}
+                <div class="d-flex align-items-center">
+                    <span class="text-dark-purple">Mensajes en la bandeja de entrada</span> <span>: {{count($messages)}}</span>
+                </div>
                 <form action="{{route('messages.delete.all')}}" class="swal-confirmar-borrar-todos" method="POST">
                     @method('DELETE')
                     @csrf
@@ -41,8 +43,10 @@
             <li class="list-group-item">
                 @foreach ($messages as $message)
                     <div class="d-flex align-items-center justify-content-center gap-3 my-3">
-                        <img style="width: 40px" src="{{asset('/img/profileIMG')}}/{{$message[1]->profile_img}}" alt="Foto perfil {{$message[1]->name}}">
-                        <img style="width: 70px; border-radius: 50px" src="{{asset('/img/usersIMG')}}/{{$message[2]->img_name}}" alt="Foto comentada por {{$message[1]->name}}">
+                        <a href="{{route('gallery', $message[1]->name)}}">
+                            <img class="img_usu" src="{{asset('/img/profileIMG')}}/{{$message[1]->profile_img}}" alt="Foto perfil {{$message[1]->name}}">
+                        </a>
+                        <img class="img_imagen" src="{{asset('/img/usersIMG')}}/{{$message[2]->img_name}}" alt="Foto comentada por {{$message[1]->name}}">
                         {{$message[1]->name}}
                         <button class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center gap-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{$i}}">Leer <span class="material-symbols-outlined">local_library </span></button>
                         <form action="{{route('messages.delete', $message[0]->id)}}" class="swal-confirmar-borrar" method="POST">
@@ -50,21 +54,30 @@
                             @csrf
                             <button type="submit" class="btn btn-danger text-white d-flex justify-content-center px-2"><span class="material-symbols-outlined"> delete </span></button>
                         </form>
+
+                        <!-- Modal -->
                         <div class="modal fade" id="exampleModal{{$i}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header gap-3">
                                         <h5 class="modal-title text-center" id="exampleModalLabel">{{$message[2]->title}}</h5>
-                                        <button type="button" class="btn-close m-0 cerrado" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button type="button" class="btn cerrado p-1" data-bs-dismiss="modal" aria-label="Close">
+                                            <span class="d-flex justify-content-center align-items-center material-symbols-outlined">close</span> 
+                                        </button>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="imagen_modal mt-3">
-                                            <img src="{{asset('/img/usersIMG/' . $message[2]->img_name)}}" class="img-fluid">
+                                        <div class="imagen_modal">
+                                            <img src="{{asset('/img/usersIMG/' . $message[2]->img_name)}}" class="img-fluid imagen_usu">
                                         </div>
                                     </div>
                                     <div class="modal-footer justify-content-start">
-                                        <p class="mt-3"> <strong> <img src="{{asset('/img/profileIMG')}}/{{$message[1]->profile_img}}" class="img-fluid imagen_modal_usu"> {{$message[1]->name}}: </strong> </p>
-                                        <p> {{$message[0]->message}} </p>
+                                        <div class="d-flex flex-wrap align-items-center gap-2">
+                                            <a href="{{route('gallery', $message[1]->name)}}">
+                                                <img src="{{asset('/img/profileIMG')}}/{{$message[1]->profile_img}}" class="img-fluid imagen_modal_usu">
+                                            </a>
+                                            <span> <strong>{{$message[1]->name}}:</strong> </span>
+                                            <span> {{$message[0]->message}} </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

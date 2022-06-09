@@ -91,7 +91,7 @@
                         <ol>
                             <li> Pulsar en la imagen de perfil para que se muestre el desplegable con las secciones </li>
                             <li> <span class="d-flex align-items-center gap-1"> Seleccionar <span class="d-flex align-items-center gap-2"> <strong>Editar perfil</strong> <span class="material-symbols-outlined text-black"> settings </span> </span> </span> </li>
-                            <li> Este mostrará una ventana desde la que podrá seleccionar la causa del reporte y enviarlo </li>
+                            <li> Modificar el apartado <strong>Correo</strong>. En caso de que no sea usado por otro usuario habrá finalizado el cambio </li>
                         </ol>
                     </div>
                 </div>
@@ -101,12 +101,24 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingFour">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        ¿Cómo puedo cambiar el correo asociado?
+                        ¿Cómo puedo mirar la bandeja de mensajes?
                     </button>
                 </h2>
                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        <p> Para mirar la bandeja de mensajes debe seguir estos pasos:</p>
+                        <ol>
+                            <li> Pulsar en la imagen de perfil para que se muestre el desplegable con las secciones </li>
+                            <li> <span class="d-flex align-items-center gap-1"> Seleccionar <span class="d-flex align-items-center gap-2"> <strong>Galería personal</strong> <span class="material-symbols-outlined text-black"> home </span> </span> </span> </li>
+                            <li> 
+                                <span class="d-flex align-items-center gap-2">
+                                    Pulsar el botón
+                                    <a type="button" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center w-5">
+                                        <span class="material-symbols-outlined">chat</span>
+                                    </a>  
+                                </span>  
+                            </li>
+                        </ol>
                     </div>
                 </div>
             </div>
@@ -120,7 +132,20 @@
                 </h2>
                 <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        <p> Para subir una imagen debe seguir estos pasos:</p>
+                        <ol>
+                            <li> Pulsar en la imagen de perfil para que se muestre el desplegable con las secciones </li>
+                            <li> <span class="d-flex align-items-center gap-1"> Seleccionar <span class="d-flex align-items-center gap-2"> <strong>Galería personal</strong> <span class="material-symbols-outlined text-black"> home </span> </span> </span> </li>
+                            <li> 
+                                <span class="d-flex align-items-center gap-2">
+                                    Pulsar el botón
+                                    <a type="button" class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center w-5">
+                                        <span class="material-symbols-outlined">add_circle</span>
+                                    </a>  
+                                </span>  
+                            </li>
+                            <li> Rellenar los datos del formulario y adjuntar una imagen </li>
+                        </ol>
                     </div>
                 </div>
             </div>
