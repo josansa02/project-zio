@@ -1,7 +1,7 @@
 # ZIO
 
 <p align="center">
-  <img src="https://github.com/josansa02/project-zio/blob/main/public/img/logo_ZIO.svg" width="50" title="hover text">
+  <img src="https://github.com/josansa02/project-zio/blob/main/public/img/logo_ZIO.svg" width="50" title="Logo ZIO">
 </p>
 
 _ZIO es una plataforma cuyo objetivo se basa en ceder a los usuarios un entorno al que subir sus fotografías._
@@ -70,6 +70,19 @@ php artisan migrate:fresh --seed
 
 _Como hacer deploy_
 
+_Para usar la funcionalidad de envio de correos con la que cuenta la aplicación deberá configurar una cuenta de Google y asignar los datos necesarios en el archivo **.env**_
+
+-EJ- (por cuestiones de seguridad no añadiremos datos reales)
+```
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.googlemail.com
+MAIL_PORT=465
+MAIL_USERNAME=zio.prueba01@gmail.com
+MAIL_PASSWORD=codefromgoogle
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS=zio.prueba01@gmail.com
+MAIL_FROM_NAME=ZIO
+```
 
 ## Construido con 🛠️
 
