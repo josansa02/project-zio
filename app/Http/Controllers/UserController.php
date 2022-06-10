@@ -73,7 +73,11 @@ class UserController extends Controller
     {   
         session_start();
         $user = $id;
-        return view('editProfile', compact('user')); 
+        if ($user->id == auth()->user()->id) {
+            return view('editProfile', compact('user')); 
+        } else {
+            return redirect()->route('usuarios.edit', auth()->user()->id);
+        }
     }
 
     public function update(User $id, Request $request)

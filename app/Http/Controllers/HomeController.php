@@ -85,50 +85,6 @@ class HomeController extends Controller
         }
     }
 
-    public function indexLogin()
-    {
-        if (!Auth::user()->role) {
-            session_start();
-            if (isset($_REQUEST["f"])) {
-                if ($_REQUEST["f"] == "up") {
-                    $img = Image::all();
-                }
-                if ($_REQUEST["f"] == "now") {
-                    $img = Image::orderBy('created_at');
-                }
-                if ($_REQUEST["f"] == "all") {
-                    return redirect()->route('home');
-                }
-            } else {
-                $img = Image::all();
-            }
-            $images = [];
-            $getReportedImg = Report::select("img_id")->where(['reporter_id' => Auth::user()->id])->get();
-            $filterImg = [];
-    
-            foreach ($getReportedImg as $id) {
-                $filterImg[] = $id->img_id;
-            }
-    
-            foreach ($img as $image) {
-                if (!in_array($image->id, $filterImg)) {
-                    $user = User::where(['id' => $image->user_id])->first();
-                    if ($user->enabled) {
-                        $images[] = [$image, $user];
-                    }
-                }
-            }
-    
-            if (!isset($_SESSION["nMensajes"])) {
-                $_SESSION["nMensajes"] = Message::where(['owner_id' => Auth::user()->id])->count();
-            }
-    
-            return view('home', compact('images'));
-        } else {
-            return redirect()->route('usersAdmin');
-        }
-    }
-
     public function returnHome()
     {
         return redirect()->route('home');

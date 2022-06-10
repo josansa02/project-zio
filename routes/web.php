@@ -24,7 +24,7 @@ Route::group(['middleware' => ['enabled', 'auth']], function () {
     Route::get('mensajes/{user}', [MessageController::class, "show"])->name("messages");
     Route::get('galeria/{name}', [UserController::class, "show"])->name("gallery");
     Route::get('galeria/', [HomeController::class, 'returnHome'])->name("gallery.route");
-    Route::get('/', [HomeController::class, 'indexLogin'])->name('index.login');
+    Route::get('/', [HomeController::class, 'returnHome'])->name('index.login');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/help', [HomeController::class, 'ayuda'])->name('help');
     Route::get('/getVotos', [VoteController::class, 'getAll'])->name('get.votos');
