@@ -5508,7 +5508,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       imagenSubida: false,
-      imagenMiniatura: "",
       image: {
         titulo: "",
         pie: "",
@@ -5569,11 +5568,6 @@ __webpack_require__.r(__webpack_exports__);
           Swal.fire('Error', 'No puede subir archivos que no tengan formato de imagen', 'error');
         }
       });
-    }
-  },
-  computed: {
-    imagen: function imagen() {
-      return this.imagenMiniatura;
     }
   }
 });

@@ -43,7 +43,6 @@
         data() {
             return {
                 imagenSubida: false,
-                imagenMiniatura: "",
                 image: {
                     titulo: "",
                     pie: "",
@@ -106,11 +105,6 @@
                         );
                     }
                 });
-            }
-        },
-        computed: {
-            imagen() {
-                return this.imagenMiniatura;
             }
         }
     }
