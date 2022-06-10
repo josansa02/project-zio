@@ -18,13 +18,7 @@
                 <a href="{{route('usersPetitions')}}" class="btn btn-form rounded-pill" role="button">Cuentas suspendidas</a>
             </li>
         
-            <li class="list-group-item">
-                <div class="d-flex justify-content-end align-items-center">
-                    <button type="button" class="btn btn-success d-flex justify-content-center align-items-center gap-1 mb-3" data-bs-toggle="modal" data-bs-target="#adminModal">
-                        <span>Registrar administrador</span> 
-                        <span class="material-symbols-outlined"> person_add </span>
-                    </button>
-                </div>
+            <li class="list-group-item mt-1">
                 @if (count($users) == 0)
                     <main class="container d-flex justify-content-center align-items-center mt-5">
                         <h3 class="text-center">No hay administradores registrados</h3>
@@ -41,10 +35,10 @@
                             <tbody>
                                 @foreach ($users as $user)
                                         <tr class="text-center">
-                                            <td> {{$user->name}} </td>
-                                            <td> {{$user->email}} </td>
+                                            <td class="py-1"> {{$user->name}} </td>
+                                            <td class="py-1"> {{$user->email}} </td>
                                             @if (auth()->user()->id != $user->id)
-                                                <td> 
+                                                <td class="py-1"> 
                                                     <form class="swal-confirmar-borrar" action="{{route('delete.user', $user->id)}}" method="post">
                                                         @csrf
                                                         @method("delete")
@@ -57,6 +51,13 @@
         
                             </tbody>
                         </table>
+
+                        <div class="d-flex justify-content-end align-items-center">
+                            <button type="button" class="btn btn-success d-flex justify-content-center align-items-center gap-1 mb-3" data-bs-toggle="modal" data-bs-target="#adminModal">
+                                <span>Registrar administrador</span> 
+                                <span class="material-symbols-outlined"> person_add </span>
+                            </button>
+                        </div>
                         
                         <div class="d-flex justify-content-center mt-3">
                             {!! $users->links() !!}

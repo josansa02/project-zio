@@ -32,6 +32,14 @@
 }
 
 /* Barra de búsqueda */
+.busqueda-1 {
+    display: none;
+}
+
+.busqueda-2 {
+    display: block;
+}
+
 .barra_busqueda-input input {
     margin: 0;
     border: 0px;
@@ -152,4 +160,15 @@ body::-webkit-scrollbar-thumb
     padding: 5px;
 	background-color: var(--main-purple);
     border-radius: 25px;
+}
+
+/* Media Queries */
+@media all and (min-width: 468px) {
+    .busqueda-1 {
+        display: block;
+    }
+
+    .busqueda-2 {
+        display: none;
+    }
 }

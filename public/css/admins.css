@@ -39,3 +39,21 @@ body {
 label {
     color: var(--main-purple);
 }
+
+/* Paginador */
+.page-link {
+    color: var(--main-purple) !important;
+}
+
+.page-item.active .page-link {
+    background-color: var(--main-purple) !important;
+    color: white !important;
+}
+
+/* Media Queries */
+@media all and (max-width: 578px) {
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}

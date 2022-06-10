@@ -1,6 +1,6 @@
 <template>
     <div>
-        <autocomplete id="autocom"
+        <autocomplete id="autocom" name="autocompletar"
             :url="ruta"
             anchor="name"
             label="Usuarios"
@@ -19,7 +19,7 @@
         props: ["ruta"],
         methods: {
             getData(obj) {
-                console.log(obj);
+                // Recoge los datos del objeto que ha sido autocompletado
             }
         }
     }

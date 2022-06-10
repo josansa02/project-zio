@@ -27,7 +27,8 @@
 
 <body id="bod">
     <div id="app">
-        <nav class="navbar navbar-expand navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand navbar-light d-flex flex-column justify-content-center align-items-center bg-white shadow-sm">
+
             <div class="container d-flex">
                 
                 <a class="navbar-brand d-flex justify-content-center align-items-center gap-2" href="{{ url('/home') }}">
@@ -39,7 +40,7 @@
                 @guest
                     @else
                         @if (auth()->user()->enabled && !auth()->user()->role)
-                            <div class="p-1 bg-main rounded rounded-pill shadow-sm">
+                            <div class="p-1 bg-main rounded rounded-pill shadow-sm busqueda-1">
                                 <div class="input-group d-flex justify-content-center align-items-center">
                                     <search-component class="barra_busqueda-input" :ruta="{{json_encode(asset('usuarios'))}}"></search-component>
                                     <div>
@@ -123,6 +124,18 @@
                     </ul>
                 </div>
             </div>
+
+            @if (auth()->user()->enabled && !auth()->user()->role)
+                <div class="p-1 bg-main rounded rounded-pill shadow-sm busqueda-2 w-75">
+                    <div class="input-group d-flex flex-nowrap justify-content-center align-items-center">
+                        <search-component class="barra_busqueda-input col-10" :ruta="{{json_encode(asset('usuarios'))}}"></search-component>
+                        <div class="col-2 d-flex justify-content-center">
+                            <button name="{{route('gallery.route')}}" id="ruta2" onclick="visitarUsuario2()" type="button" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
+                        </div>
+                    </div>
+                </div>
+            @endif 
+
         </nav>
 
         <div>
@@ -138,6 +151,15 @@
             let ruta = document.getElementById("ruta");
             if (autocom.value != "") {
                 window.location.href = ruta.name + "/" + autocom.value;
+            }
+        }
+
+        function visitarUsuario2() {
+            let autocoms = document.getElementsByName("autocompletar");
+            let autocom = autocoms[1].value;
+            let ruta = document.getElementById("ruta2");
+            if (autocom.value != "") {
+                window.location.href = ruta.name + "/" + autocom;
             }
         }
     </script>

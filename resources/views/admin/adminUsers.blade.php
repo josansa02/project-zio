@@ -17,7 +17,7 @@
                 <a href="{{route('usersReports')}}" class="btn btn-form rounded-pill" role="button">Reportes</a>
                 <a href="{{route('usersPetitions')}}" class="btn btn-form rounded-pill" role="button">Cuentas suspendidas</a>
             </li>
-            <li class="list-group-item">
+            <li class="list-group-item mt-1">
                 @if (count($users) == 0)
                     <main class="container d-flex justify-content-center align-items-center mt-5">
                         <h3 class="text-center">No hay usuarios registrados</h3>
