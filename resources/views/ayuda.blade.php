@@ -26,7 +26,7 @@
 </div>
 @endif
 
-<main class="container mt-3">
+<main class="container my-3">
     <div>
         <div class="accordion" id="accordionExample">
             <div class="accordion-item">
@@ -146,6 +146,129 @@
                             </li>
                             <li> Rellenar los datos del formulario y adjuntar una imagen </li>
                         </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acordeón 6 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseFive">
+                        ¿Cómo puedo votar una fotografía?
+                    </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p> Para votar una imagen debe seguir estos pasos:</p>
+                        <ul>
+                            <li> Desde la galería principal: </li>
+                            <ol>
+                                <li> 
+                                    <span class="d-flex align-items-center gap-1"> 
+                                        Pulsar 
+                                        <span class="d-flex align-items-center gap-2"> 
+                                            <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple no-photo-link">
+                                                recommend
+                                            </span>
+                                        </span> 
+                                    </span> 
+                                </li>
+                                <li> 
+                                    <span class="d-flex align-items-center gap-1">
+                                        Una vez pulsado, aparecerá
+                                        <span class="d-flex align-items-center gap-2">
+                                            <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple">
+                                                check_circle
+                                            </span>
+                                        </span>
+                                        indicando la confirmación del voto
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="d-flex align-items-center gap-1">
+                                        Para retirarlo, pulse de nuevo
+                                        <span class="material-symbols-outlined text-dark-purple">
+                                            check_circle
+                                        </span>
+                                    </span>
+                                </li>
+                            </ol>
+                            <li> Desde la galería personal de un usuario: </li>
+                            <ol>
+                                <li> Previsualizar una imagen </li>
+                                <li> 
+                                    <span class="d-flex align-items-center gap-1"> 
+                                        Pulsar 
+                                        <span class="d-flex align-items-center gap-2"> 
+                                            <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple no-photo-link">
+                                                recommend
+                                            </span>
+                                        </span> 
+                                    </span> 
+                                </li>
+                                <li> 
+                                    <span class="d-flex align-items-center gap-1">
+                                        Una vez pulsado, aparecerá
+                                        <span class="d-flex align-items-center gap-2">
+                                            <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple">
+                                                check_circle
+                                            </span>
+                                        </span>
+                                        indicando la confirmación del voto
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="d-flex align-items-center gap-1">
+                                        Para retirarlo, pulse de nuevo
+                                        <span class="material-symbols-outlined text-dark-purple">
+                                            check_circle
+                                        </span>
+                                    </span>
+                                </li>
+                            </ol>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acordeón 7 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSeven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseFive">
+                        Filtrar imágenes de la galería principal
+                    </button>
+                </h2>
+                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p> 
+                            Dar click sobre el botón 
+                            <a type="button" class="rounded-pill boton-galeria btn bg-dark-purple text-white dropdown-toggle">
+                                Filtrar
+                            </a>
+                            en la galería principal 
+                        </p>
+                        <ul>
+                            <li> El filtro <strong>Más votadas</strong> mostrará las imágenes con mas votos, en orden </li>
+                            <li> El filtro <strong>Últimas imágenes</strong> mostrará las últimas imágenes subidas a la plataforma, en orden </li>
+                            <li> El filtro <strong>Todas</strong> mostrará todas las imágenes </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acordeón 7 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEight">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseFive">
+                        ¿Cómo puedo acceder a la galería de otros usuarios?
+                    </button>
+                </h2>
+                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <ul>
+                            <li> Desde la galería principal, dar click sobre la imagen de perfil de un usuario lo conducirá a su galería </li>
+                            <li> Escribiendo el nombre del usuario que quiera visitar en la barra de búsqueda </li>
+                        </ul>
                     </div>
                 </div>
             </div>

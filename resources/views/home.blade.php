@@ -60,13 +60,13 @@
     <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-1">
         <div class="dropdown">
             <a class="btn btn-form dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-            Filtrar
+                Filtrar
             </a>
         
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="{{route('home')}}?f=up">Más votadas</a></li>
-            <li><a class="dropdown-item" href="{{route('home')}}?f=now">Ultimas imágenes</a></li>
-            <li><a class="dropdown-item" href="{{route('home')}}">Todas</a></li>
+                <li><a class="dropdown-item" href="{{route('home')}}?f=up">Más votadas</a></li>
+                <li><a class="dropdown-item" href="{{route('home')}}?f=now">Ultimas imágenes</a></li>
+                <li><a class="dropdown-item" href="{{route('home')}}">Todas</a></li>
             </ul>
         </div>
 

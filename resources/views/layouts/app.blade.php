@@ -44,7 +44,7 @@
                                 <div class="input-group d-flex justify-content-center align-items-center">
                                     <search-component class="barra_busqueda-input" :ruta="{{json_encode(asset('usuarios'))}}"></search-component>
                                     <div>
-                                        <button name="{{route('gallery.route')}}" id="ruta" onclick="visitarUsuario()" type="button" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
+                                        <button name="{{route('gallery.route')}}" id="ruta" onclick="visitarUsuario()" type="button" class="btn rounded-pill text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
                                     </div>
                                 </div>
                             </div>
@@ -125,15 +125,17 @@
                 </div>
             </div>
 
-            @if (auth()->user()->enabled && !auth()->user()->role)
-                <div class="p-1 bg-main rounded rounded-pill shadow-sm busqueda-2 w-75">
-                    <div class="input-group d-flex flex-nowrap justify-content-center align-items-center">
-                        <search-component class="barra_busqueda-input col-10" :ruta="{{json_encode(asset('usuarios'))}}"></search-component>
-                        <div class="col-2 d-flex justify-content-center">
-                            <button name="{{route('gallery.route')}}" id="ruta2" onclick="visitarUsuario2()" type="button" class="btn text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
+            @if (auth()->user())
+                @if (auth()->user()->enabled && !auth()->user()->role)
+                    <div class="p-1 bg-main rounded rounded-pill shadow-sm busqueda-2 w-75">
+                        <div class="input-group d-flex flex-nowrap justify-content-center align-items-center">
+                            <search-component class="barra_busqueda-input col-10" :ruta="{{json_encode(asset('usuarios'))}}"></search-component>
+                            <div class="col-2 d-flex justify-content-center">
+                                <button name="{{route('gallery.route')}}" id="ruta2" onclick="visitarUsuario2()" type="button" class="btn rounded-pill text-dark-purple d-flex justify-content-center"> <span class="material-symbols-outlined">search</span> </button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif 
             @endif 
 
         </nav>
