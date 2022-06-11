@@ -115,7 +115,7 @@ class ImageController extends Controller
         if (unlink("../public/img/usersIMG/" . $image->img_name)) {
             $details = [
                 'titulo' => 'Su fotografía ha sido eliminada',
-                'cuerpo' => 'Hola, ' . $user->name . '. Los administradores han decidido eliminar su fotografía con título "' . $image->title . '" de la plataforma dado que ha recibiado reportes de otros usuarios, tenga cuidado.',
+                'cuerpo' => 'Hola, ' . $user->name . '. Los administradores han decidido eliminar su fotografía con título "' . $image->title . '" de la plataforma dado que ha recibido reportes de otros usuarios, tenga cuidado.',
             ];
             Mail::to($user->email)->send(new SendMail($details));
 

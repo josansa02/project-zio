@@ -233,6 +233,24 @@
 
             <!-- Acordeón 7 -->
             <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEight">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseFive">
+                        ¿Cómo puedo acceder a la galería de otros usuarios?
+                    </button>
+                </h2>
+                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p> Para acceder a la galería de otros usuarios debe seguir estos pasos:</p>
+                        <ul>
+                            <li> Desde la galería principal, dar click sobre la imagen de perfil de un usuario </li>
+                            <li> Escribiendo el nombre del usuario que quiera visitar en la barra de búsqueda </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acordeón 8 -->
+            <div class="accordion-item">
                 <h2 class="accordion-header" id="headingSeven">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseFive">
                         Filtrar imágenes de la galería principal
@@ -249,25 +267,8 @@
                         </p>
                         <ul>
                             <li> El filtro <strong>Más votadas</strong> mostrará las imágenes con mas votos, en orden </li>
-                            <li> El filtro <strong>Últimas imágenes</strong> mostrará las últimas imágenes subidas a la plataforma, en orden </li>
+                            <li> El filtro <strong>Más recientes</strong> mostrará las últimas imágenes subidas a la plataforma, en orden </li>
                             <li> El filtro <strong>Todas</strong> mostrará todas las imágenes </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Acordeón 7 -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingEight">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseFive">
-                        ¿Cómo puedo acceder a la galería de otros usuarios?
-                    </button>
-                </h2>
-                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <ul>
-                            <li> Desde la galería principal, dar click sobre la imagen de perfil de un usuario lo conducirá a su galería </li>
-                            <li> Escribiendo el nombre del usuario que quiera visitar en la barra de búsqueda </li>
                         </ul>
                     </div>
                 </div>

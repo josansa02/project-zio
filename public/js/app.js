@@ -33525,7 +33525,7 @@ var render = function () {
                     },
                   ],
                   staticClass: "input-form w-100",
-                  attrs: { id: "titulo", type: "text" },
+                  attrs: { id: "titulo", type: "text", maxlength: "20" },
                   domProps: { value: _vm.image.titulo },
                   on: {
                     keyup: _vm.comprobar,
@@ -33566,7 +33566,7 @@ var render = function () {
                     },
                   ],
                   staticClass: "input-form w-100",
-                  attrs: { id: "pie", type: "text" },
+                  attrs: { id: "pie", type: "text", maxlength: "30" },
                   domProps: { value: _vm.image.pie },
                   on: {
                     keyup: _vm.comprobar,

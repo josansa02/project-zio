@@ -36,7 +36,7 @@
                             <tbody>
                                 @foreach ($petitions as $petition)
                                     <tr class="text-center">
-                                        <td> 
+                                        <td class="py-1"> 
                                             @foreach ($users as $user)
                                                 @if ($user->id == $petition->user_id)
                                                     <div class="d-flex justify-content-center align-items-center">
@@ -49,8 +49,8 @@
                                             @foreach ($users as $user)
                                                 @if ($user->id == $petition->user_id)
                                                 <div class="d-flex flex-column">
-                                                    {{$user->name}}
-                                                    {{$user->email}}    
+                                                    <span>{{$user->name}}</span>
+                                                    <span>{{$user->email}}</span>    
                                                 </div>
                                                 @endif
                                             @endforeach

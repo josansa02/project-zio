@@ -65,7 +65,7 @@
         
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li><a class="dropdown-item" href="{{route('home')}}?f=up">Más votadas</a></li>
-                <li><a class="dropdown-item" href="{{route('home')}}?f=now">Ultimas imágenes</a></li>
+                <li><a class="dropdown-item" href="{{route('home')}}?f=now">Más recientes</a></li>
                 <li><a class="dropdown-item" href="{{route('home')}}">Todas</a></li>
             </ul>
         </div>
@@ -76,7 +76,7 @@
                 @if ($_REQUEST["f"] == "up")
                     Filtro: Más votadas
                 @else 
-                    Filtro: Últimas imágenes         
+                    Filtro: Más recientes         
                 @endif
             </div>
         @endif 
@@ -86,14 +86,14 @@
 <main class="container mb-3 py-4">
     @foreach ($images as $imagen)
         <div class="main-block bg-white d-flex flex-column justify-content-between">
-            <div class="px-3 imagen-titulo d-flex justify-content-center align-items-center"> <h4 class="text-center m-0"> {{$imagen[0]->title}} </h4> </div>
+            <div class="imagen-titulo d-flex justify-content-center align-items-center"> <h4 class="text-center m-0"> {{$imagen[0]->title}} </h4> </div>
             <div class="imagenes-div">
                 <img src="{{asset('/img/usersIMG/')}}/{{$imagen[0]->img_name}}" alt="{{$imagen[0]->title}}" class="img-fluid imagen_galeria" data-bs-toggle="modal" data-bs-target="#exampleModal{{$imagen[0]->id}}" onclick="eliminarclass()">
             </div>
             <div class="px-3 imagen-pie d-flex justify-content-between align-items-center"> 
                 <div class="d-flex justify-content-center align-items-center gap-2"> 
                     <a href="{{route('gallery', $imagen[1]->name)}}"> <img src="{{asset('/img/profileIMG/')}}/{{$imagen[1]->profile_img}}" class="img-fluid imagen_usu"> </a>
-                    <strong> {{$imagen[1]->name}} </strong>  
+                    <strong> {{$imagen[1]->name}} </strong>
                 </div>
                 @if ($imagen[0]->user_id != auth()->user()->id)
                     <like-component :img_id="{{json_encode($imagen[0]->id)}}" :user_id="{{json_encode(auth()->user()->id)}}" :ruta_votos="{{json_encode(asset('votos'))}}" :ruta_getvotos="{{json_encode(asset('getVotos'))}}"></like-component>

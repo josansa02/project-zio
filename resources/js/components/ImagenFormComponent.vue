@@ -10,7 +10,7 @@
                 <div class="mt-3">
                     <div>
                         <label for="titulo">Título de la imagen: </label> <br>
-                        <input id="titulo" v-model="image.titulo" v-on:keyup="comprobar" type="text" class="input-form w-100">
+                        <input id="titulo" v-model="image.titulo" v-on:keyup="comprobar" type="text" class="input-form w-100" maxlength="20">
                         <div class="alert alert-danger mt-1" v-if="errors && errors.title">
                             {{errors.title[0]}}
                         </div>
@@ -18,7 +18,7 @@
 
                     <div class="mt-3">
                         <label for="pie">Pie de foto: </label> <br>
-                        <input id="pie" v-model="image.pie" v-on:keyup="comprobar" type="text" class="input-form w-100">
+                        <input id="pie" v-model="image.pie" v-on:keyup="comprobar" type="text" class="input-form w-100" maxlength="30">
                         <div class="alert alert-danger mt-1" v-if="errors && errors.footer">
                             {{errors.footer[0]}}
                         </div>

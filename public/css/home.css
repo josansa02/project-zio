@@ -51,6 +51,10 @@ main img:hover {
 .imagen-titulo {
     height: 40px;
 }
+.imagen-titulo h4 {
+    font-weight: bold;
+    font-size: 100%;
+}
 
 .imagen-pie {
     height: 40px;

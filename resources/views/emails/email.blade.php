@@ -10,6 +10,8 @@
     <h1 class="text-center"> {{ $details['titulo'] }} </h1>
     <p> {{ $details['cuerpo'] }} </p>
     <p> Para más información contacte con nosotros a través del siguiente correo: zio.prueba01@gmail.com </p>
-    <img src="" alt="Logo ZIO">
+    <p align="center">
+        <img src="https://i.postimg.cc/xTddwPJJ/Logo-ZIO-4x.png" alt="Logo ZIO">
+    </p>
 </body>
 </html>
