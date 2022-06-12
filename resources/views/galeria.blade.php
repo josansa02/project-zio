@@ -146,19 +146,19 @@
                             <div class="imagen_modal">
                                 <img src="{{asset('/img/usersIMG/' . $imagen[0]->img_name)}}" class="img-fluid">
                             </div>
-                            <div class="d-flex justify-content-between align-items-center mt-3 px-3">
-                                <p class="d-flex align-items-center gap-1"> 
+                            <div class="d-flex justify-content-between align-items-center px-3">
+                                <p class="d-flex align-items-center mt-3 gap-1"> 
                                     <img src="{{asset('/img/profileIMG/' . $user->profile_img)}}" class="img-fluid imagen_modal_usu no-photo-link"> 
                                     <strong> {{$user->name}}: </strong> 
                                     <span> {{$imagen[0]->footer}} </span>
                                 </p>
                                 @if ($user->id == auth()->user()->id)
-                                    <div class="d-flex flex-column justify-content-center align-items-center gap-1">
+                                    <div class="d-flex flex-column justify-content-center align-items-center mt-1 px-1 gap-1">
                                         <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple no-photo-link"> recommend </span>
                                         <span> {{$imagen[1]}} </span>    
                                     </div>
                                 @else
-                                    <div>
+                                    <div class="px-1">
                                         <like-component :img_id="{{json_encode($imagen[0]->id)}}" :user_id="{{json_encode(auth()->user()->id)}}" :ruta_votos="{{json_encode(asset('votos'))}}" :ruta_getvotos="{{json_encode(asset('getVotos'))}}"></like-component>
                                     </div>
                                 @endif
