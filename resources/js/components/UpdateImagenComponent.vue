@@ -8,7 +8,7 @@
                 </vue-dropzone>
 
                 <div class="d-flex justify-content-center mt-3">
-                    <input type="submit" id="bsubir" value="Actualizar" class="btn btn-form w-25" disabled>
+                    <input type="submit" id="bsubir" value="Actualizar" class="btn btn-form boton-subir" disabled>
                 </div>
             </div>
         </form>

@@ -114,6 +114,12 @@ svg {
     box-shadow: inset 150px 0px 0px var(--main-blue);
 }
 
+/* Modal */ 
+.boton-subir {
+    width: 25%;
+    transition: 0.6s;
+}
+
 /* Media queries */
 @media all and (min-width: 768px) {
     svg {
@@ -126,5 +132,11 @@ svg {
 @media all and (max-width: 268px) {
     .formEdit{
         padding: 2em 2em;
+    }
+}
+
+@media all and (max-width: 468px) {    
+    .boton-subir {
+        width: 75%;
     }
 }
