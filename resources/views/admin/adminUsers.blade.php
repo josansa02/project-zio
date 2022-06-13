@@ -19,8 +19,8 @@
             </li>
             <li class="list-group-item mt-1">
                 @if (count($users) == 0)
-                    <main class="container d-flex justify-content-center align-items-center mt-5">
-                        <h3 class="text-center">No hay usuarios registrados</h3>
+                    <main class="container d-flex justify-content-center align-items-center">
+                        <h3 class="text-center p-4">No hay usuarios registrados</h3>
                     </main>
                 @else 
                     <div class="row justify-content-center align-items-center">
