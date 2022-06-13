@@ -33606,7 +33606,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "d-flex justify-content-center mt-3" }, [
       _c("input", {
-        staticClass: "btn btn-form w-25",
+        staticClass: "btn btn-form boton-subir",
         attrs: { type: "submit", id: "bsubir", value: "Subir", disabled: "" },
       }),
     ])

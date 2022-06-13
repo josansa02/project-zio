@@ -30,30 +30,31 @@
 <div class="container mt-3 mb-3">
     <div class="card">
         <ul class="list-group list-group-flush">
-            <li class="list-group-item align-items-center d-flex justify-content-center gap-3">
-                <div class="d-flex align-items-center">
-                    <span class="text-dark-purple">Mensajes en la bandeja de entrada</span> <span>: {{count($messages)}}</span>
+            <li class="list-group-item align-items-center d-flex flex-column flex-sm-row justify-content-center gap-3">
+                <div>
+                    <span class="text-dark-purple">Mensajes en la bandeja de entrada<span class="text-black">: {{count($messages)}}</span> </span> 
                 </div>
                 <form action="{{route('messages.delete.all')}}" class="swal-confirmar-borrar-todos" method="POST">
                     @method('DELETE')
                     @csrf
-                    <button type="submit" class="btn btn-danger gap-2 text-white d-flex justify-content-center">Borrar mensajes <span class="material-symbols-outlined">delete</span></button>
+                    <button type="submit" class="btn btn-danger gap-2 text-white d-flex justify-content-center align-items-center">Borrar mensajes <span class="material-symbols-outlined">delete</span></button>
                 </form>
             </li>
             <li class="list-group-item">
                 @foreach ($messages as $message)
-                    <div class="d-flex align-items-center justify-content-center gap-3 my-3">
+                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3 my-3">
                         <a href="{{route('gallery', $message[1]->name)}}">
                             <img class="img_usu" src="{{asset('/img/profileIMG')}}/{{$message[1]->profile_img}}" alt="Foto perfil {{$message[1]->name}}">
                         </a>
                         <img class="img_imagen" src="{{asset('/img/usersIMG')}}/{{$message[2]->img_name}}" alt="Foto comentada por {{$message[1]->name}}">
-                        {{$message[1]->name}}
+                        <span class="d-flex justify-content-center w-25">{{$message[1]->name}}</span>
                         <button class="boton-galeria btn bg-dark-purple text-white px-4 d-flex justify-content-center gap-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{$i}}">Leer <span class="material-symbols-outlined">local_library </span></button>
                         <form action="{{route('messages.delete', $message[0]->id)}}" class="swal-confirmar-borrar" method="POST">
                             @method('DELETE')
                             @csrf
                             <button type="submit" class="btn btn-danger text-white d-flex justify-content-center px-2"><span class="material-symbols-outlined"> delete </span></button>
                         </form>
+                        <div class="separador d-sm-none w-100"></div>
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal{{$i}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

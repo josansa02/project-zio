@@ -122,3 +122,9 @@ svg {
         opacity: 1;
     }
 }
+
+@media all and (max-width: 268px) {
+    .formEdit{
+        padding: 2em 2em;
+    }
+}

@@ -40,6 +40,10 @@ body {
     border-radius: 50px;
 }
 
+.separador {
+    border-bottom: 1px solid var(--main-purple);
+}
+
 /* Modal */
 .modal-body {
     padding: 0px !important;

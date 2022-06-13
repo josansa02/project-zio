@@ -64,12 +64,12 @@
 
 @if ($user->enabled)
 
-    <div class="profile d-flex flex-column justify-content-center align-items-center gap-3 py-4">
-        <div class="d-flex align-items-center gap-3">
+    <div class="profile d-flex flex-column justify-content-center align-items-center gap-3 py-4 px-2 px-sm-0">
+        <div class="d-flex justify-content-center align-items-center gap-3">
             <img src="{{asset('/img/profileIMG/')}}/{{$user->profile_img}}" class="img-fluid imagen_usu">
-            <div class="mt-2">
-            <h3>{{$user->name}}</h3>
-            <p>{{$user->bio}}</p>
+            <div class="d-flex flex-column mt-2">
+                <h3 class="w-auto">{{$user->name}}</h3>
+                <p>{{$user->bio}}</p>
             </div>
         </div>
 
@@ -147,11 +147,13 @@
                                 <img src="{{asset('/img/usersIMG/' . $imagen[0]->img_name)}}" class="img-fluid">
                             </div>
                             <div class="d-flex justify-content-between align-items-center px-3">
-                                <p class="d-flex align-items-center mt-3 gap-1"> 
+                                <div class="d-flex align-items-center gap-1"> 
                                     <img src="{{asset('/img/profileIMG/' . $user->profile_img)}}" class="img-fluid imagen_modal_usu no-photo-link"> 
-                                    <strong> {{$user->name}}: </strong> 
-                                    <span> {{$imagen[0]->footer}} </span>
-                                </p>
+                                    <div class="d-flex flex-column flex-sm-row align-items-center gap-0 gap-sm-1">
+                                        <strong> {{$user->name}}: </strong> 
+                                        <span> {{$imagen[0]->footer}} </span>
+                                    </div>
+                                </div>
                                 @if ($user->id == auth()->user()->id)
                                     <div class="d-flex flex-column justify-content-center align-items-center mt-1 px-1 gap-1">
                                         <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple no-photo-link"> recommend </span>
@@ -167,7 +169,7 @@
                         @if ($user->id != Auth::user()->id)
                             <div class="modal-footer">
                                 <div class="d-flex align-items-center gap-1 w-100">
-                                    <img src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg" class="my-modal-img no-photo-link">
+                                    <img src="{{asset('/img/profileIMG/')}}/{{auth()->user()->profile_img}}" alt="ProfileImg" class="my-modal-img no-photo-link d-none d-sm-block">
                                     <form class="w-100" action="{{ route('messages.add') }}" method="post">
                                         @csrf
                                         @method("post")

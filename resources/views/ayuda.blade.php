@@ -42,7 +42,7 @@
                         <p> Para reportar una imagen debe seguir estos pasos:</p>
                         <ol>
                             <li> Pulsar la imagen para que se muestre la ventana emergente </li>
-                            <li> <div class="d-flex align-items-center gap-1"> <span>Pulsar en el botón</span> <span class="material-symbols-outlined text-danger">report</span> </div> </li>
+                            <li> <span class="d-flex flex-column flex-sm-row align-items-sm-center">Pulsar en el botón: <span class="material-symbols-outlined text-danger h-100">report</span> </span> </li>
                             <li> Este mostrará una ventana desde la que podrá seleccionar la causa del reporte y enviarlo </li>
                         </ol>
                     </div>
@@ -62,7 +62,7 @@
                         <ol>
                             <li> Pulsar la imagen para que se muestre la ventana emergente </li>
                             <li> 
-                                <div class="d-flex align-items-center gap-2"> 
+                                <div class="d-flex flex-column flex-sm-row align-items-center gap-2"> 
                                     <span>Escribir el comentario en el bloque</span> 
                                     <span>  
                                         <div class="input-group">
@@ -90,7 +90,7 @@
                         <p> Para cambiar el correo asociado debe seguir estos pasos:</p>
                         <ol>
                             <li> Pulsar en la imagen de perfil para que se muestre el desplegable con las secciones </li>
-                            <li> <span class="d-flex align-items-center gap-1"> Seleccionar <span class="d-flex align-items-center gap-2"> <strong>Editar perfil</strong> <span class="material-symbols-outlined text-black"> settings </span> </span> </span> </li>
+                            <li> <span class="d-flex flex-column flex-sm-row align-items-sm-center gap-1"> Seleccionar <span class="d-flex align-items-center gap-1"> <strong>Editar perfil</strong> <span class="material-symbols-outlined text-black"> settings </span> </span> </span> </li>
                             <li> Modificar el apartado <strong>Correo</strong>. En caso de que no sea usado por otro usuario habrá finalizado el cambio </li>
                         </ol>
                     </div>
@@ -109,7 +109,7 @@
                         <p> Para mirar la bandeja de mensajes debe seguir estos pasos:</p>
                         <ol>
                             <li> Pulsar en la imagen de perfil para que se muestre el desplegable con las secciones </li>
-                            <li> <span class="d-flex align-items-center gap-1"> Seleccionar <span class="d-flex align-items-center gap-2"> <strong>Galería personal</strong> <span class="material-symbols-outlined text-black"> home </span> </span> </span> </li>
+                            <li> <span class="d-flex flex-column flex-sm-row align-items-sm-center gap-1"> Seleccionar <span class="d-flex align-items-sm-center gap-1"> <strong>Galería personal</strong> <span class="material-symbols-outlined text-black"> home </span> </span> </span> </li>
                             <li> 
                                 <span class="d-flex align-items-center gap-2">
                                     Pulsar el botón
@@ -135,7 +135,7 @@
                         <p> Para subir una imagen debe seguir estos pasos:</p>
                         <ol>
                             <li> Pulsar en la imagen de perfil para que se muestre el desplegable con las secciones </li>
-                            <li> <span class="d-flex align-items-center gap-1"> Seleccionar <span class="d-flex align-items-center gap-2"> <strong>Galería personal</strong> <span class="material-symbols-outlined text-black"> home </span> </span> </span> </li>
+                            <li> <span class="d-flex flex-column flex-sm-row align-items-sm-center gap-1"> Seleccionar <span class="d-flex align-items-center gap-2"> <strong>Galería personal</strong> <span class="material-symbols-outlined text-black"> home </span> </span> </span> </li>
                             <li> 
                                 <span class="d-flex align-items-center gap-2">
                                     Pulsar el botón
@@ -174,7 +174,7 @@
                                     </span> 
                                 </li>
                                 <li> 
-                                    <span class="d-flex align-items-center gap-1">
+                                    <span class="d-flex flex-column flex-md-row align-items-md-center gap-1">
                                         Una vez pulsado, aparecerá
                                         <span class="d-flex align-items-center gap-2">
                                             <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple">
@@ -185,7 +185,7 @@
                                     </span>
                                 </li>
                                 <li>
-                                    <span class="d-flex align-items-center gap-1">
+                                    <span class="d-flex flex-column flex-sm-row align-items-sm-center gap-1">
                                         Para retirarlo, pulse de nuevo
                                         <span class="material-symbols-outlined text-dark-purple">
                                             check_circle
@@ -207,7 +207,7 @@
                                     </span> 
                                 </li>
                                 <li> 
-                                    <span class="d-flex align-items-center gap-1">
+                                    <span class="d-flex flex-column flex-md-row align-items-md-center gap-1">
                                         Una vez pulsado, aparecerá
                                         <span class="d-flex align-items-center gap-2">
                                             <span class="material-symbols-outlined d-flex justify-content-center text-dark-purple">
@@ -218,7 +218,7 @@
                                     </span>
                                 </li>
                                 <li>
-                                    <span class="d-flex align-items-center gap-1">
+                                    <span class="d-flex flex-column flex-sm-row align-items-sm-center gap-1">
                                         Para retirarlo, pulse de nuevo
                                         <span class="material-symbols-outlined text-dark-purple">
                                             check_circle

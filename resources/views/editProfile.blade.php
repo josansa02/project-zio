@@ -37,8 +37,8 @@
 <main class="container mt-4 position-relative">
     <div class="row">
         <h2 class="text-center text-blue"> Editar perfil </h2>
-        <div class="d-flex align-items-center justify-content-center mt-3">
-            <form action="{{route('usuarios.edit', $user->id)}}" method="POST" class="d-flex gap-5 formEdit">
+        <div class="d-flex align-items-center justify-content-center mt-3 mb-3 mb-sm-0">
+            <form action="{{route('usuarios.edit', $user->id)}}" method="POST" class="d-flex flex-column flex-sm-row gap-5 formEdit">
                 @csrf
                 @method('put')
                 <div class="d-flex flex-column justify-content-center align-items-center gap-2">
