@@ -11,8 +11,6 @@ _ZIO es una plataforma cuyo objetivo se basa en ceder a los usuarios un entorno 
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
-Mira **Despliegue** para conocer como desplegar el proyecto.
-
 
 ### Pre-requisitos 📋
 
@@ -67,8 +65,6 @@ php artisan migrate:fresh --seed
 ```
 
 ## Despliegue 📦
-
-_Como hacer deploy_
 
 _Para usar la funcionalidad de envio de correos con la que cuenta la aplicación deberá configurar una cuenta de Google y asignar los datos necesarios en el archivo **.env**_
 
