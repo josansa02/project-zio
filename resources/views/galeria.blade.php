@@ -13,7 +13,7 @@
     <!-- Muestra un alerta que informe que un reporte ha sido llevado a cabo tras su realización -->
     @if (isset($_SESSION["report"]))
     <div class="row justify-content-center fixed-bottom">
-        <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">
+        <div class="alert alert-danger alert-dismissible fade show w-50" role="alert">
             <strong>{{$_SESSION["report"]}}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -26,7 +26,7 @@
     <!-- Muestra un alerta que informe que un mensaje enviado sobre una imagen -->
     @if (isset($_SESSION["message"]))
     <div class="row justify-content-center fixed-bottom">
-        <div class="alert alert-primary alert-dismissible fade show w-25" role="alert">
+        <div class="alert alert-primary alert-dismissible fade show w-50" role="alert">
             <strong>{{$_SESSION["message"]}}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -39,7 +39,7 @@
     <!-- Muestra un alerta si no encuentra el usuario que se busca -->
     @if (isset($_SESSION["userNotFound"]))
     <div class="row justify-content-center fixed-bottom">
-        <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">
+        <div class="alert alert-danger alert-dismissible fade show w-50" role="alert">
             <strong>{{$_SESSION["userNotFound"]}}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -52,7 +52,7 @@
     <!-- Muestra un alerta que indica que el perfil se ha actualizado correctamente -->
     @if (isset($_SESSION["update"]))
     <div class="row justify-content-center fixed-bottom">
-        <div class="alert alert-success alert-dismissible fade show w-25" role="alert">
+        <div class="alert alert-success alert-dismissible fade show w-75" role="alert">
             <strong>{{$_SESSION["update"]}}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -146,7 +146,7 @@
                             <div class="imagen_modal">
                                 <img src="{{asset('/img/usersIMG/' . $imagen[0]->img_name)}}" class="img-fluid">
                             </div>
-                            <div class="d-flex justify-content-between align-items-center px-3">
+                            <div class="d-flex justify-content-between align-items-center mt-3 mb-3 px-3">
                                 <div class="d-flex align-items-center gap-1"> 
                                     <img src="{{asset('/img/profileIMG/' . $user->profile_img)}}" class="img-fluid imagen_modal_usu no-photo-link"> 
                                     <div class="d-flex flex-column flex-sm-row align-items-center gap-0 gap-sm-1">
@@ -188,6 +188,7 @@
                 </div>
             </div>
 
+            <!-- Modal de reporte -->
             <div class="modal fade" id="modalReportar{{$imagen[0]->id}}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">

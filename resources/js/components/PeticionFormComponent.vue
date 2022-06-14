@@ -2,11 +2,11 @@
     <div class="container mt-5">
         <div class="row justify-content-center" v-if="mostrar">
             <div class="d-flex flex-column justify-content-center align-items-center gap-2">
-                <h5 class="d-flex align-items-center gap-2">
+                <h5 class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2">
                     <span class="material-symbols-outlined text-danger fs-1"> report </span> 
-                    Su cuenta ha sido suspendida, rellene el siguiente formulario de petición de rehabilitación de cuenta si lo desea
+                    <span class="text-center"> Su cuenta ha sido suspendida, rellene el siguiente formulario de petición de rehabilitación de cuenta si lo desea </span>
                 </h5>
-                <h2>Formulario de petición de rehabilitación de cuenta</h2>
+                <h2 class="text-center">Formulario de petición de rehabilitación de cuenta</h2>
                 <div class="w-75">
                     <form method="POST" v-on:submit.prevent="enviarPeticion()">
                         <div class="py-4">
