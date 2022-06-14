@@ -33843,17 +33843,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex justify-content-center gap-2" }, [
-      _c("h5", { staticClass: "d-flex align-items-center gap-2" }, [
-        _c(
-          "span",
-          { staticClass: "material-symbols-outlined text-danger fs-1" },
-          [_vm._v(" report ")]
-        ),
-        _vm._v(
-          " \n                Su mensaje ha sido enviado, espere a que los administradores revisen la petición\n            "
-        ),
-      ]),
+    return _c("div", { staticClass: "d-flex align-items-center gap-2" }, [
+      _c(
+        "h5",
+        {
+          staticClass:
+            "d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2",
+        },
+        [
+          _c(
+            "span",
+            { staticClass: "material-symbols-outlined text-danger fs-1" },
+            [_vm._v(" report ")]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "text-center" }, [
+            _vm._v(
+              " Su mensaje ha sido enviado, espere a que los administradores revisen la petición "
+            ),
+          ]),
+        ]
+      ),
     ])
   },
 ]

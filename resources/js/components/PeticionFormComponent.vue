@@ -24,10 +24,10 @@
         </div>
 
         <div class="row justify-content-center" v-if="!mostrar">
-            <div class="d-flex justify-content-center gap-2">
-                <h5 class="d-flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2">
+                <h5 class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2">
                     <span class="material-symbols-outlined text-danger fs-1"> report </span> 
-                    Su mensaje ha sido enviado, espere a que los administradores revisen la petición
+                    <span class="text-center"> Su mensaje ha sido enviado, espere a que los administradores revisen la petición </span>
                 </h5>
             </div>
         </div>

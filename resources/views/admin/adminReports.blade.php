@@ -54,7 +54,7 @@
                                                                 </div>
                                                                 <div class="p-0">
                                                                     <div>
-                                                                        <img src="{{asset('/img/usersIMG/' . $image->img_name)}}" class="img-fluid">
+                                                                        <img src="{{asset('/img/usersIMG/' . $image->img_name)}}" class="img-fluid modal_report">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -78,8 +78,7 @@
                                             @endforeach  
                                         </td>
                                         <td> {{$report->reason}}  </td>
-                                        <div>
-                                            <td> 
+                                        <td> 
                                             <form class="swal-confirmar-borrar" action="{{route('delete.report', $report->id)}}" method="post">
                                                 @csrf
                                                 @method("delete")
@@ -108,7 +107,6 @@
                                                 @endif
                                             @endforeach 
                                         </td>
-                                        </div>
                                     </tr>
                                 @endforeach
         
