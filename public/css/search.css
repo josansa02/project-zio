@@ -96,6 +96,7 @@ p, span {
 
 /* Autocompletar */  
 .autocomplete ul{
+    width: 100% !important;
     border-radius: 5px;
     z-index: 5;
 }

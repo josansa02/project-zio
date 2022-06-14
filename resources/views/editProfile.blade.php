@@ -24,7 +24,7 @@
 <!-- Muestra un alerta que indica que el perfil se ha actualizado correctamente -->
 @if (isset($_SESSION["update"]))
 <div class="row justify-content-center fixed-bottom">
-    <div class="alert alert-success alert-dismissible fade show w-100" role="alert">
+    <div class="alert alert-success alert-dismissible fade show w-50" role="alert">
         <strong>{{$_SESSION["update"]}}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>

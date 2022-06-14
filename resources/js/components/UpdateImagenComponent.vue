@@ -69,6 +69,9 @@
                 this.comprobar();
             },
             actualizarImagen() {
+                var boton = document.getElementById("bsubir");
+                boton.disabled = true;
+
                 let formData = new FormData();
                 formData.append('name', this.image.nombre);
                 formData.append('files', this.image.imagen);
@@ -76,6 +79,8 @@
                 .then(response => {
                     location.reload();
                 }).catch(error => {
+                    boton.disabled = false;
+                    
                     if (error.response.status === 422) {
                         this.errors = error.response.data.errors;
                         Swal.fire(

@@ -87,6 +87,9 @@
                 this.comprobar();
             },
             guardarImagen() {
+                var boton = document.getElementById("bsubir");
+                boton.disabled = true;
+
                 let formData = new FormData();
                 formData.append('title', this.image.titulo);
                 formData.append('footer', this.image.pie);
@@ -96,6 +99,8 @@
                 .then(response => {
                     location.reload();
                 }).catch(error => {
+                    boton.disabled = false;
+
                     if (error.response.status === 422) {
                         this.errors = error.response.data.errors;
                         Swal.fire(
